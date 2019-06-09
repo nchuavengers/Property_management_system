@@ -1,10 +1,10 @@
 package pms.entity;
 
 public class RepairRecord {
-    private int repairRecordId;//访客记录id
-    private int publicUtilityId;//车位id
-    private int repairerId;//保安id
-    private String malfunction;//车牌
-    private String repairMoney;//入区时间
-    private String repairTime;//离开时间
+    private int repairRecordId;//维修记录id
+    private int publicUtilityId;//id
+    private String repairerInfomation;//维修人员id+电话
+//    private String malfunction;//故障
+    private String repairMoney;//
+    private String repairTime;//
 }
