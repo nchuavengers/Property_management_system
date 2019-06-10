@@ -120,4 +120,30 @@ public class HomeController {
 		return "parkingSpaceManage";
 
 	}
+	@GetMapping("/financeManage")
+	public String financeManage(Model model) {
+		System.out.print(" here is financeManage.html\n");
+		return "financeManage";
+
+	}
+	
+	@GetMapping("/ownerFinance")
+	public String ownerFinance(Model model) {
+		System.out.print(" here is ownerFinance.html\n");
+		return "ownerFinance";
+
+	}
+	@GetMapping("/ownerParking")
+	public String ownerParking(Model model) {
+		System.out.print(" here is ownerParking.html\n");
+		return "ownerParking";
+
+	}
+	@GetMapping("/ownerAnnouncement")
+	public String ownerAnnouncement(Model model) {
+		System.out.print(" here is ownerFinance.html\n");
+		return "ownerAnnouncement";
+
+	}
+	
 }
