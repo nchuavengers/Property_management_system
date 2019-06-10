@@ -6,6 +6,7 @@ package pms.repository;
 
 public class AnnouncementRepository {
 
+	private int a;
 	
 	
 }
