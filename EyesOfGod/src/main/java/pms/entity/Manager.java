@@ -1,9 +1,9 @@
 package pms.entity;
 
 public class Manager {
-    private int ManagerId;//业主id
-    private String ManagerName;//业主姓名
-    private String ManagerPhoneNumber;//业主联系电话
-    private String ManagerSex;//业主性别
-    private String ManagerPassword;//业主密码
+    private int managerId;//管理员id
+    private String managerName;//管理员姓名
+    private String managerPhoneNumber;//管理员联系电话
+    private String managerSex;//管理员性别
+    private String managerPassword;//管理员密码
 }
