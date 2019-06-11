@@ -69,7 +69,7 @@ public interface OwnerRepository {
 	 * @return
 	 */
 	@Insert("")
-	public Boolean addOwner(Owner owner);
+	public boolean addOwner(Owner owner);
 	
 	/**
 	 * -增加业主房屋

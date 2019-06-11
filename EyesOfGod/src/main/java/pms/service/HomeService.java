@@ -12,19 +12,19 @@ public interface HomeService {
 	 * @param ud
 	 * @return Manager 对象
 	 */
-	Manager validManager(UserDto ud);
+	public Manager validManager(UserDto ud);
 
 	/**
 	 * -验证是否是业主
 	 * @param ud
 	 * @return Owner 业主对象
 	 */
-	Owner validOwner(UserDto ud); 
+	public Owner validOwner(UserDto ud); 
 
 	/**
 	 * -验证是否是保安
 	 * @param ud
 	 * @return  Security 保安对象
 	 */
-	Security validSecurity(UserDto ud);  
+	public Security validSecurity(UserDto ud);  
 }

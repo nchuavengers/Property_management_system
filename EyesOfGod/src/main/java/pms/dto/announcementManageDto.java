@@ -1,5 +1,5 @@
 package pms.dto;
-
+//15202137 汪浩
 public class announcementManageDto {
 	
     private int announcementId;//公告id
