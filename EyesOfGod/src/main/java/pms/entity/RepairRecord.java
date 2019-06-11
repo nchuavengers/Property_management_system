@@ -4,7 +4,6 @@ public class RepairRecord {
     private int repairRecordId;//维修记录id
     private int publicUtilityId;//id
     private String repairerInfomation;//维修人员id+电话
-//    private String malfunction;//故障
     private String repairMoney;//
     private String repairTime;//
 }

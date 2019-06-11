@@ -4,56 +4,88 @@ package pms.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
 
+import pms.dto.OwnerHouseDto;
+import pms.dto.OwnerManagerDto;
+import pms.entity.Manager;
 import pms.entity.Owner;
 
 
 @Mapper
 public interface OwnerRepository {
 	
-	
-	/*验证账号有效validTeacher()
-	 * 
-	 * 
-	 */
-	@Select("")
-//	@ResultMap(value="teacherMap")
-	public Owner validOwner();
-	 
-    /*查询所有业主findAllOwner()	
-     * *入口：无
-     * *出口：List<Owner>
-     */
-	@Select("") 
-	public List<Owner> findAllOwner();
 
+	/**
+	 * -核实业主身份
+	 * @param account
+	 * @param password
+	 * @return  Owner 管理员对象
+	 */
+	@Select("") 
+	public Owner validOwner(int account , String password); 
+	 
+	/**
+	 * -查询所有业主信息OwnerManagerDto
+	 * @return
+	 */
+	@Select("") 
+	public List<OwnerManagerDto>  findAllOwnerManagerDto();
+   
+	/**
+	 * -更新业主信息
+	 * @param owner
+	 * @return
+	 */
+	@Update("")
+	public boolean UpdateOwner(Owner owner);
 	
-    /*增加业主addOwner()
-     * *入口：Owner owner
-     * *出口：List<Owner>
-     */
+	/**
+	 * -删除业主信息       
+	 * @param ownerId
+	 * @return
+	 */
+	@Delete("")
+	public boolean deleteOwner(int ownerId );
+	
+	/**
+	 * -删除业主所有房屋
+	 * @param ownerId
+	 * @return
+	 */
+	@Delete("")
+	public boolean deleteOwnerHouse(int ownerId );
+	
+	/**
+	 * -删除业主所有车位
+	 * @param ownerId
+	 * @return
+	 */
+	@Delete("")
+	public boolean deleteOwnerSparkingSpace(int ownerId );
+	
+	/**
+	 * -增加业主信息
+	 * @param owner
+	 * @return
+	 */
 	@Insert("")
 	public Boolean addOwner(Owner owner);
 	
-    /*删除业主deleteOwner()
-     * 
-     */
-	@Delete("")
-	public Boolean deleteOwner();
+	/**
+	 * -增加业主房屋
+	 * @param ownerHouseDto
+	 * @return
+	 */
+	@Insert("")
+	public boolean addOwnerHouse(OwnerHouseDto ownerHouseDto);
 	
-    /*修改业主modifyOwner()
-     * 
-     */
-	@Update({ })
-	public Boolean  modifyOwner();
 
-    /*查询指定业主fingOwnerByOwnerId()  
-     * *入口：无
-     * *出口：Owner
-     */
+	/**
+	 * -查询指定业主信息
+	 * @return
+	 */
 	@Select("")		
-	public Owner fingOwnerByOwnerId();	
+	public Owner fingOwnerByOwnerId(int ownerId);	
 	
 	
 

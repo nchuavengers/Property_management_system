@@ -111,10 +111,12 @@
 								<li><a><i class="fa fa-desktop"></i> 管理 <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="owner">我的资料</a></li>
-										<li><a href="ownerPar">我的车位</a></li>
-										<li><a href="ownerFinance">我的账单</a></li>
-										<li><a href="ownerAnnouncement">公告</a></li>
+										<li><a href="ownerManage">业主管理</a></li>
+										<li><a href="HouseManage">房屋信息管理</a></li>
+										<li><a href="financeManage">缴费管理</a></li>
+										<li><a href="parkingSpaceManage">车位管理</a></li>
+										<li><a href="facilityManage">公共设施管理</a></li>
+										<li><a href="announcementManage">公告管理</a></li>
 
 									</ul></li>
 
@@ -283,7 +285,7 @@
 					<div class="clearfix"></div>
 
 					<div class="row">
-						<!-- 房屋信息管理 -->
+						<!-- 业主信息管理 -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
@@ -313,12 +315,13 @@
 												<th>业主姓名</th>
 												<th>性别</th>
 												<th>登录密码</th>
-												<th>住宅ID</th>
+												<th>楼栋号</th>
 												<th>单元号</th>
 												<th>楼层号</th>
 												<th>门牌号</th>
 												<th>联系方式</th>
-												<th><a href="">操作</a></th>					
+												<th>操作</th>	
+												<th>操作</th>					
 											</tr>
 											
 										</thead>
@@ -333,8 +336,8 @@
 												<th>5</th>
 												<th>20</th>
 												<th>18046769043</th>
-												<th><a href="modifyOwner" style="color: blue">修改</a> <a href="delOwner" style="color: blue">删除</a></th>
-												
+												<th><a href="modifyOwner" style="color: blue">修改业主信息</a></th>
+												<th> <a href="delOwner" style="color: blue">删除业主</a></th>
 											</tr>
 										</tbody>
 									</table>
@@ -342,7 +345,7 @@
 								
 							</div>
 						</div>
-						<!-- 新增房屋信息 -->
+						<!-- 新增业主信息 -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
@@ -381,7 +384,6 @@
 										</thead>
 										<tbody>
 											<tr>
-											
 												<th><input name="ownerName" type="text" ></th>
 												<th><input name="ownerSex" type="text" ></th>
 												<th><input name="ownerPassword" type="text" ></th>
@@ -395,6 +397,56 @@
 								
 							</div>
 						</div>
+					
+					<!-- 新增业主房屋信息 -->
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>新增业主房屋信息：</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<p class="text-muted font-13 m-b-30">
+									<form method="post" action="">
+									<table id="datatable"
+										class="table table-striped table-bordered">
+										<thead>
+											<tr>
+												
+												<th>业主ID</th>
+												<th>房屋ID</th>
+												<th><a href="">操作</a></th>
+												
+											</tr>
+											
+										</thead>
+										<tbody>
+											<tr>
+												<th><input name="ownerId" type="text" ></th>
+												<th><input name="houseId" type="text" ></th>
+												<th><input type="submit"   value="添加" ></th>
+											</tr>
+										</tbody>
+									</table>
+									</form>	
+								</div>
+								
+							</div>
+						</div>
+					
 					</div>
 				</div>
 			</div>

@@ -32,7 +32,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DataTables | Gentelella</title>
+<title>欢迎 | iron_man</title>
 
 <!-- Bootstrap -->
 <link href="/vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -126,15 +126,18 @@
 								<li><a><i class="fa fa-desktop"></i> 管理 <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="">访客车辆</a></li>
-										<li><a href="">全天共享车位</a></li>
-										<li><a href="">临时共享车位</a></li>
+										<li id="tosecurityVistor">访客车辆</li>
+										<li id="tosecurityAllDayShare">全天共享车位</li>
+										<li  id="tosecurityTempParkingSpace">临时共享车位</li>
+										<li  id="tosecurityAddVisitor">添加来访车辆</li>
+										<li  id="tosecurityFindCar">查询业主车位</li>
 										
-									</ul></li>
+									</ul>
+								</li>
 								<li><a><i class="fa fa-clone"></i>公告 <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="">公共信息</a></li>
+										<li  id="tosecurityAnnouncement">今日公告</li>
 									</ul></li>
 							</ul>
 						</div>
@@ -257,7 +260,7 @@
 
 					<div class="row">
 						<!-- 访客车辆列表 -->
-						<div class="col-md-8 col-sm-8 col-xs-8">
+						<div id="securityVistor" class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
@@ -280,8 +283,9 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-										function
-										<code>$().DataTable();</code>
+										<!-- function
+										<code>$().DataTable();</code> -->
+										someting...
 									</p>
 									<table id="datatable"
 										class="table table-striped table-bordered">
@@ -290,6 +294,7 @@
 												<th>车位编号</th>
 												<th>车牌号</th>
 												<th>入区时间</th>
+												<th>缴费金额</th>
 												<th>操作</th>
 											</tr>
 										</thead>
@@ -300,72 +305,84 @@
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href=" " style="color: blue">离开小区</a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 											<tr>
 												<th>C001</th>
 												<th>AAAA</th>
 												<th>2019/5/29/8:00</th>
+												<th>...</th>
 												<th><a href="" value="离开小区"></a></th>
 											</tr>
 										</tbody>
@@ -375,7 +392,7 @@
 						</div>
 
 						<!-- 全天共享车位列表 -->
-						<div class="col-md-4 col-sm-4 col-xs-4">
+						<div id="securityAllDayShare" class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
@@ -463,128 +480,8 @@
 							</div>
 						</div>
 
-						<!-- 添加来访车辆 -->
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										添加来访车辆 <small>...</small>
-									</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<p class="text-muted font-13 m-b-30">注意黑车：</p>
-									<form class="form-horizontal form-label-left" action="#">
-										<div class="form-group">
-											<label class="col-sm-3 control-label">车牌：</label>
-											<div class="col-sm-9">
-												<div class="input-group">
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<label class="col-sm-3 control-label">车位：</label>
-											<div class="col-sm-9">
-												<div class="input-group">
-													<input type="text" class="form-control"> <span
-														class="input-group-btn">
-														<button type="submit" class="btn btn-primary">Go!</button>
-													</span>
-												</div>
-
-											</div>
-
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-
-						<!-- 查询指定业主车辆 -->
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										查询业主车位 <small>输入关键信息即可</small>
-									</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<p class="text-muted font-13 m-b-30">注意身份核实：</p>
-									<p class="zzjnulldivheight"></p>
-									<form class="form-horizontal form-label-left" action="#">
-										<div class="form-group">
-											<label class="col-sm-3 control-label">输入：</label>
-											<div class="col-sm-9">
-												<div class="input-group">
-													<input type="text" class="form-control"> <span
-														class="input-group-btn">
-														<button type="submit" class="btn btn-primary ">Go!</button>
-													</span>
-												</div>
-											</div>
-										</div>
-									</form>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- 今日公告 -->
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>今日公告：</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<p class="text-muted font-13 m-b-30">公告标题：zzz</p>
-									<p style="padding: 45px;"></p>
-
-								</div>
-							</div>
-						</div>
-
 						<!-- 临时共享车位列表 -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div id="securityTempParkingSpace" class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
@@ -725,6 +622,127 @@
 								</div>
 							</div>
 						</div>
+						<!-- 添加来访车辆 -->
+						<div id="securityAddVisitor" class="col-md-4 col-sm-4 col-xs-4">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>
+										添加来访车辆 <small>...</small>
+									</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<p class="text-muted font-13 m-b-30">注意黑车：</p>
+									<form class="form-horizontal form-label-left" action="#">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">车牌：</label>
+											<div class="col-sm-9">
+												<div class="input-group">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<label class="col-sm-3 control-label">车位：</label>
+											<div class="col-sm-9">
+												<div class="input-group">
+													<input type="text" class="form-control"> <span
+														class="input-group-btn">
+														<button type="submit" class="btn btn-primary">Go!</button>
+													</span>
+												</div>
+
+											</div>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<!-- 查询指定业主车辆 -->
+						<div id="securityFindCar" class="col-md-4 col-sm-4 col-xs-4">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>
+										查询业主车位 <small>输入关键信息即可</small>
+									</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<p class="text-muted font-13 m-b-30">注意身份核实：</p>
+									<p class="zzjnulldivheight"></p>
+									<form class="form-horizontal form-label-left" action="#">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">输入：</label>
+											<div class="col-sm-9">
+												<div class="input-group">
+													<input type="text" class="form-control"> <span
+														class="input-group-btn">
+														<button type="submit" class="btn btn-primary ">Go!</button>
+													</span>
+												</div>
+											</div>
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- 今日公告 -->
+						<div id="securityAnnouncement" class="col-md-4 col-sm-4 col-xs-4">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>今日公告：</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<p class="text-muted font-13 m-b-30">公告标题：zzz</p>
+									<p style="padding: 45px;"></p>
+
+								</div>
+							</div>
+						</div>
+
+					
 					</div>
 				</div>
 			</div>
