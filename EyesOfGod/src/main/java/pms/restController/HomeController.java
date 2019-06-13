@@ -1,6 +1,5 @@
 package pms.restController;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,15 +7,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import pms.entity.Manager;
+import pms.entity.Owner;
+import pms.entity.Security;
 import pms.entity.Teacher;
+import pms.repository.ManagerRepository;
+import pms.repository.OwnerRepository;
+import pms.repository.SecurityRepository;
 import pms.repository.TeacherRepository;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private TeacherRepository repository;	
-	
-	
+    @Autowired
+    private ManagerRepository managerRepository;		
+    @Autowired
+    private OwnerRepository ownerRepository;
+    @Autowired
+    private SecurityRepository securityRepository;
 	/**
 	 * - 核实用户输入格式
 	 * -根据类型调用HomeService方法核实
@@ -26,58 +35,59 @@ public class HomeController {
 	 */
 	@PostMapping("/login")
 	public String login(Model model,String account, String password,String loginType) {
-		System.out.print("Here is index.html\n");
+		System.out.print("验证业主\n");
 		String loginResult="------The password or account is wrong !--------------";
 		//1.判断用户登陆类型
 		if("1".equals(loginType)) { //业主
 			//2.判断业主账号密码
-			Teacher t=repository.validTeacher(account,password);
-			if(t==null) {
+			Owner owner=ownerRepository.validOwner(account,password);
+			if(owner==null) {
 				model.addAttribute("loginResult",loginResult);
 				return "index";
 			}
-			model.addAttribute("t",t);
-			List<Teacher> list=repository.findAll();
-	        model.addAttribute("teachers",list);
-			System.out.print("control"+list.get(0).getName());
-			System.out.print("control"+list.get(1).getName());
+			model.addAttribute("owner",owner);
+			
 			return "owner";
 		}
 		else if("2".equals(loginType)) { //保安
 			//2.判断保安账号密码
-			Teacher t=repository.validTeacher(account,password);
-			if(t==null) {
+			Security security=securityRepository.validSecurity(account,password);
+			if(security==null) {
 				//2.判断保安账号密码
 				model.addAttribute("loginResult",loginResult);
 				return "index";
 			}
-			model.addAttribute("t",t);
-			List<Teacher> list=repository.findAll();
-	        model.addAttribute("teachers",list);
-			System.out.print("control"+list.get(0).getName());
-			System.out.print("control"+list.get(1).getName());
+			
+			model.addAttribute("security",security);
+			
 			return "security";
 		}
-		
 		else if("3".equals(loginType)) { //管理员
-			//2.判断管理账号密码
-			Teacher t=repository.validTeacher(account,password);
-			if(t==null) {
+			System.out.println("验证管理员");
+			
+			//2.判断管理账号密码  //手机号密码
+			Manager manager=managerRepository.validManager(account, password);
+			
+			if(manager==null) {
 				model.addAttribute("loginResult",loginResult);
 				return "index";
 			}
-			model.addAttribute("t",t);
-			List<Teacher> list=repository.findAll();
-	        model.addAttribute("teachers",list);
-			System.out.print("control"+list.get(0).getName());
-			System.out.print("control"+list.get(1).getName());
+			model.addAttribute("manager",manager);
+			
+			
+			
+			
+			
+//			List<Teacher> list=repository.findAll();
+//	        model.addAttribute("teachers",list);
+//			System.out.print("control"+list.get(0).getName());
+//			System.out.print("control"+list.get(1).getName());
 			return "manager";
 		}
 		else {
 			model.addAttribute("loginResult","please choose your login Type");
 			return "index";
 		}
-			
 	}
 	
 
@@ -117,8 +127,6 @@ public class HomeController {
 		return "security";
 
 	}
-	
-	
 }
 
 

@@ -97,8 +97,8 @@
 								class="img-circle profile_img">
 						</div>
 						<div class="profile_info">
-							<span>Welcome,</span>
-							<h2>周先生</h2>
+							<span>Welcome</span>
+							<h2 th:text="${owner.getOwnerName()}"></h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -164,8 +164,8 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">John
-									Doe <span class=" fa fa-angle-down"></span>
+								aria-expanded="false"> <img src="images/img.jpg" alt="">
+								<span th:text="${owner.getOwnerName()}"></span> <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"> Profile</a></li>
@@ -273,9 +273,8 @@
 								<div class="x_content">
 									
 									<p style="padding: 1px;">
-									<p>姓名 :周张俊</p>
-									<p>性别 :男</p>
-									<p>电话 ：15797891903</p>
+									<p th:text="姓名： +${owner.getOwnerName()}"> </p>
+									<p th:text="ID：+${owner.getOwnerId()}"> </p>
 								
 								</div>
 							</div>

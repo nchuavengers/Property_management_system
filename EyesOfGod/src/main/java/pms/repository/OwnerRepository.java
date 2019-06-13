@@ -19,10 +19,10 @@ public interface OwnerRepository {
 	 * -核实业主身份
 	 * @param account
 	 * @param password
-	 * @return  Owner 管理员对象
+	 * @return  Owner 业主对象
 	 */
-	@Select("") 
-	public Owner validOwner(int account , String password); 
+	@Select("select * from pms.owner where ownerPhoneNumber=#{ownerPhoneNumber} and ownerPassword=#{ownerPassword}")
+	public Owner validOwner(@Param("ownerPhoneNumber")String ownerPhoneNumber , @Param("ownerPassword")String ownerPassword); 
 	 
 	/**
 	 * -查询所有业主信息OwnerManagerDto
