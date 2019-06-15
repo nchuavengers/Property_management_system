@@ -7,7 +7,15 @@ import org.apache.ibatis.annotations.Select;
 
 import pms.dto.announcementManageDto;
 import pms.entity.Announcement;
-
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
 public interface AnnouncementRepository {
 
 	/**

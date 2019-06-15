@@ -14,17 +14,17 @@ import pms.entity.VisitorRecord;
 /*
  * -保安页面所需repo
  */
+@Mapper
 public interface SecurityRepository {
 
 	/**
 	 * -核实保安身份
-	 * @param account
+	 * @param account 手机号
 	 * @param password
 	 * @return  Security 保安对象
-	 */
-	@Select("") 
-	public Security validSecurity(int account , String password); 
-	 
+	 */ 
+	@Select("select * from pms.security where securityPhoneNumber=#{securityPhoneNumber} and securityPassword=#{securityPassword}")
+	public Security validSecurity(@Param("securityPhoneNumber")String securityPhoneNumber , @Param("securityPassword")String securityPassword); 
 	
 	/**
 	 * -展示当前访客车辆

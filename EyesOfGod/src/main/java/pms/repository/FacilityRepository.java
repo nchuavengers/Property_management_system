@@ -27,7 +27,7 @@ public interface FacilityRepository {
 	 * @return
 	 */
 	@Insert("")
-	public Boolean addRepairRecord(RepairRecord repairRecord);
+	public boolean addRepairRecord(RepairRecord repairRecord);
 	
 	
 	/**

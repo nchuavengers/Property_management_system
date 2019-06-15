@@ -41,7 +41,7 @@ public interface HouseRepository {
 	 * @return
 	 */
 	@Insert("")
-	public Boolean addHouse(House house);
+	public boolean addHouse(House house);
 	
 	
 	/**

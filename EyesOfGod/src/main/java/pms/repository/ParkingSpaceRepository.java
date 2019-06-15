@@ -55,7 +55,7 @@ public interface ParkingSpaceRepository {
 	 * @return
 	 */
 	@Insert("")
-	public Boolean addParkingSpacer(ParkingSpace ParkingSpace);
+	public boolean addParkingSpacer(ParkingSpace ParkingSpace);
 	
 	
 	/**
