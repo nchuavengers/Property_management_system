@@ -28,6 +28,11 @@ public class HomeController {
 	public String login(Model model,String account, String password,String loginType) {
 		System.out.print("Here is index.html\n");
 		String loginResult="------The password or account is wrong !--------------";
+		
+		
+		
+		
+		
 		//1.判断用户登陆类型
 		if("1".equals(loginType)) { //业主
 			//2.判断业主账号密码
