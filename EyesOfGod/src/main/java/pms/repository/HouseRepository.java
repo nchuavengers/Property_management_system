@@ -26,7 +26,10 @@ public interface HouseRepository {
 	 * @param houseId
 	 * @return
 	 */
-	@Delete("")
+	//	@Delete("DELETE FROM pms.`house` WHERE pms.`house`.`houseId`=#{ownerId}")
+	
+
+	@Delete("DELETE FROM pms.`house` WHERE pms.`house`.`houseId`=#{houseId}")
 	public boolean deleteHouse(int houseId );
 	
 	/**

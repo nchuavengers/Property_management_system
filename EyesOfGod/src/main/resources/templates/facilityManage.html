@@ -9,7 +9,7 @@
  -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -322,44 +322,20 @@
 											</tr>
 										</thead>
 
-
-										<tbody>
-											<tr>
-												<th>1001</th>
-												<th>路灯</th>
-												<th>A</th>
-												<th>故障</th>
-												<th></th>
-												<th></th>
-												<th></th>
-												<th><a href="#" style="color: blue">登记维修</a> </th>
-												<th><a href="" value="已修" style="color: blue">维修已完成</a></th>
-											</tr>
-											<tr>
-												<th>1211</th>
-												<th>防盗门</th>
-												<th>B</th>
-												<th>正常</th>
-												<th></th>
-												<th></th>
-												<th></th>
-												<th><a href="#" style="color: blue">登记维修</a> </th>
-												<th><a href="" value="已修" style="color: blue">维修已完成</a></th>
-											</tr>
-											<tr>
-												<th>1301</th>
-												<th>泳池</th>
-												<th>C</th>
-												<th>正在维修</th>
-												<th>汪师傅17779140640</th>
-												<th>100￥</th>
-												<th>2019/6/10</th>
-												<th><a href="#" style="color: blue">登记维修</a> </th>
-												<th><a href="" value="已修" style="color: blue">维修已完成</a></th>
-											</tr>
-
-
-										</tbody>
+										<tbody id="facilityTb">
+										    <tr  th:each="facilityManageDto : ${facilityList}"> 
+										        <th th:text="${facilityManageDto.getPublicUtilityId()}"></th>  
+										        <th th:text="${facilityManageDto.getPublicUtilityName()}"></th>   
+										        <th th:text="${facilityManageDto.getPublicUtilityType()}"></th>  
+										        <th th:text="${facilityManageDto.getPublicUtilityStatus()}"></th>
+										        <th th:text="${facilityManageDto.getRepairerInfomation()}"></th>  
+										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
+										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
+										        <th><a th:href="@{'doRepair/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">申请维修</a></th>    
+												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">维修已完成</a></th>                   
+ 											</tr> 
+								         </tbody>
+										
 									</table>
 
 

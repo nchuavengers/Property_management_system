@@ -40,10 +40,15 @@ public class HouseController {
 	 */
 	@GetMapping("/deleteHouse/{houseId}")
 	@ResponseBody 
-	public Map<String, Object> deleteHouse(@PathVariable (value="houseId") int houseId ){
+	public Map<String, Object> deleteHouse(@PathVariable (value="houseId") int houseId ,Model model){
 		 Map<String, Object> result = new HashMap<String, Object>();
         System.out.println("houseId="+houseId);
 		System.out.println("正在删除...");
+		houseServiceImpl.deleteHouse(houseId);
+		houseManagerDtoList = houseServiceImpl.findAllHouseManagerDto();
+		houseList=houseServiceImpl.findAllHouse();
+		model.addAttribute("houseOwnerList",houseManagerDtoList);
+		model.addAttribute("houseList",houseList);
 		if(true){
 			//封装正确消息
 			result.put("status", "succcessful");//succcessful

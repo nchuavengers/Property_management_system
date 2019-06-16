@@ -1,19 +1,25 @@
 package pms.restController;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import pms.entity.Owner;
+import pms.dto.FacilityManageDto;
 import pms.entity.PublicUtility;
+import pms.service.FacilityService;
 
 @Controller
 public class FacilityController {
 
-	
+	@Autowired
+	private FacilityService facilityServieImpl;
+	@Autowired
+	private List<FacilityManageDto> facilityList;
 	/**
 	 * -管理员进入公共设施管理页面
 	 * -显示该页面的数据     FacilityManageDto
@@ -22,7 +28,8 @@ public class FacilityController {
 	 */
 	@GetMapping("/facilityManage")
 	public String facilityManage(Model model) {
-
+		facilityList=facilityServieImpl.findAllFacilityManageDto();
+		model.addAttribute("facilityList",facilityList);
 		return "facilityManage";
 	}
 	
@@ -31,10 +38,16 @@ public class FacilityController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/doRepair")
-	public String doRepair(Model model) {
-
-		return null;
+	@GetMapping("/doRepair/{ficilityId2}")
+	//@ResponseBody
+	public String doRepair(@PathVariable (value="ficilityId2")int ficilityId,Model model) {
+		System.out.println("申请维修------->"+ficilityId);
+		boolean a=facilityServieImpl.applyRequired(ficilityId);
+		System.out.println(a);
+		facilityList=facilityServieImpl.findAllFacilityManageDto();
+		model.addAttribute("facilityList",facilityList);
+		//return "facilityManage";
+		return facilityManage(model);
 	}
 	
 	
@@ -43,10 +56,16 @@ public class FacilityController {
 	 * @param RepairRecordId
 	 * @return
 	 */
-	@GetMapping("/finishedRepair/{repairRecordId}")
-	public String finishedRepair(@PathVariable (value="repairRecordId") int repairRecordId) {
-
-		return null;
+	@GetMapping("/facilityRepaired/{ficilityId}")
+	//@ResponseBody //维修已经完成
+	public String finishedRepair(@PathVariable (value="ficilityId")int ficilityId,Model model) {
+		System.out.println("维修完成------->"+ficilityId);
+		System.out.println(facilityServieImpl.finishedRepair(ficilityId));
+		
+		facilityList=facilityServieImpl.findAllFacilityManageDto();
+		model.addAttribute("facilityList",facilityList);
+		//return "facilityManage";
+		return facilityManage(model);
 	}
 	
 	/**

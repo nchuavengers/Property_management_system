@@ -22,8 +22,8 @@ import pms.repository.HouseRepository;
 
 	@Override
 	public boolean deleteHouse(int houseId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean a=houseRepository.deleteHouse(houseId);
+		return a;
 	}
 
 	@Override
