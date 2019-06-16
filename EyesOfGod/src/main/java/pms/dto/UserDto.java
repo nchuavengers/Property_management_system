@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserDto {
-	
 	@Pattern(regexp="[0-9|]{11}",message="请输入11位手机号码")
     private String userAccount;//用户账号//手机号存储还是string
 	
@@ -19,6 +18,7 @@ public class UserDto {
     private String userPassword;//用户密码  存储还是string
 	
 //	@Pattern(regexp="[1-3|]{1}",message="请选择用户类型")//还是用js判断选择框
+
     private String userType;//用户类型
     
     

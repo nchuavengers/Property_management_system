@@ -56,7 +56,7 @@ public class OwnerController {
 	@ResponseBody 
 //	List<Map<String,Object>>
 	public  Map<String, Object> updateOwner(@ModelAttribute Owner owner) {
-		
+
 		//修改owner
 		//不需要判断直接修改
 		System.out.println("正在update...");

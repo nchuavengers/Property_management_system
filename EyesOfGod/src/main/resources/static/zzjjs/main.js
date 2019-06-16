@@ -23,7 +23,6 @@
  */
 $(document).ready(function(){
 	
-	alert("zzj样式加载欧克");
 	
 	/**
 	 * 管理员-业主信息管理页面

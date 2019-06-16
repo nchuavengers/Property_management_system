@@ -1,6 +1,5 @@
 package pms.restController;
-
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import pms.dto.UserDto;
 import pms.entity.Manager;
 import pms.entity.Owner;
@@ -17,13 +15,16 @@ import pms.service.HomeServiceImpl;
 
 @Controller
 public class HomeController {
-	
+    @Autowired
+	private Manager manager;
+    @Autowired
+   	private Owner owner;
+    @Autowired
+   	private Security security;
     @Autowired
     private UserDto userDto;		
-   
     @Autowired
-    private Manager manager;
-    
+    private HttpSession session ;
     @Autowired
     private HomeServiceImpl homeServiceImpl;    
     
@@ -35,7 +36,6 @@ public class HomeController {
 	@GetMapping("/")
 	public String index(Model model) {
 		System.out.print(" here is index.html");
-
 		model.addAttribute(userDto);
 		return "index";
 	}
@@ -48,7 +48,9 @@ public class HomeController {
 	 * @return:相应的用户主页页面
 	 */
 	@PostMapping("/login")
-	public String login(@Validated UserDto userDto, BindingResult bindingResult, Model model) {
+	public String login(@Validated UserDto userDto, BindingResult bindingResult,
+			Model model,HttpSession session2) {
+		session=session2;
 		System.out.print("来了，老弟！\n");
 
 		String loginResult="------此账号不存在或者用户类型不正确------";
@@ -60,41 +62,46 @@ public class HomeController {
 		}else {
 			
             if(userType.equals("1")) {//验证业主	
-            	Owner owner=	homeServiceImpl.validOwner(userDto);
-            	
-    			if(owner==null) {//此账号不存在或者用户类型不正确
+            	owner=	homeServiceImpl.validOwner(userDto);
+            	if(owner==null) {//此账号不存在或者用户类型不正确
 				    model.addAttribute("loginResult",loginResult);
 				    return "index";
 			     }
-    			
+    			manager=null;
+    			security=null;
 			    model.addAttribute("owner",owner);
+			    session.setAttribute("owner", owner);
 			    return "owner";
 			
             }else if(userType.equals("2")) {//验证保安
-            	Security security =	homeServiceImpl.validSecurity(userDto);
+            	 security =	homeServiceImpl.validSecurity(userDto);
             	
     			if(security==null) {//此账号不存在或者用户类型不正确
 				    model.addAttribute("loginResult",loginResult);
 				    return "index";
 			     }
-    			
+    			manager=null;
+    			owner=null;
 			    model.addAttribute("security",security);
+			    session.setAttribute("security", security);
 			    return "security";  	
             }else {//验证管理员
             	manager = homeServiceImpl.validManager(userDto);
-            	
-    			if(manager==null) {//此账号不存在或者用户类型不正确
+            	if(manager==null) {//此账号不存在或者用户类型不正确
+
 				    model.addAttribute("loginResult",loginResult);
 				    return "index";
 			     }
-    			
-			    model.addAttribute("manager",manager);
+    			owner=null;
+    			security=null;
+    			model.addAttribute("manager",manager);
+			    session.setAttribute("manager", manager);
 			    return "manager";
             }
 			
 			
 		}
-		
+
 	}
 	
 
@@ -106,9 +113,8 @@ public class HomeController {
 	 */
 	@GetMapping("/manager")
 	public String manager(Model model) {
-		System.out.print(" here is manager.html\n");
 		model.addAttribute("manager",manager);
-
+	    System.out.print(" here is manager.html\n");
 		return "manager";
 
 	}
@@ -120,6 +126,7 @@ public class HomeController {
 	 */
 	@GetMapping("/owner")
 	public String owner(Model model) {
+		model.addAttribute("owner",owner);
 		System.out.print(" here is owner.html\n");
 		return "owner";
 
@@ -132,6 +139,7 @@ public class HomeController {
 	 */
 	@GetMapping("/security")
 	public String tables_dynamic(Model model) {
+		model.addAttribute("security",security);
 		System.out.print(" here is security.html\n");
 		return "security";
 

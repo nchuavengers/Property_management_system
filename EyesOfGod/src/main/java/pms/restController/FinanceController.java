@@ -29,6 +29,7 @@ public class FinanceController {
 	@GetMapping("/doPayment/{expenseRecordId}")
 	public String doPayment(@PathVariable (value="expenseRecordId") int expenseRecordId) {
 
+		
 		return  null;
 	}
 	
