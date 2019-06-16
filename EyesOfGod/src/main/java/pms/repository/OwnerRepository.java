@@ -27,9 +27,7 @@ public interface OwnerRepository {
 	 * -查询所有业主信息OwnerManagerDto
 	 * @return
 	 */
-//	select pms.owner.ownerId,ownerName,ownerPhoneNumber,ownerSex,ownerPassword,houseNumber,houseBuildingNumber,houseUnit,houseFloor
-//	from pms.house,pms.owner,pms.ownerhouse
-//	where pms.house.houseId=pms.ownerhouse.houseId and pms.owner.ownerId=pms.ownerhouse.ownerId;
+	
 	@Select("	select pms.owner.ownerId,ownerName,ownerPhoneNumber,ownerSex,ownerPassword,houseNumber,houseBuildingNumber,houseUnit,houseFloor\n" + 
 			"	from pms.house,pms.owner,pms.ownerhouse\n" + 
 			"	where pms.house.houseId=pms.ownerhouse.houseId and pms.owner.ownerId=pms.ownerhouse.ownerId;") 

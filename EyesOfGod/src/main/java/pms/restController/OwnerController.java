@@ -37,10 +37,10 @@ public class OwnerController {
 	@GetMapping("/ownerManage")
 	public String ownerManage(Model model) {
 		System.out.print(" here is ownerManage.html\n");
-		
+		//ownerManagerDtoList.clear();
 		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();
 		
-		System.out.print(ownerManagerDtoList.get(1).getOwnerId());
+		System.out.print(ownerManagerDtoList.get(0).getOwnerId());
 		
 		model.addAttribute("list",ownerManagerDtoList);
 		

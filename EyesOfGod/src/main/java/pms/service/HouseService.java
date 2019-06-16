@@ -2,20 +2,20 @@ package pms.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import pms.dto.HouseManagerDto;
 import pms.entity.House;
-import pms.entity.Owner;
 
 
-
+@Service
 public interface HouseService {
-
 	/**
 	 * -查询所有房屋信息HouseManagerDto
 	 * @return
 	 */
 	public List<HouseManagerDto>  findAllHouseManagerDto();
-	
+	public List<House>  findAllHouse();
 	
 	/**
 	 * -删除房屋信息
@@ -31,13 +31,16 @@ public interface HouseService {
 	 * @param House
 	 * @return
 	 */
-	public boolean addHouse(House house );
+	public boolean addHouse(String houseBuildingNumber, String houseUnit, String houseFloor, String houseNumber);
 	
 	/**
 	 * -查询指定业主所有房屋信息
 	 * @return
 	 */
 	public List<HouseManagerDto> findOwnerAllHourse(int ownerId);
+
+
+
 	
 	
 	

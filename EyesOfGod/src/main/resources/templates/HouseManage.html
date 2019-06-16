@@ -321,29 +321,30 @@
 												<th><a href="#">操作</a></th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<th>1001</th>
-												<th>2</th>
-												<th>3</th>
-												<th>3</th>
-												<th>510</th>
-												<th>周张俊</th>
-												<th>15797891904</th>
-												<th><a href="#" style="color: blue">删除</a></th>
-											</tr>
-											<tr>
-												<th>1231</th>
-												<th>2</th>
-												<th>3</th>
-												<th>3</th>
-												<th>514</th>
-												<th>朱天翔</th>
-												<th>18046769043</th>
-												<th><a href="#" style="color: blue">删除</a></th>
-											</tr>
-
-
+									<tbody id="houseTb">
+										    <tr  th:each="houseManagerDto : ${houseOwnerList}"> 
+										        <th th:text="${houseManagerDto.getHouseId()}"></th>  
+										        <th th:text="${houseManagerDto.getHouseBuildingNumber()}"></th>   
+										        <th th:text="${houseManagerDto.getHouseUnit()}"></th>  
+										        <th th:text="${houseManagerDto.getHouseFloor()}"></th>
+										        <th th:text="${houseManagerDto.getHouseNumber()}"></th>  
+										        <th th:text="${houseManagerDto.getOwnerName()}"></th>
+										        <th th:text="${houseManagerDto.getOwnerPhoneNumber()}"></th>  
+										        <th><button class="deleteHouse" style="color: blue" th:text="删除" >  </button></th>                    
+ 
+								            </tr> 
+								            <tr  th:each="house : ${houseList}"> 
+										        <th th:text="${house.getHouseId()}"></th>  
+										        <th th:text="${house.getHouseBuildingNumber()}"></th>   
+										        <th th:text="${house.getHouseUnit()}"></th>  
+										        <th th:text="${house.getHouseFloor()}"></th>
+										        <th th:text="${house.getHouseNumber()}"></th>  
+										        <th >  </th>
+										        <th >  </th>  
+										        <th><button class="deleteHouse" style="color: blue" th:text="删除" >  </button></th>                    
+ 
+								            </tr> 
+								            
 										</tbody>
 									</table>
 
@@ -372,7 +373,8 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-									<form method="post" action="">
+									
+									<form method="post" action="addHouse">
 									<table id="datatable"
 										class="table table-striped table-bordered">
 										<thead>
@@ -385,13 +387,13 @@
 												<th><a href="#">操作</a></th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
+										<tbody >
+											<tr >
 												<th><input type="text" name="houseBuildingNumber"></th>
 												<th><input type="text" name="houseUnit"></th>
 												<th><input type="text" name="houseFloor"></th>
 												<th><input type="text" name="houseNumber"></th>
-												<th><input type="submit" value="添加"></th>
+												<th><input type="submit" class="addHouse" value="添加"></th>
 											</tr>
 										</tbody>
 									</table>
@@ -483,6 +485,6 @@
 
 
 	<!-- zzj脚本 -->
-	<script src="/zzjjs/main.js"></script>
+	<script src="/ztxjs/main.js"></script>
 </body>
 </html>
