@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import pms.entity.Owner;
 import pms.entity.testtime;
+import pms.repository.OwnerRepository;
 import pms.repository.TeacherRepository;
 
 
@@ -18,9 +20,18 @@ import pms.repository.TeacherRepository;
 public class P2ApplicationTests {
 
     @Autowired
-    private TeacherRepository teacherRepository;	
+    private OwnerRepository ownerRepository;
 	@Test
 	public void contextLoads() {
+		
+		Owner owner=new Owner();
+		owner.setOwnerId(1001);
+		owner.setOwnerName("ironMan");
+		owner.setOwnerPassword("123456");
+		owner.setOwnerPhoneNumber("10987654321");
+		owner.setOwnerSex("女");
+		boolean b=ownerRepository.UpdateOwner(owner);
+		System.out.println("b="+b);
 		
 //		testtime t=new testtime();
 //		t.setId(2);

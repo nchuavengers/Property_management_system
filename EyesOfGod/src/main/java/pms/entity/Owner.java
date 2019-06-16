@@ -6,6 +6,10 @@ public class Owner {
     private String ownerPhoneNumber;//业主联系电话
     private String ownerSex;//业主性别
     private String ownerPassword;//业主密码
+    
+    
+    
+    
 	public int getOwnerId() {
 		return ownerId;
 	}

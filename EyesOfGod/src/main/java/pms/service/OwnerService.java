@@ -2,12 +2,18 @@ package pms.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pms.dto.OwnerHouseDto;
 import pms.dto.OwnerManagerDto;
 import pms.entity.Owner;
 
+
 public interface OwnerService {
 
+	
+
+	
+	
 	/**
 	 * -查询所有业主信息OwnerManagerDto
 	 * @return

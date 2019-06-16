@@ -22,6 +22,317 @@
  *         ......        
  */
 $(document).ready(function(){
+	
+	alert("zzj样式加载欧克");
+	
+	/**
+	 * 管理员-业主信息管理页面
+	 * 修改业主信息：重置密码与修改联系方式
+	 */
+	$(".modifyOwner").click(function(){
+		
+		if($(this).val()=="modifyOwner"){//当前按钮值value为modifyOwner,进入修改
+			
+			$(this).parent().siblings("th").each(function(j){//找同类元素th
+				switch (j) {
+					case 3:{//显示修改密码文本框
+						    var is_text = $(this).find("input:text");//有文本框就获取文本框的值(情况可能格式错误)
+						    if(!is_text.length){
+						    	$(this).html("<input type='text' value='"+$(this).text()+"' />");
+						    }
+//						    else{//存在文本框不表
+//						    	
+//						    }
+							 break;
+					}
+					case 8:{//显示修改手机号/账号文本框
+						var is_text = $(this).find("input:text");//有文本框就获取文本框的值(情况可能格式错误)
+					    if(!is_text.length){
+					    	$(this).html("<input type='text' value='"+$(this).text()+"' />");
+					    }
+							break;	
+				    }				
+				};
+			});
+			$(this).val("ensureModify");
+			$(this).text("确定 ");
+		}//ifmodify	
+		else{//当前按钮值value为ensureModify,用户已输入修改内容，
+			//判断重置密码6位数字，手机号11位
+			//-到后台判断结果-然后显示该值-提示修改成功
+			//如果都与之前相同，提示，尚未修改;
+			var orderItem={};//保存表格里的值//获取owner对象
+			//alert("准备获取数据");
+			normStatus=1;//格式没错
+		    $(this).parent().siblings("th").each(function(j){
+			      switch (j) {
+					case 3:{
+						var is_text = $(this).find("input:text");//密码单元格下肯定含有文本框
+						//if(){//不是6位数字
+							//alert("密码为统一6位数字，请符合规范！");
+						    //return;
+						//}
+						orderItem.ownerPassword=is_text.val();	
+						break;
+					}
+					case 8:{
+						var is_text = $(this).find("input:text");//联系电话单元格下肯定含有文本框
+					      var ret = /^[0-9|]{11}$/;
+					      if(ret.test(is_text.val())){
+					        alert('ok');
+					      }else{
+					        alert('手机号高级！居然不是11位？');
+					        normStatus=0;//格式有问题
+					        return;
+					      }
+						orderItem.ownerPhoneNumber=is_text.val();
+						break;
+					}
+					case 0:{
+						orderItem.ownerId=$(this).text();//第0个th   id
+						break;
+					}
+					case 1:{
+						orderItem.ownerName=$(this).text();//第1个th  姓名
+						break;
+					}
+					case 2:{ 
+						orderItem.ownerSex=$(this).text();//第2个th   密码
+						break;
+					}
+					};
+		    });
+		    if(normStatus==0){
+		    	alert("请重新输入！");
+		    	return;
+		    }
+		    else{
+			    //检查格式没问题后-发送到后台验证
+				    
+			    alert("发送到后台ing");
+			    //ajax
+				$.ajax({
+			        url: "/updateOwner",     //重定向？url并没有变化，只是js请求服务器获取json数据，更新
+			        type : "get",
+			        dataType : "json",
+			        contentType : "application/json; charset=utf-8",  
+			        data : {
+			        	  'ownerId':orderItem.ownerId,
+			    		  'ownerName':orderItem.ownerName,		
+			    		  'ownerPhoneNumber':orderItem.ownerPhoneNumber,
+			    		  'ownerSex':orderItem.ownerSex,
+			    		  'ownerPassword':orderItem.ownerPassword
+			        	  },
+			        async : true,  
+			        success : function(data){    //修改成功  输入框变确定显示--按钮值改为modifyOwner
+			        	//提示结果-修改成功-不可修改等
+			        	alert(data.msg);
+				        //重新找到该节点-有文本框的就保存-前面要有个标记-是否在修改
+			        	var isModify=0;//标记是否是该行;
+				        $("#tb").find("tr").each(function(){  
+				        	isModify=0;//默认不是该行;
+		                      $(this).children('th').each(function(j){ 
+		                    	  switch (j) {						
+										case 3:{
+											var is_text = $(this).find("input:text");//密码单元格下肯定含有文本框
+											$(this).html(is_text.val());
+											break;
+										}
+										case 8:{
+											var is_text = $(this).find("input:text");//手机单元格下肯定含有文本框
+											if(is_text.length){
+												$(this).html(is_text.val());
+												isModify=1;
+											}
+											break;
+										}
+//										
+										case 9:{//修改按钮val
+											var mybutton=$(this).find('button');
+						                       if(isModify==1){
+						                    	   mybutton.val("modifyOwner");
+						                    	   mybutton.text("修改 ");		                    	  
+						                       };	
+										   break;
+										}		
+		                    	  }			                      
+		                      });
+		             	 });
+			        },  
+			        error:function(jqXHR, textStatus, errorThrown) {//controller返回的data空或其他提示不存在
+			        	alert("错了？");
+			        }
+				});
+		    }
+		}
+	});
+	
+	/**
+	 * 管理员-业主信息管理页面
+	 * 删除业主信息：提示这将删除该业主所有相关记录：他的房屋关系，缴费信息，车位信息等
+	 */
+	$(".deleteOwner").click(function(){
+		if(window.confirm("这将删除该业主所有相关记录：他的房屋关系，缴费信息，车位信息等\n\n您确定要删除数据吗?"))
+		{	
+			//获取该tr 业主id
+			var orderItem={};//保存表格里的值//获取ownerId
+		    $(this).parent().siblings("th").each(function(j){
+			      switch (j) {
+					case 0:{
+						orderItem.ownerId=$(this).text();//第0个th   id
+						break;
+					}
+				};
+		    });
+			//传入id
+			$.ajax({
+		        url: "/deleteOwner/"+orderItem.ownerId      /*重定向？url并没有变化，只是js请求服务器获取json数据，更新*/
+		    }).then(function(data) {
+//		    	JSON.stringify(obj)将JSON转为字符串。JSON.parse(string)将字符串转为JSON格式；
+//		    	var jsondata =JSON.stringify(data.status);
+//		    	if($.trim("succcessful") == $.trim(jsondata)){//结果状态字段为successful-删除成功。
+		    		alert(data.msg);//显示结果
+//		    	}
+		    });
+			
+			$(this).parent().parent().remove();//局部删除
+		}
+	});
+	
+	/**
+	 * 管理员-业主信息管理页面
+	 * 添加业主信息：在所有业主表格中最后一列添加一行tr记录
+	 */	
+	$("#addOwner").click(function(){//id选择符只有一个该按钮
+	
+		//获取所有输入
+		var orderItem={};//保存表格里的值//获取ownerId
+	    $(this).parent().siblings("th").each(function(j){
+		      switch (j) {
+				case 0:{
+					var is_text = $(this).find("input:text");
+					orderItem.ownerName=is_text.val();//第0个th   姓名
+					break;
+				}
+				case 1:{//二选框
+					is_text = $(this).find("input:text");
+					orderItem.ownerSex=is_text.val();//第1个th   性别
+					break;
+				}
+				case 2:{//11位数
+					is_text = $(this).find("input:text");
+					orderItem.ownerPhoneNumber=is_text.val();//第2个th   手机号
+					break;
+				}
+				case 3:{//6位数
+					is_text = $(this).find("input:text");
+					orderItem.ownerPassword=is_text.val();//第3个th   密码
+					break;
+				}
+			};
+	    });
+       //传入id
+	    var newid;
+		$.ajax({
+			url: "/addOwner",     //重定向？url并没有变化，只是js请求服务器获取json数据，更新
+	        type : "get",
+	        dataType : "json",
+	        contentType : "application/json; charset=utf-8",  
+	        data : {
+	    		  'ownerName':orderItem.ownerName,		
+	    		  'ownerPhoneNumber':orderItem.ownerPhoneNumber,
+	    		  'ownerSex':orderItem.ownerSex,
+	    		  'ownerPassword':orderItem.ownerPassword
+	        	  },
+	        async : true,  
+	    }).then(function(data) {
+	    	if($.trim("succcessful") == $.trim(data.status)){
+	    		alert(data.msg);//显示结果
+                //获取自增长的id
+	    		newid=data.ownerId;
+
+	    		
+	    		
+//	    		   var targetTbody= $("#tb");
+//	    		    //获取#tbl表格的最后一行
+//	    		    var tr = targetTbody.children("tr:last");
+//	    		    //复制到#addTable表格最后
+//	    		    var tr2=$("#tb").children("tr:last");
+//	    		    tr2.after(tr[0].outerHTML);
+	    		
+	    		     
+	    		   
+	    		
+	    		
+	    		
+	    		//成功表格最后一行新增记录,样式触发事件触发不成功
+//				alert("添加tr"); 
+//				
+//				var	bt1Html='<button type="button" value="modifyOwner" class="modifyOwner" >修改</button>';
+//				bt1Html.addClass("modifyOwner ");
+//				
+//				$("#tb").append('<tr>'                                         //<tr data-index="${idx.index }" data-id="${em.id }">
+//						+'<th>'+newid+'</th>'
+//						+'<th>'+orderItem.ownerName+'</th>' 
+//						+'<th>'+orderItem.ownerSex+'</th>'
+//						+'<th>'+orderItem.ownerPassword+'</th>'
+//						+'<th></th>'
+//						+'<th></th>'
+//						+'<th></th>'
+//						+'<th></th>'
+//						+'<th>'+orderItem.ownerPhoneNumber+'</th> '
+//						+'<th>'+bt1Html+'</th>'
+//                        +'<th><button  type="button"  class="deleteOwner" style="color: blue">删除</button></th>'
+//						+'</td>'
+//						+'</tr>');
+//				
+
+	    		
+//	    		 $("p:first").addClass("intro note");
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 
+//				$tr.after(trHtml);
+		        //渲染样式
+//		        $.parser.parse("#tb");
+		        
+//				 var trHtml="<tr>" +
+//				 		"<th>"+newid+"</th>"+
+//				 		"<th>"+orderItem.ownerName+"</th>" +
+//				 		"<th>"+orderItem.ownerSex+"</th>" +
+//				 		"<th>"+orderItem.ownerPassword+"</th>" +
+//		 				"<th></th>" +
+//		 				"<th></th>" +
+//		 				"<th></th>" +
+//		 				"<th></th>" +
+//		 				"<th>"+orderItem.ownerPhoneNumber+"</th> " +
+//		 				"<th><button value="modifyOwner" class="modifyOwner" style="color: blue" th:text="修改" > </button></th>" +      
+//				        "<th><button class="deleteOwner" style="color: blue" th:text="删除" >  </button></th>" +   
+// 						"</tr>";
+// 						
+//				$("#tb").append(trHtml);
+
+	    	}
+	    });
+		
+		
+        //$(this).parent().parent().remove();//局部删除
+		
+	});
+	
+	
+	
+	
+	
+	/**
+	 * 保安页面内锚点跳转
+	 */	
 	$("#tosecurityVistor").click(function(){ /*id选择符,click事件 等价于 jsp onclick();*/
 
 		document.getElementById("securityVistor").scrollIntoView();//js触发业内锚点显示

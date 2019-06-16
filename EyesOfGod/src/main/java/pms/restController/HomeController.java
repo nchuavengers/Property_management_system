@@ -13,9 +13,6 @@ import pms.dto.UserDto;
 import pms.entity.Manager;
 import pms.entity.Owner;
 import pms.entity.Security;
-import pms.repository.ManagerRepository;
-import pms.repository.OwnerRepository;
-import pms.repository.SecurityRepository;
 import pms.service.HomeServiceImpl;
 
 @Controller
@@ -23,6 +20,9 @@ public class HomeController {
 	
     @Autowired
     private UserDto userDto;		
+   
+    @Autowired
+    private Manager manager;
     
     @Autowired
     private HomeServiceImpl homeServiceImpl;    
@@ -81,7 +81,7 @@ public class HomeController {
 			    model.addAttribute("security",security);
 			    return "security";  	
             }else {//验证管理员
-            	Manager manager = homeServiceImpl.validManager(userDto);
+            	manager = homeServiceImpl.validManager(userDto);
             	
     			if(manager==null) {//此账号不存在或者用户类型不正确
 				    model.addAttribute("loginResult",loginResult);
@@ -95,63 +95,6 @@ public class HomeController {
 			
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		System.out.print("验证业主\n");
-//		String loginResult="------The password or account is wrong !--------------";
-//		//1.判断用户登陆类型
-//		if("1".equals(loginType)) { //业主
-//			//2.判断业主账号密码
-//			Owner owner=ownerRepository.validOwner(account,password);
-//			if(owner==null) {
-//				model.addAttribute("loginResult",loginResult);
-//				return "index";
-//			}
-//			model.addAttribute("owner",owner);
-//			
-//			return "owner";
-//		}
-//		else if("2".equals(loginType)) { //保安
-//			//2.判断保安账号密码
-//			Security security=securityRepository.validSecurity(account,password);
-//			if(security==null) {
-//				//2.判断保安账号密码
-//				model.addAttribute("loginResult",loginResult);
-//				return "index";
-//			}
-//			
-//			model.addAttribute("security",security);
-//			
-//			return "security";
-//		}
-//		else if("3".equals(loginType)) { //管理员
-//			System.out.println("验证管理员");
-//			
-//			//2.判断管理账号密码  //手机号密码
-//			Manager manager=managerRepository.validManager(account, password);
-//			
-//			if(manager==null) {
-//				model.addAttribute("loginResult",loginResult);
-//				return "index";
-//			}
-//			model.addAttribute("manager",manager);
-//			
-//			
-//			return "manager";
-//		}
-//		else {
-//			model.addAttribute("loginResult","please choose your login Type");
-//			return "index";
-//		}
-		
-		
 	}
 	
 
@@ -164,6 +107,8 @@ public class HomeController {
 	@GetMapping("/manager")
 	public String manager(Model model) {
 		System.out.print(" here is manager.html\n");
+		model.addAttribute("manager",manager);
+
 		return "manager";
 
 	}

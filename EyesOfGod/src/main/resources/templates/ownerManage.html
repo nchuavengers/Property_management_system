@@ -9,7 +9,7 @@
  -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -325,20 +325,23 @@
 											</tr>
 											
 										</thead>
-										<tbody>
-											<tr>
-												<th>16202133</th>
-												<th>朱天翔</th>
-												<th>男</th>
-												<th>123456</th>
-												<th>1001</th>
-												<th>20</th>
-												<th>5</th>
-												<th>20</th>
-												<th>18046769043</th>
-												<th><a href="modifyOwner" style="color: blue">修改业主信息</a></th>
-												<th> <a href="delOwner" style="color: blue">删除业主</a></th>
-											</tr>
+										<tbody id="tb">
+										    <tr  th:each="ownerManagerDto : ${list}"> 
+										        <th th:text="${ownerManagerDto.getOwnerId()}"></th>  
+										        <th th:text="${ownerManagerDto.getOwnerName()}"></th>   
+										        <th th:text="${ownerManagerDto.getOwnerSex()}"></th>  
+										        <th th:text="${ownerManagerDto.getOwnerPassword()}"></th>
+										        <th th:text="${ownerManagerDto.getHouseBuildingNumber()}"></th>  
+										        <th th:text="${ownerManagerDto.getHouseUnit()}"></th>
+										        <th th:text="${ownerManagerDto.getHouseFloor()}"></th>  
+										        <th th:text="${ownerManagerDto.getHouseNumber()}"></th>
+										        <th th:text="${ownerManagerDto.getOwnerPhoneNumber()}"></th>  									        
+										        
+										        <th><button value="modifyOwner" class="modifyOwner"  th:text="修改" > </button></th>
+										        <th><button class="deleteOwner" style="color: blue" th:text="删除" >  </button></th>                    
+ 
+								            </tr> 
+								            
 										</tbody>
 									</table>
 								</div>
@@ -367,7 +370,7 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-									<form method="post" action="">
+									
 									<table id="datatable"
 										class="table table-striped table-bordered">
 										<thead>
@@ -384,15 +387,15 @@
 										</thead>
 										<tbody>
 											<tr>
-												<th><input name="ownerName" type="text" ></th>
-												<th><input name="ownerSex" type="text" ></th>
-												<th><input name="ownerPassword" type="text" ></th>
-												<th><input name="ownerPhoneNumber" type="text" ></th>
-												<th><input type="submit"   value="添加" ></th>
+												<th><input  type="text" ></th>
+												<th><input  type="text" ></th>
+												<th><input  type="text" ></th>
+												<th><input  type="text" ></th>
+												<th><button id="addOwner" style="color: blue" th:text="添加" >  </button></th> 
 											</tr>
 										</tbody>
 									</table>
-									</form>	
+									
 								</div>
 								
 							</div>
@@ -532,5 +535,7 @@
 
 	<!-- zzj脚本 -->
 	<script src="/zzjjs/main.js"></script>
+		<!-- 引入 bootstrap的js文件 -->	
+
 </body>
 </html>
