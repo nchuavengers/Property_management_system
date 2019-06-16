@@ -1,5 +1,8 @@
 package pms.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Owner {
     private int ownerId;//业主id
     private String ownerName;//业主姓名

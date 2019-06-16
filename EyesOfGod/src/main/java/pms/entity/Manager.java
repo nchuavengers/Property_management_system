@@ -1,5 +1,8 @@
 package pms.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Manager {
     private int managerId;//管理员id
     private String managerName;//管理员姓名

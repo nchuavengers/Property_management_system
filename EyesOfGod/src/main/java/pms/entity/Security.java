@@ -1,5 +1,8 @@
 package pms.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Security {
     private int securityId;//保安id
     private String securityName;//保安姓名
