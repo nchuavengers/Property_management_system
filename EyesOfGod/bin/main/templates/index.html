@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -85,34 +85,36 @@
 		<div class="login_wrapper">
 			<div class="animate form login_form">
 				<section class="login_content">
-					<form action="login" method="post">
+					<form action="#" th:action="@{/login}" th:object="${userDto}" method="post">
 						<h1>Login Form</h1>
 						<div>
-							<input name="account" type="text" class="form-control"
-								placeholder="Username" required="" />
+						    <input type="text" th:field="*{userAccount}" class="form-control" placeholder="请输入11位手机号码" required />
+                            <h2 style="padding-left:180px" th:if="${#fields.hasErrors('userAccount')}" th:errors="*{userAccount}">Account Error</h2>
+                            
 						</div>
 						<div>
-							<input name="password" type="password" class="form-control"
-								placeholder="Password" required="" />
+						    <input type="text" th:field="*{userPassword}" class="form-control" placeholder="请输入6位数字" required />
+                           <h2 style="padding-left:220px" th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}">Password Error</h2>							
+							
 						</div>
-						登陆类型：
-						<div id="gender" class="btn-group" data-toggle="buttons">
+						登陆类型：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<div id="gender" class="btn-group" data-toggle="buttons" >
 							<label class="btn btn-default active"
-								data-toggle-class="btn-primary"> <input type="radio"
-								name="loginType" value="1"> &nbsp;业主&nbsp;
+								data-toggle-class="btn-primary" > <input type="radio"
+								name="userType" value="1" required> &nbsp;<small>业主</small>&nbsp;
 							</label> <label class="btn btn-default active"
 								data-toggle-class="btn-primary"> <input type="radio"
-								name="loginType" value="2"> &nbsp;保安&nbsp;
+								name="userType" value="2" required> &nbsp;<small>保安</small>&nbsp;
 							</label> <label class="btn btn-default active"
 								data-toggle-class="btn-primary"> <input type="radio"
-								name="loginType" value="3"> &nbsp;管理员&nbsp;
+								name="userType" value="3" required> &nbsp;<small>管理员</small>&nbsp;
 							</label>
 						</div>
-						<div>&nbsp;</div>
+						
 						<div>&nbsp;</div>
 						<div>&nbsp;</div>
 						<div class="clearfix">
-							<button class="button1" style="vertical-align: middle">
+							<button  id="loginSubmit" type="submit"  class="button1" style="vertical-align: middle">
 								<span>Login </span>
 							</button>
 							<h2 th:text="${loginResult}"></h2>
@@ -214,5 +216,9 @@
 <script src="vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="build/js/custom.min.js"></script>
+
+<!-- zzj脚本 -->
+<script src="/zzjjs/main.js"></script>
+    
 
 </html>

@@ -1,5 +1,7 @@
 package pms.dto;
 
+import java.util.Date;
+
 public class FinancePaymentDto {
 
     private int ownerId;//业主id
@@ -9,5 +11,5 @@ public class FinancePaymentDto {
     
     private String paymentType;//收费方式//需修改数据库 收费人员变方式
     private String paymentMoney;//缴费总额
-    private String paymentTime;//缴费时间
+    private Date paymentTime;//缴费时间
 }

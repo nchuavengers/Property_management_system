@@ -112,7 +112,7 @@
 						</div>
 						<div class="profile_info">
 							<span>欢迎您</span>
-							<h2>管理员</h2>
+							<h2>管理员: <small th:text="${manager.getManagerName()}"></small></h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -191,8 +191,9 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">John
-									Doe <span class=" fa fa-angle-down"></span>
+								aria-expanded="false"> <img src="images/img.jpg" alt="">
+								<span th:text="${manager.getManagerName()}"> </span> 
+								<span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"> Profile</a></li>
@@ -335,16 +336,11 @@
 								<div class="x_content">
 
 									<p style="padding: 1px;">
-									<p>姓名: &nbsp&nbsp&nbsp 朱天翔</p>
-									<p>ID:&nbsp&nbsp&nbsp 16202133</p>
-
-									
-
+									<p th:text="姓名： +${manager.getManagerName()}"> </p>
+									<p th:text="ID：+${manager.getManagerId()}"> </p>
 								</div>
 							</div>
 						</div>
-
-
 						</div>
 				</div>
 			</div>

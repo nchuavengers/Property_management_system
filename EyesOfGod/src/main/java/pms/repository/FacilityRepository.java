@@ -3,6 +3,7 @@ package pms.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -10,24 +11,28 @@ import pms.dto.FacilityManageDto;
 import pms.entity.Owner;
 import pms.entity.PublicUtility;
 import pms.entity.RepairRecord;
-
+@Mapper
 public interface FacilityRepository {
 
 	/**
 	 * -查询所有设备信息FacilityManageDto
 	 * @return
 	 */
-	@Select("") 
+	@Select("SELECT pms.`publicutility`.`publicUtilityId`,\r\n" + 
+			"pms.`publicutility`.`publicUtilityName`,\r\n" + 
+			"pms.`publicutility`.`publicUtilityType`,\r\n" + 
+			"pms.`publicutility`.`publicUtilityStatus`,\r\n" + 
+			"pms.`repairrecord`.`repairerInfomation`,\r\n" + 
+			"pms.`repairrecord`.`repairMoney`,\r\n" + 
+			"pms.`repairrecord`.`repairTime` \r\n" + 
+			"FROM pms.`publicutility` LEFT OUTER JOIN  pms.`repairrecord` ON(pms.`publicutility`.`publicUtilityId`=pms.`repairrecord`.`publicUtilityId`);") 
 	public List<FacilityManageDto>  findAllFacilityManageDto();
 	
 	
-	/**
-	 * -增加维修记录
-	 * @param RepairRecord
-	 * @return
-	 */
-	@Insert("")
-	public boolean addRepairRecord(RepairRecord repairRecord);
+	//"UPDATE pms.owner SET ownerPhoneNumber=#{ownerPhoneNumber},ownerPassword=#{ownerPassword} WHERE  ownerId=#{ownerId};"
+	// UPDATE  pms.`publicutility` SET pms.`publicutility`.`publicUtilityStatus`='Repairing111' WHERE  publicUtilityId=#{publicUtilityId};
+    @Update("UPDATE  pms.`publicutility` SET pms.`publicutility`.`publicUtilityStatus`='Repairing' WHERE  publicUtilityId=#{publicUtilityId}")
+	public boolean addRepairRecord(int publicUtilityId);
 	
 	
 	/**
@@ -35,8 +40,10 @@ public interface FacilityRepository {
 	 * @param  repairRecordId
 	 * @return  
 	 */
-	@Update("")
-	public boolean updateRepairRecord(int  repairRecordId);
+	//"UPDATE pms.owner SET ownerPhoneNumber=#{ownerPhoneNumber},ownerPassword=#{ownerPassword} WHERE  ownerId=#{ownerId};"
+	// UPDATE  pms.`publicutility` SET pms.`publicutility`.`publicUtilityStatus`='Repairing111' WHERE  publicUtilityId=#{publicUtilityId};
+    @Update("UPDATE  pms.`publicutility` SET pms.`publicutility`.`publicUtilityStatus`='Well' WHERE  publicUtilityId=#{publicUtilityId}")
+	public boolean updateRepairRecord(int publicUtilityId);
 	
 	
 	/**
@@ -47,5 +54,12 @@ public interface FacilityRepository {
 	@Insert("")
 	public boolean addFacility(PublicUtility publicUtility);
 	
+	/**
+	 * -申请维修
+	 * @param publicUtility
+	 * @return
+	 */
+	@Update("UPDATE  pms.`publicutility` SET pms.`publicutility`.`publicUtilityStatus`='Repairing' WHERE  publicUtilityId=#{publicUtilityId};")
+	public boolean applyRequired(int  publicUtilityId);
 	
 }

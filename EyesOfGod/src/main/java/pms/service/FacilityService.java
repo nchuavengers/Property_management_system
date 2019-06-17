@@ -1,13 +1,10 @@
 package pms.service;
-
 import java.util.List;
-
+import org.springframework.stereotype.Service;
 import pms.dto.FacilityManageDto;
-import pms.dto.OwnerManagerDto;
-import pms.entity.Owner;
 import pms.entity.PublicUtility;
 import pms.entity.RepairRecord;
-
+@Service
 public interface FacilityService {
 
 	
@@ -27,10 +24,10 @@ public interface FacilityService {
 	
 	/**
 	 * -完成维修(修改设施状态)
-	 * @param  repairRecordId
+	 * @param  ficilityId
 	 * @return  
 	 */
-	public boolean finishedRepair(int  repairRecordId);
+	public boolean finishedRepair(String  ficilityId);
 	
 	/**
 	 * -添加公共设施
@@ -38,6 +35,10 @@ public interface FacilityService {
 	 * @return
 	 */
 	public boolean addFacility(PublicUtility publicUtility);
+
+	public boolean applyRequired(int ficilityId);
+
+	public boolean finishedRepair(int ficilityId);
 	
 	
 	

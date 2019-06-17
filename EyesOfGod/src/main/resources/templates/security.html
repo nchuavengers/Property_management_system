@@ -103,8 +103,8 @@
 								class="img-circle profile_img">
 						</div>
 						<div class="profile_info">
-							<span>欢迎使用,</span>
-							<h2>保安先生</h2>
+							<span>欢迎使用</span>
+							<h2 th:text="${security.getSecurityName()}"></h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -174,8 +174,8 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">John
-									Doe <span class=" fa fa-angle-down"></span>
+								aria-expanded="false"> <img src="images/img.jpg" alt="">
+								<span th:text="${security.getSecurityName()}"></span> <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"> Profile</a></li>

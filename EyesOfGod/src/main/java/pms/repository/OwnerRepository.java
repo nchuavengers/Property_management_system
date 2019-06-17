@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.*;
 
 import pms.dto.OwnerHouseDto;
 import pms.dto.OwnerManagerDto;
-import pms.entity.Manager;
 import pms.entity.Owner;
 
 
@@ -19,16 +18,19 @@ public interface OwnerRepository {
 	 * -核实业主身份
 	 * @param account
 	 * @param password
-	 * @return  Owner 管理员对象
+	 * @return  Owner 业主对象
 	 */
-	@Select("") 
-	public Owner validOwner(int account , String password); 
+	@Select("select * from pms.owner where ownerPhoneNumber=#{ownerPhoneNumber} and ownerPassword=#{ownerPassword}")
+	public Owner validOwner(@Param("ownerPhoneNumber")String ownerPhoneNumber , @Param("ownerPassword")String ownerPassword); 
 	 
 	/**
 	 * -查询所有业主信息OwnerManagerDto
 	 * @return
 	 */
-	@Select("") 
+	
+	@Select("	select pms.owner.ownerId,ownerName,ownerPhoneNumber,ownerSex,ownerPassword,houseNumber,houseBuildingNumber,houseUnit,houseFloor\n" + 
+			"	from pms.house,pms.owner,pms.ownerhouse\n" + 
+			"	where pms.house.houseId=pms.ownerhouse.houseId and pms.owner.ownerId=pms.ownerhouse.ownerId;") 
 	public List<OwnerManagerDto>  findAllOwnerManagerDto();
    
 	/**
@@ -36,7 +38,7 @@ public interface OwnerRepository {
 	 * @param owner
 	 * @return
 	 */
-	@Update("")
+	@Update("UPDATE pms.owner SET ownerPhoneNumber=#{ownerPhoneNumber},ownerPassword=#{ownerPassword} WHERE  ownerId=#{ownerId};")
 	public boolean UpdateOwner(Owner owner);
 	
 	/**

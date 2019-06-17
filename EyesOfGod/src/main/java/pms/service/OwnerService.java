@@ -6,6 +6,7 @@ import pms.dto.OwnerHouseDto;
 import pms.dto.OwnerManagerDto;
 import pms.entity.Owner;
 
+
 public interface OwnerService {
 
 	/**

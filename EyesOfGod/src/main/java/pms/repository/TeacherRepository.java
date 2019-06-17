@@ -1,36 +1,46 @@
 package pms.repository;
 
 
-import java.util.List;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
-
-import pms.entity.*;
+import pms.entity.Manager;
+import pms.entity.testtime;
 
 @Mapper
 public interface TeacherRepository {
 	
-	@Results(id="teacherMap", value={ 
-    @Result(property = "id", column = "teacher_id",  jdbcType=JdbcType.INTEGER), 
-    @Result(property = "account", column = "teacher_account"),
-    @Result(property = "name", column = "teacher_name")
-	})
-
-	@Select("select * from t_teacher") 
-	public List<Teacher> findAll();
 	
-	@Select("select * from t_teacher where teacher_account=#{account} and teacher_password=md5(#{password})")
-	@ResultMap(value="teacherMap")
-	public Teacher validTeacher(@Param("account")String account,@Param("password")String password);
+	@Select("select * from `pms`.`datetime` where id=#{id}") 
+	public testtime findTime(int id);
 	
-	@Select("select * from t_teacher where teacher_name like concat('%',#{name},'%')")
-	@ResultMap(value="teacherMap")			
-	public List<Teacher> findByName(@Param("name")String name);
+	@Insert("INSERT INTO `pms`.`datetime` (`id`, `date`) VALUES (#{id},#{date} )")
+	public Boolean addTime(testtime d);
 	
-	@Insert("INSERT INTO `lab`.`t_teacher` (`teacher_account`, `teacher_password`, `teacher_name`) VALUES (#{account}, md5(#{password}), #{name})")
-	@ResultMap(value="teacherMap")
-	public Boolean addTeacher(Teacher teacher);
+	
+	
+//	@Results(id="teacherMap", value={ 
+//    @Result(property = "id", column = "teacher_id",  jdbcType=JdbcType.INTEGER), 
+//    @Result(property = "account", column = "teacher_account"),
+//    @Result(property = "name", column = "teacher_name")
+//	})
+//
+//	@Select("select * from t_teacher") 
+//	public List<Teacher> findAll();
+//	
+//	@Select("select * from t_teacher where teacher_account=#{account} and teacher_password=md5(#{password})")
+//	@ResultMap(value="teacherMap")
+//	public Teacher validTeacher(@Param("account")String account,@Param("password")String password);
+//	
+//	@Select("select * from t_teacher where teacher_name like concat('%',#{name},'%')")
+//	@ResultMap(value="teacherMap")			
+//	public List<Teacher> findByName(@Param("name")String name);
+//	
+//	@Insert("INSERT INTO `lab`.`t_teacher` (`teacher_account`, `teacher_password`, `teacher_name`) VALUES (#{account}, md5(#{password}), #{name})")
+//	@ResultMap(value="teacherMap")
+//	public Boolean addTeacher(Teacher teacher);
 }
 //@Repository
 //public class TeacherRepository {	
