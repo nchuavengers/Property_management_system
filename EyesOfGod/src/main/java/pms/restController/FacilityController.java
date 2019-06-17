@@ -47,7 +47,7 @@ public class FacilityController {
 		facilityList=facilityServieImpl.findAllFacilityManageDto();
 		model.addAttribute("facilityList",facilityList);
 		//return "facilityManage";
-		return facilityManage(model);
+		return "redirect:/facilityManage"; 
 	}
 	
 	
@@ -65,7 +65,7 @@ public class FacilityController {
 		facilityList=facilityServieImpl.findAllFacilityManageDto();
 		model.addAttribute("facilityList",facilityList);
 		//return "facilityManage";
-		return facilityManage(model);
+		return "redirect:/facilityManage"; 
 	}
 	
 	/**

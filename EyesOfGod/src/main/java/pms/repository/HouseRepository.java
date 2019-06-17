@@ -4,11 +4,12 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import org.apache.ibatis.annotations.Select;
 
 import pms.dto.HouseManagerDto;
 import pms.entity.House;
-import pms.entity.Owner;
+
 @Mapper
 public interface HouseRepository {
 
@@ -66,8 +67,20 @@ public interface HouseRepository {
 	
 	
 	
+	/**
+	 * -查询指定房屋信息
+	 * @return
+	 */
+	@Select("SELECT * FROM pms.house where houseId=#{houseId};")		
+	public House fingHouseByHouseId(int houseId);
 	
 	
+	/**
+	 * -查询房屋是否有业主
+	 * @return
+	 */
+	@Select("SELECT ownerId FROM pms.ownerhouse where houseId=#{houseId};")
+	public int IsHouseFromOwnerHouse(int houseId);
 	
 	
 }

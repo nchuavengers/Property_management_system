@@ -22,14 +22,11 @@ public class P2ApplicationTests {
 
     @Autowired
     private OwnerRepository ownerRepository;
+
     
-    @Autowired
-    private FacilityRepository fr;
 	@Test
 	public void contextLoads() {
 		
-		boolean b=fr.applyRequired(1001);
-		System.out.print(b);
 //		Owner owner=new Owner();
 //		owner.setOwnerId(1001);
 //		owner.setOwnerName("ironMan");

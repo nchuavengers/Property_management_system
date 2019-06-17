@@ -1,3 +1,4 @@
+
 package pms.service;
 
 import java.util.List;
@@ -43,6 +44,17 @@ import pms.repository.HouseRepository;
 	    List<House>  list=houseRepository.findAllHouse();
 		return list;
 	}
+	
+	@Override
+	public House fingHouseByHouseId(int houseId) {		
+		return houseRepository.fingHouseByHouseId(houseId);
+	}
 
+	@Override
+	public int IsHouseFromOwnerHouse(int houseId) {
+ 
+		return houseRepository.IsHouseFromOwnerHouse(houseId);
+	}
 
 }
+
