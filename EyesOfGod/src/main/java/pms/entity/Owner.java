@@ -1,16 +1,21 @@
 package pms.entity;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class Owner {
-    private int ownerId;//业主id
-    private String ownerName;//业主姓名
+	
+    @Pattern(regexp="[0-9|]{11}",message="请输入11位手机号码")
     private String ownerPhoneNumber;//业主联系电话
-    private String ownerSex;//业主性别
+
+    @Pattern(regexp="[0-9|]{6}",message="请输入6位数字")
     private String ownerPassword;//业主密码
     
-    
+    private String ownerSex;//业主性别
+    private int ownerId;//业主id
+    private String ownerName;//业主姓名
     
     
 	public int getOwnerId() {

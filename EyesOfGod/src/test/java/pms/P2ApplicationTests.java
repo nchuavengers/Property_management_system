@@ -21,17 +21,26 @@ public class P2ApplicationTests {
 
     @Autowired
     private OwnerRepository ownerRepository;
+    @Autowired
+    private Owner newOwner;
+    @Autowired
+    private Owner owner;
 	@Test
 	public void contextLoads() {
 		
-		Owner owner=new Owner();
-		owner.setOwnerId(1001);
-		owner.setOwnerName("ironMan");
-		owner.setOwnerPassword("123456");
-		owner.setOwnerPhoneNumber("10987654321");
-		owner.setOwnerSex("女");
-		boolean b=ownerRepository.UpdateOwner(owner);
-		System.out.println("b="+b);
+		owner.setOwnerId(1);
+		newOwner.setOwnerId(2);
+		System.out.println(owner.getOwnerId());
+		System.out.println(newOwner.getOwnerId());
+		
+//		Owner owner=new Owner();
+//		owner.setOwnerId(1001);
+//		owner.setOwnerName("ironMan");
+//		owner.setOwnerPassword("123456");
+//		owner.setOwnerPhoneNumber("10987654321");
+//		owner.setOwnerSex("女");
+//		boolean b=ownerRepository.UpdateOwner(owner);
+//		System.out.println("b="+b);
 		
 //		testtime t=new testtime();
 //		t.setId(2);

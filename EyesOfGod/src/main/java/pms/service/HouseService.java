@@ -2,12 +2,12 @@ package pms.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import pms.dto.HouseManagerDto;
 import pms.entity.House;
-import pms.entity.Owner;
 
-
-
+@Mapper
 public interface HouseService {
 
 	/**
@@ -39,6 +39,16 @@ public interface HouseService {
 	 */
 	public List<HouseManagerDto> findOwnerAllHourse(int ownerId);
 	
+	/**
+	 * -查询指定业主所有房屋信息
+	 * @return
+	 */
+	public House fingHouseByHouseId(int houseId);
 	
-	
+	/**
+	 * -查询房屋是否有业主
+	 * 返回业主id
+	 * @return
+	 */
+	public int IsHouseFromOwnerHouse(int houseId);
 }

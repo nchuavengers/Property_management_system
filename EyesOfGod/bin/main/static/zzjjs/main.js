@@ -22,8 +22,64 @@
  *         ......        
  */
 $(document).ready(function(){
+
+	function add(){
+		alert("add来了");//显示结果
+		var orderItem={};//保存表格里的值//获取owner对象
+		orderItem.ownerId=parseInt($("#ownerId").val());
+		orderItem.houseId=parseInt($("#houseId").val());
+		//都存在插入
+		alert(orderItem.ownerId+"   "+orderItem.houseId);//显示结果
+		$.ajax({
+			url: "/addOwnerHouse",    
+	        type : "get",
+	        dataType : "json",
+	        contentType : "application/json; charset=utf-8",  
+	        data : {
+	    		  'ownerId':orderItem.ownerId,	
+	    		  'houseId':orderItem.houseId,
+	        	  },
+	        async : true,  
+		}).then(function(data) { 
+	    	alert(data.msg);//显示结果
+
+	    });
+	};
 	
 	
+//	//判断房屋是否存在
+	function isExistedHouse(){
+	$.ajax({
+        url: "/isExistedHouse/"+$("#houseId").val()      
+    }).then(function(data) {
+//    	   alert(data.msg);//显示结果
+    		if(data.status=="fail"){
+    			alert(data.msg);//显示结果
+    			return;
+    		}
+    		add();//都存在	
+    });
+	};
+	/**
+	 * 管理员-新增业主房屋信息
+	 */
+	$(".addOwnerHouse").click(function(){
+//        //判断业主是否存在
+		
+		$.ajax({
+	        url: "/isExistedOwner/"+$("#ownerId").val()      
+	    }).then(function(data) {
+//	    	   alert(data.msg);//显示结果
+	    		if(data.status=="fail"){
+	    			 alert(data.msg);//显示结果
+	    			return;
+	    		}
+	    		isExistedHouse();
+	    });
+//	
+
+
+	});
 	/**
 	 * 管理员-业主信息管理页面
 	 * 修改业主信息：重置密码与修改联系方式

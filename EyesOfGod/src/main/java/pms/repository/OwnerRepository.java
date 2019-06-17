@@ -30,9 +30,19 @@ public interface OwnerRepository {
 //	select pms.owner.ownerId,ownerName,ownerPhoneNumber,ownerSex,ownerPassword,houseNumber,houseBuildingNumber,houseUnit,houseFloor
 //	from pms.house,pms.owner,pms.ownerhouse
 //	where pms.house.houseId=pms.ownerhouse.houseId and pms.owner.ownerId=pms.ownerhouse.ownerId;
-	@Select("	select pms.owner.ownerId,ownerName,ownerPhoneNumber,ownerSex,ownerPassword,houseNumber,houseBuildingNumber,houseUnit,houseFloor\n" + 
-			"	from pms.house,pms.owner,pms.ownerhouse\n" + 
-			"	where pms.house.houseId=pms.ownerhouse.houseId and pms.owner.ownerId=pms.ownerhouse.ownerId;") 
+	
+//	SELECT  o1.ownerId,o1.ownerName,o1.ownerPhoneNumber,o1.ownerSex,o1.ownerPassword,
+//	h1.houseNumber,h1.houseBuildingNumber,h1.houseUnit,h1.houseFloor
+//	FROM (pms.owner o1  LEFT OUTER JOIN pms.ownerhouse oh1 ON(oh1.ownerId= o1.ownerId)
+//
+//	 left OUTER JOIN pms.house h1 ON(h1.houseId= oh1.houseId))
+//	;
+	@Select("	SELECT  o1.ownerId,o1.ownerName,o1.ownerPhoneNumber,o1.ownerSex,o1.ownerPassword,\n" + 
+			"h1.houseNumber,h1.houseBuildingNumber,h1.houseUnit,h1.houseFloor\n" + 
+			"FROM (pms.owner o1  LEFT OUTER JOIN pms.ownerhouse oh1 ON(oh1.ownerId= o1.ownerId)\n" + 
+			"\n" + 
+			" left OUTER JOIN pms.house h1 ON(h1.houseId= oh1.houseId))\n" + 
+			";") 
 	public List<OwnerManagerDto>  findAllOwnerManagerDto();
    
 	/**
@@ -44,11 +54,11 @@ public interface OwnerRepository {
 	public boolean UpdateOwner(Owner owner);
 	
 	/**
-	 * -删除业主信息       
+	 * -删除业主信息       （触发器 房屋  车位  消费  缴费 ）
 	 * @param ownerId
 	 * @return
 	 */
-	@Delete("")
+	@Delete("delete from pms.owner where ownerId=#{ownerId}")
 	public boolean deleteOwner(int ownerId );
 	
 	/**
@@ -72,15 +82,18 @@ public interface OwnerRepository {
 	 * @param owner
 	 * @return
 	 */
-	@Insert("")
+	@Insert("INSERT INTO `pms`.`owner` ( `ownerName`,`ownerPhoneNumber`,`ownerSex`,`ownerPassword`) VALUES (#{ownerName},#{ownerPhoneNumber},#{ownerSex},#{ownerPassword});")
 	public boolean addOwner(Owner owner);
+	
+	
+	
 	
 	/**
 	 * -增加业主房屋
 	 * @param ownerHouseDto
 	 * @return
 	 */
-	@Insert("")
+	@Insert("INSERT INTO `pms`.`ownerHouse` ( `ownerId`,`houseId`) VALUES (#{ownerId},#{houseId});")
 	public boolean addOwnerHouse(OwnerHouseDto ownerHouseDto);
 	
 
@@ -88,13 +101,8 @@ public interface OwnerRepository {
 	 * -查询指定业主信息
 	 * @return
 	 */
-	@Select("")		
+	@Select("SELECT * FROM pms.owner where ownerId=#{ownerId};")		
 	public Owner fingOwnerByOwnerId(int ownerId);	
 	
 	
-
-	
-
-	
-
 }
