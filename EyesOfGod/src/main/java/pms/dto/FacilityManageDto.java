@@ -1,5 +1,7 @@
 package pms.dto;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +13,7 @@ public class FacilityManageDto {
     
     private String repairerInfomation;//维修人员id+电话
     private String repairMoney;//
-    private String repairTime;//
+    private Date repairTime;//
 	public int getPublicUtilityId() {
 		return publicUtilityId;
 	}
@@ -48,10 +50,13 @@ public class FacilityManageDto {
 	public void setRepairMoney(String repairMoney) {
 		this.repairMoney = repairMoney;
 	}
-	public String getRepairTime() {
+	public Date getRepairTime() {
 		return repairTime;
 	}
-	public void setRepairTime(String repairTime) {
+	public void setRepairTime(Date repairTime) {
 		this.repairTime = repairTime;
 	}
+	
+    
+    
 }

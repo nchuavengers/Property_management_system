@@ -35,10 +35,9 @@ public interface FacilityService {
 	 * @return
 	 */
 	public boolean addFacility(PublicUtility publicUtility);
+    public boolean finishedRepair(int ficilityId);
 
-	public boolean applyRequired(int ficilityId);
-
-	public boolean finishedRepair(int ficilityId);
+	boolean applyRequired(FacilityManageDto facilityManageDto);
 	
 	
 	

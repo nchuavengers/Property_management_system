@@ -331,7 +331,7 @@
 										        <th th:text="${facilityManageDto.getRepairerInfomation()}"></th>  
 										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
 										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
-										        <th><a th:href="@{'doRepair/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">申请维修</a></th>    
+										        <th><button value="modifyFacility" class="modifyFacility"  th:text="申请维修" > </button></th>  
 												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">维修已完成</a></th>                   
  											</tr> 
 								         </tbody>
@@ -363,7 +363,7 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-								<form method="post" action="">
+								<form method="post" action="addFacility">
 									<table name="datatable"
 										class="table table-striped table-bordered">
 										<thead>
@@ -377,8 +377,8 @@
 										<tbody>
 											<tr>
 												
-												<th><input type="text" name=""></th>
-												<th><input type="text" name=""></th>
+												<th><input type="text" name="ficinityName"></th>
+												<th><input type="text" name="ficinityType"></th>
 												<th><input type="submit" value="添加"></th>
 											</tr>
 										</tbody>
@@ -471,6 +471,6 @@
 
 
 	<!-- zzj脚本 -->
-	<script src="/zzjjs/main.js"></script>
+	<script src="/ztxjs/main.js"></script>
 </body>
 </html>

@@ -1,12 +1,17 @@
 package pms.restController;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pms.dto.FacilityManageDto;
@@ -20,6 +25,7 @@ public class FacilityController {
 	private FacilityService facilityServieImpl;
 	@Autowired
 	private List<FacilityManageDto> facilityList;
+
 	/**
 	 * -管理员进入公共设施管理页面
 	 * -显示该页面的数据     FacilityManageDto
@@ -38,16 +44,30 @@ public class FacilityController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/doRepair/{ficilityId2}")
-	//@ResponseBody
-	public String doRepair(@PathVariable (value="ficilityId2")int ficilityId,Model model) {
-		System.out.println("申请维修------->"+ficilityId);
-		boolean a=facilityServieImpl.applyRequired(ficilityId);
-		System.out.println(a);
-		facilityList=facilityServieImpl.findAllFacilityManageDto();
-		model.addAttribute("facilityList",facilityList);
-		//return "facilityManage";
-		return "redirect:/facilityManage"; 
+	@GetMapping("/doRepair")
+	@ResponseBody
+	public Map<String, Object> doRepair(@ModelAttribute  FacilityManageDto facilityManageDto,Model model) {
+		System.out.println("维修id------->"+facilityManageDto.getPublicUtilityId());
+        Map<String, Object> result = new HashMap<String, Object>();
+		
+        Date date=new Date();
+        facilityManageDto.setRepairTime(date);
+        
+        boolean b =facilityServieImpl.applyRequired(facilityManageDto);
+
+		System.out.println("b="+b);
+		if(b){
+			//封装正确消息
+			result.put("date", date);
+			result.put("status", "succcessful");//succcessful
+			result.put("msg", "succcessful！");
+		}
+		else {
+			//封装错误消息
+			result.put("status", "fail");//fail
+			result.put("msg", "修改失败！");
+		}
+		return result;
 	}
 	
 	
@@ -73,11 +93,15 @@ public class FacilityController {
 	 * @param 待添加 PublicUtility 对象
 	 * @return
 	 */
-	@GetMapping("/addFacility")
-	@ResponseBody 
-	public String addFacility(@RequestBody PublicUtility publicUtility  ) {
-		
-		return null;
+	@PostMapping("/addFacility")
+	public String addFacility(String ficinityName,String ficinityType,Model model) {
+		 PublicUtility a=new PublicUtility();
+		 a.setPublicUtilityName(ficinityName);
+		 a.setPublicUtilityType(ficinityType);
+		 facilityServieImpl.addFacility(a);
+		facilityList=facilityServieImpl.findAllFacilityManageDto();
+		model.addAttribute("facilityList",facilityList);
+		return "redirect:/facilityManage"; 
 	}
 	
 	
