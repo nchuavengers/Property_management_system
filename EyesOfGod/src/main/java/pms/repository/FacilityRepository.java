@@ -11,6 +11,12 @@ import pms.dto.FacilityManageDto;
 import pms.entity.Owner;
 import pms.entity.PublicUtility;
 import pms.entity.RepairRecord;
+
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
 @Mapper
 public interface FacilityRepository {
 

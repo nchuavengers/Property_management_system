@@ -9,6 +9,11 @@ import pms.dto.FacilityManageDto;
 import pms.entity.PublicUtility;
 import pms.entity.RepairRecord;
 import pms.repository.FacilityRepository;
+/*
+ * *用于实现公共设施服务接口
+ * 15202137 汪浩 6.15
+ * my batis
+ */
 @Service
 public class FacilityServiceImpl implements FacilityService {
 	@Autowired

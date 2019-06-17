@@ -4,6 +4,11 @@ import org.springframework.stereotype.Service;
 import pms.dto.FacilityManageDto;
 import pms.entity.PublicUtility;
 import pms.entity.RepairRecord;
+/*
+ * *用于调用仓储层增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
 @Service
 public interface FacilityService {
 

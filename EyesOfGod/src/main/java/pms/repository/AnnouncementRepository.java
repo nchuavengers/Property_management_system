@@ -16,6 +16,12 @@ import pms.entity.Announcement;
   	初步设计持久化接口
  *
  */
+
+/*
+ * *用于增删查改公告信息数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
 public interface AnnouncementRepository {
 
 	/**

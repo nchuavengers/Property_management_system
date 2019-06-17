@@ -1,7 +1,10 @@
 package pms.dto;
 
 import org.springframework.stereotype.Component;
-
+/*
+ * *用于封装公共设施管理界面用户输入的数据
+ * 15202137 汪浩 6.15
+ */
 @Component
 public class FacilityManageDto {
     private int publicUtilityId;//公共设施id

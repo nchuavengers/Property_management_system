@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import pms.entity.Announcement;
 import pms.entity.Owner;
-
+/*
+ * *用于处理公告管理页面请求，调用AnnouncementManageService服务接口，返回数据到页面
+ * 15202137 汪浩 6.15
+ */
 @Controller
 public class AnnouncementController {
 
