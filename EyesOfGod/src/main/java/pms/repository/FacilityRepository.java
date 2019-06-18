@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import pms.dto.FacilityManageDto;
 import pms.entity.PublicUtility;
-<<<<<<< HEAD
+
 import pms.entity.RepairRecord;
 
 /*
@@ -16,8 +16,7 @@ import pms.entity.RepairRecord;
  * 15202137 汪浩 6.15
  * my batis
  */
-=======
->>>>>>> master
+
 @Mapper
 public interface FacilityRepository {
    

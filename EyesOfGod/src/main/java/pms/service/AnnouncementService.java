@@ -2,6 +2,7 @@ package pms.service;
 
 import java.util.List;
 
+import pms.dto.AnnouncementManageDto;
 import pms.entity.Announcement;
 /*
  * *用于调用仓储层增删查改公告信息数据
@@ -36,6 +37,8 @@ public interface AnnouncementService {
 	 * @return
 	 */
 	public Announcement  findTodayAnnouncement();
+
+	List<AnnouncementManageDto> findAllannouncementManageDto();
 	
 	
 	

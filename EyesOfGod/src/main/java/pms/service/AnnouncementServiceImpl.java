@@ -2,7 +2,7 @@ package pms.service;
 
 import java.util.List;
 
-import pms.dto.announcementManageDto;
+import pms.dto.AnnouncementManageDto;
 import pms.entity.Announcement;
 /*
  * *用于实现公告信息服务接口
@@ -11,11 +11,7 @@ import pms.entity.Announcement;
  */
 public class AnnouncementServiceImpl implements AnnouncementService{
 
-	@Override
-	public List<announcementManageDto> findAllannouncementManageDto() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public String findAnnouncementDescription(int announcementId) {
@@ -31,6 +27,12 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 
 	@Override
 	public Announcement findTodayAnnouncement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AnnouncementManageDto> findAllannouncementManageDto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
