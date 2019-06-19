@@ -18,7 +18,7 @@
   --修改了用户管理页面左侧的导航栏
  -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -95,6 +95,7 @@
 						<div class="profile_pic">
 							<img src="images/img.jpg" alt="..."
 								class="img-circle profile_img">
+								
 						</div>
 						<div class="profile_info">
 							<span>Welcome</span>
@@ -121,7 +122,9 @@
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="ownerHouse">我的房屋</a></li>
-										<li><a href="ownerParking">我的车位</a></li>
+										<!--  <li><a th:href="@{'ownerParking/'+${owner.getOwnerId()} }" >我的车位</a></li>
+										-->
+										<li><a href="ownerParking" >我的车位</a></li>
 										<li><a href="ownerAnnouncement">公告</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-bar-chart-o"></i> 缴费管理

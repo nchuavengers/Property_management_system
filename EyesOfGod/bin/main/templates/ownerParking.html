@@ -2,11 +2,10 @@
   --162021班 第10组
   --小区物业管理系统- 车位管理模块
   --@author:16202133
- 
  -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -275,55 +274,24 @@
 												<th>操作</th>
 											</tr>
 										</thead>
-
-
-										<tbody>
-											<tr>
-												<th>A001</th>
-												<th>私有</th>
-												<th>A区</th>
-												<th>8:00</th>
-												<th>15:00</th>
-												<th>无</th>
-												<th>100￥</th>
-												<th><a href="" style="color: blue">设置今日共享时间</a></th>
-												<th><a href="" style="color: blue">取消今日共享</a></th>
-											</tr>
-											<tr>
-												<th>A001</th>
-												<th>私有</th>
-												<th>A区</th>
-												<th>8:00</th>
-												<th>15:00</th>
-												<th>无</th>
-												<th>100￥</th>
-												<th><a href="" style="color: blue">设置今日共享时间</a></th>
-												<th><a href="" style="color: blue">取消今日共享</a></th>
-											</tr>
-											<tr>
-												<th>B001</th>
-												<th>私有</th>
-												<th>A区</th>
-												<th>8:00</th>
-												<th>15:00</th>
-												<th>无</th>
-												<th>10000￥</th>
-												<th><a href="" style="color: blue">设置今日共享时间</a></th>
-												<th><a href="" style="color: blue">取消今日共享</a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>私有</th>
-												<th>A区</th>
-												<th>8:00</th>
-												<th>15:00</th>
-												<th>无</th>
-												<th>1000￥</th>
-												<th><a href="" style="color: blue">设置今日共享时间</a></th>
-												<th><a href="" style="color: blue">取消今日共享</a></th>
-											</tr>
-										
+									    <tbody id="tb">
+										    <tr  th:each="myParkingSpaceDto : ${list}"> 
+										        <th th:text="${myParkingSpaceDto.getParkingSpaceId()}"></th>  
+										        <th th:text="${myParkingSpaceDto.getParkingSpaceType()}"></th>   
+										        <th th:text="${myParkingSpaceDto.getParkingSpaceLocation()}"></th>  
+										        <th  th:text="${myParkingSpaceDto.getShareingBeginTime()}"></th>
+										        <th  th:text="${myParkingSpaceDto.getShareingEndingTime()}"></th>  
+										        <th th:text="${myParkingSpaceDto.getParkingSpaceStatus()}"></th>
+										        <th th:text="${myParkingSpaceDto.getIncome()}"></th>  
+ 									        
+										        
+										        <th><button value="setShareTime" class="setShareTime" style="color: blue" th:text="设置共享时间" > </button></th>
+										        <th><button class="resetShareTime" style="color: blue" th:text="取消今日共享" >  </button></th>                    
+ 
+								            </tr> 
+								            
 										</tbody>
+										
 									</table>
 
 								</div>
@@ -414,6 +382,6 @@
 
 
 	<!-- zzj脚本 -->
-	<script src="/zzjjs/main.js"></script>
+	<script src="/zzjjs/ownerSetShareTime.js"></script>
 </body>
 </html>
