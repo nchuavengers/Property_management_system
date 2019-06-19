@@ -358,7 +358,7 @@
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
 									
-									<form method="post" action="doPayment">
+									
 									<table id="datatable-fixed-header"
 										class="table table-striped table-bordered">
 										<thead>
@@ -375,18 +375,24 @@
 										</thead>
 										<tbody id="expenseTb">
 											<tr  th:each="a : ${expenseList}"> 
-												<th th:text="${a.getExpenseId()}"><input type="text" name="expenseId"  th:value="${a.getExpenseId()}" ></th>
-										    	<th th:text="${a.getOwnerId()}"> 
+											<form method="post" action="doPayment">
+												<input type="hidden" name="payType" value="offline" />
+											    <input type="hidden" name="expenseId" th:value="${a.getExpenseId()}" />
+											   	<input type="hidden" name="ownerId" th:value="${a.getOwnerId()}" />
+											    <input type="hidden" name="expenseMoney" th:value="${a.getExpenseMoney()}" />
+												<th th:text="${a.getExpenseId()}" ></th>
+										    	<th th:text="${a.getOwnerId()}"> </th> 
 										        <th th:text="${a.getOwnerName()}"></th>   
 										   		<th th:text="${a.getExpenseTime()}"></th>  
 										        <th th:text="${a.getExpenseContent()}"></th>
 										        <th th:text="${a.getExpenseMoney()}"></th>
 										        <th th:text="${a.getPaymentStatus()}"></th>  
 										        <th><Button type="submit"  class="payBt2" style="color: blue" th:text="缴费"></Button></th>  
+										    </form>
 										     </tr> 
 										 </tbody>
 									</table>
-									</form>
+									
 								</div>
 								
 							</div>

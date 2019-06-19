@@ -256,12 +256,15 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								<div class="x_content">
+									<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-									<table id="datatable"
+									
+									
+									<table id="datatable-fixed-header"
 										class="table table-striped table-bordered">
 										<thead>
 											<tr>
+												<th>消费ID</th>
 												<th>业主ID</th>
 												<th>业主姓名</th>
 												<th>消费时间</th>
@@ -270,21 +273,27 @@
 												<th>缴费状态</th>
 												<th>操作</th>
 											</tr>
-											
 										</thead>
-										<tbody>
-											<tr>
-												<th>1001</th>
-												<th>海绵宝宝</th>
-												<th>2019月8日31</th>
-												<th>物业管理费</th>
-												<th>100￥</th>
-												<th style="color: blue">已缴</th>
-												<th><a href="" style="color: blue">缴费</a> </th>
-											</tr>
-										</tbody>
-										
+										<tbody id="expenseTb">
+											<tr  th:each="a : ${expenseList}"> 
+											<form method="post" action="doPayment">
+												<input type="hidden" name="payType" value="online" />
+											 	<input type="hidden" name="expenseId" th:value="${a.getExpenseId()}" />
+											   	<input type="hidden" name="ownerId" th:value="${a.getOwnerId()}" />
+											    <input type="hidden" name="expenseMoney" th:value="${a.getExpenseMoney()}" />
+												<th th:text="${a.getExpenseId()}"><input type="text" name="expenseId"  th:value="${a.getExpenseId()}" ></th>
+										    	<th th:text="${a.getOwnerId()}"> 
+										        <th th:text="${a.getOwnerName()}"></th>   
+										   		<th th:text="${a.getExpenseTime()}"></th>  
+										        <th th:text="${a.getExpenseContent()}"></th>
+										        <th th:text="${a.getExpenseMoney()}"></th>
+										        <th th:text="${a.getPaymentStatus()}"></th>  
+										        <th><Button type="submit"  class="payBt2" style="color: blue" th:text="缴费"></Button></th>  
+										  </form>
+										     </tr> 
+										 </tbody>
 									</table>
+									
 								</div>
 								
 							</div>
@@ -309,9 +318,10 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								<div class="x_content">
+							<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-									<table id="datatable-responsive"
+									<!-- 缴费表： -->
+										<table id="datatable"
 										class="table table-striped table-bordered">
 										<thead>
 											<tr>
@@ -321,25 +331,20 @@
 												<th>缴费内容</th>
 												<th>缴费金额</th>
 												<th>缴费方式</th>
-											
 											</tr>
-											
 										</thead>
-										<tbody>
-											<tr>
-												<th>1001</th>
-												<th>海绵宝宝</th>
-												<th>2019月8日31</th>
-												<th>物业管理费</th>
-												<th>100￥</th>
-												<th style="color: blue">网上缴费</th>
-											
-											</tr>
-										</tbody>
-										
+									<tbody id="paymentTb">
+										    <tr  th:each="e : ${paymentList}"> 
+										        <th th:text="${e.getOwnerId()}"></th>  
+										        <th th:text="${e.getOwnerName()}"></th>   
+										        <th th:text="${e.getPaymentTime()}"></th>  
+										        <th th:text="${e.getExpenseContent()}"></th>
+										        <th th:text="${e.getPaymentMoney()}"></th>
+										        <th th:text="${e.getPaymentType()}"></th>  
+										    </tr> 
+								        </tbody>
 									</table>
 								</div>
-								
 							</div>
 						</div>
 				</div>

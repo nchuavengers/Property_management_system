@@ -23,7 +23,7 @@ public interface ExpenseRepository {
 	
 	@Select("SELECT pms.`expenserecord`.`expenseId`, pms.`owner`.`ownerId`, pms.`owner`.`ownerName`,pms.`expenserecord`.`expenseTime`,pms.`expenserecord`.`expenseContent`,pms.`expenserecord`.`expenseMoney`,\r\n" + 
 			"pms.`expenserecord`.`paymentStatus` FROM pms.`owner`,pms.`expenserecord`\r\n" + 
-			"WHERE pms.`owner`.`ownerId`=pms.`expenserecord`.`ownerId` AND pms.`owner`.`ownerId`=${ownerId};") 
+			"WHERE pms.`owner`.`ownerId`=pms.`expenserecord`.`ownerId` AND pms.`owner`.`ownerId`=#{ownerId};") 
 	public List<FinanceExpenseDto>  findPersonalDto(int ownerId);
 	
 	/**

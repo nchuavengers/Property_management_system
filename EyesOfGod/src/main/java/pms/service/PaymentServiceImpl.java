@@ -35,6 +35,12 @@ public class PaymentServiceImpl implements PaymentService{
 		return false;
 	}
 
+	@Override
+	public List<FinancePaymentDto> findPersonalPayment(int ownerId) {
+		// TODO Auto-generated method stub
+		return pr.findPersonalPayment(ownerId);
+	}
+
 	
 
 }
