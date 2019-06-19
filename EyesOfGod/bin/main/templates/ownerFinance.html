@@ -161,12 +161,8 @@
 									Doe <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
-									<li><a href="javascript:;"> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;">Help</a></li>
-									<li><a href="login.html"><i
+									
+									<li><a href="logOut"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul></li>
 
@@ -281,8 +277,9 @@
 											 	<input type="hidden" name="expenseId" th:value="${a.getExpenseId()}" />
 											   	<input type="hidden" name="ownerId" th:value="${a.getOwnerId()}" />
 											    <input type="hidden" name="expenseMoney" th:value="${a.getExpenseMoney()}" />
-												<th th:text="${a.getExpenseId()}"><input type="text" name="expenseId"  th:value="${a.getExpenseId()}" ></th>
-										    	<th th:text="${a.getOwnerId()}"> 
+											    <input type="hidden" name="paymentStatus" th:value="${a.getPaymentStatus()}" />
+												<th th:text="${a.getExpenseId()}"></th>
+										    	<th th:text="${a.getOwnerId()}"></th>
 										        <th th:text="${a.getOwnerName()}"></th>   
 										   		<th th:text="${a.getExpenseTime()}"></th>  
 										        <th th:text="${a.getExpenseContent()}"></th>

@@ -1,9 +1,7 @@
 package pms.restController;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pms.dto.FinanceExpenseDto;
 import pms.dto.FinancePaymentDto;
 import pms.service.ExpenseService;
@@ -60,7 +55,8 @@ public class FinanceController {
 	 * 
 	 */
 	@PostMapping("doPayment")
-    public String doPayment(String expenseId,Model model,String ownerId,String expenseMoney,String payType,HttpSession session) {
+    public String doPayment(String expenseId,Model model,String ownerId,String expenseMoney,String payType,
+    		String paymentStatus,HttpSession session) {
 		
 		System.out.println(" ----->ID"+expenseId);
 		System.out.println(" ----->ID"+ownerId);
@@ -71,15 +67,17 @@ public class FinanceController {
 		pay.setExpenseId(Integer.parseInt(expenseId));
 		//pay.setPaymentTime(paymentTime);//时间暂定
 		pay.setPaymentMoney(expenseMoney);
-		if("online".equals(payType))
-			pay.setPaymentType("网上缴费");
-		else
-			pay.setPaymentType("收银员:"+"ztx");
+		
 		//缴费分为两步：
 		//1. 修改消费表中状态为已经缴费  2.添加一条缴费信息到数据库中0
-		boolean a=paymentService.addPayment(pay);
-		System.out.println("缴费结果："+a);
-		if("online".equals(payType)) {
+	
+		if("online".equals(payType)) { //
+			if("未缴费".equals(paymentStatus)) {
+			pay.setPaymentType("网上缴费");
+			boolean b=expenseService.modifyExpense(Integer.parseInt(expenseId));
+			boolean a=paymentService.addPayment(pay);
+			System.out.println("缴费结果："+(a&&b));
+			}
 			Owner o=(Owner)(session.getAttribute("owner"));
 			paymentList=paymentService.findPersonalPayment(o.getOwnerId());
 			expenseList=expenseService.findPersonalExpenseDto(o.getOwnerId());
@@ -87,8 +85,15 @@ public class FinanceController {
 			model.addAttribute("paymentList", paymentList);
 			System.out.print(" here is ownerFinance.html\n");
 			return "ownerFinance";
+			
 		}
 		else {
+			if("未缴费".equals(paymentStatus)) {
+				pay.setPaymentType("收银员:"+"ztx");
+				boolean b=expenseService.modifyExpense(Integer.parseInt(expenseId));
+				boolean a=paymentService.addPayment(pay);
+				System.out.println("缴费结果："+(a&&b));
+				}
 			paymentList=paymentService.findAllPayment() ;
 			expenseList=expenseService.findAllExpenseDto();
 			model.addAttribute("paymentList",paymentList);
@@ -117,19 +122,6 @@ public class FinanceController {
 		model.addAttribute("paymentList", paymentList);
 		System.out.print(" here is ownerFinance.html\n");
 		return "ownerFinance";
-
-	}
-	/**
-	 * -业主缴费
-	 * --缴自己费(修改消费记录状态)
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/doMyPayment")
-	public String doMyPayment(Model model) {
-		expenseList=expenseService.findAllExpenseDto();
-		System.out.print(" here is ownerFinance.html\n");
-		return null;
 
 	}
 	

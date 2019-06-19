@@ -34,7 +34,7 @@ public interface ExpenseRepository {
 	@Update("UPDATE pms.`expenserecord` SET pms.`expenserecord`.`paymentStatus`='已缴费'  WHERE  pms.`expenserecord`.`expenseId`=#{expenseRecordId} ;")
 	public boolean updateExpenseRecord(int  expenseRecordId);
 	
-	@Insert("INSERT INTO pms.`expenserecord`(ownerId,expenseContent,expenseMoney,expenseTime,paymentStatus) VALUE(#{ownerId},#{expenseContent},'200,2019-05-15 08:00:00',#{paymentStatus});")
+	@Insert("INSERT INTO pms.`expenserecord`(ownerId,expenseContent,expenseMoney,expenseTime,paymentStatus) VALUE(#{ownerId},#{expenseContent},#{expenseMoney},'2019-05-15 08:00:00','未缴费');")
 	public boolean addExpenseRecord(FinanceExpenseDto expense);
 	
 	
