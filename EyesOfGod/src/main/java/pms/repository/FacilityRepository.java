@@ -25,7 +25,6 @@ public interface FacilityRepository {
 	//添加维修记录
 	@Insert("INSERT INTO `pms`.`repairRecord` ( `publicUtilityId`,`repairerInfomation`,`repairMoney`,`repairTime`) "
 			+ "VALUES (#{publicUtilityId},#{repairerInfomation},#{repairMoney},#{repairTime});")
-
 	public boolean addRepairRecord(FacilityManageDto facilityManageDto);
 	
     //-申请维修

@@ -3,7 +3,7 @@
  * @returns
  */
 $(document).ready(function(){
-	alert(111);
+	
 	/**
 	 * 公共设施
 	 */
@@ -160,7 +160,36 @@ $(document).ready(function(){
 			$(this).parent().parent().remove();//局部删除
 		}
 	});	
+	/*
+	 * 管理员缴费-》改消费记录
+	 */
+	$(".payBt").click(function(){
+		if(window.confirm("确定缴费吗?"))
+		{	
+			//获取该tr 业主id
+			var expenseItem={};//保存表格里的值//获取houseID
+		    $(this).parent().siblings("th").each(function(j){
+			      switch (j) {
+					case 0:{
+						expenseItem.expenseId=$(this).text();//第0个th   id
+						break;
+					}
+				};
+		    });
+			//传入id
+			$.ajax({
+		        url: "/doPayment/"+expenseItem.expenseId      /*重定向？url并没有变化，只是js请求服务器获取json数据，更新*/
+		    }).then(function(data) {
+		    		alert(data.msg);//显示结果
+		    });
+			//$(this).parent().parent().remove();//局部删除
+		}
+	});	
 	
+	
+	/*
+	 * 增加房屋信息
+	 */
 	$(".addHouse").click(function(){
 		if(window.confirm("确定要增加房屋信息吗?"))
 		{	

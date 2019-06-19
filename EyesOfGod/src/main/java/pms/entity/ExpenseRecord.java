@@ -2,7 +2,7 @@ package pms.entity;
 
 import java.util.Date;
 
-public class ExpenseRecord {
+public class ExpenseRecord {  //消费记录，与收费记录不同。
     private int expenseId;//消费记录id
     private int ownerId;//业主id
     private String expenseContent;//消费内容
