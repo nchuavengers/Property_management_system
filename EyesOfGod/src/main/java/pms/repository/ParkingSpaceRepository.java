@@ -41,7 +41,7 @@ public interface ParkingSpaceRepository {
 	public List<MyParkingSpaceDto>   findOwnerParkingSpace(int ownerId);
 	
 
-	
+
 	
 	
 	
