@@ -56,7 +56,7 @@ public class FinanceController {
 	 */
 	@PostMapping("doPayment")
     public String doPayment(String expenseId,Model model,String ownerId,String expenseMoney,String payType,
-    		String paymentStatus,HttpSession session) {
+    		String paymentStatus,String  expenseContent,HttpSession session) {
 		
 		System.out.println(" ----->ID"+expenseId);
 		System.out.println(" ----->ID"+ownerId);
@@ -71,12 +71,17 @@ public class FinanceController {
 		//缴费分为两步：
 		//1. 修改消费表中状态为已经缴费  2.添加一条缴费信息到数据库中0
 	
-		if("online".equals(payType)) { //
+		if("online".equals(payType)) { // 用户发送过来的请求，跳回用户界面
 			if("未缴费".equals(paymentStatus)) {
+			model.addAttribute("subject", expenseContent);
+			model.addAttribute("expenseMoney", expenseMoney);
+			model.addAttribute("expenseId", expenseId);
+			
 			pay.setPaymentType("网上缴费");
 			boolean b=expenseService.modifyExpense(Integer.parseInt(expenseId));
 			boolean a=paymentService.addPayment(pay);
 			System.out.println("缴费结果："+(a&&b));
+			return "ali2";
 			}
 			Owner o=(Owner)(session.getAttribute("owner"));
 			paymentList=paymentService.findPersonalPayment(o.getOwnerId());

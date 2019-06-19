@@ -156,6 +156,13 @@ public class HomeController {
 		return "index";
 
 	}
+	@GetMapping("/aliIndex")
+	public String aliIndex(Model model) {
+		System.out.print(" here is aliIndex.html\n");
+		return "aliIndex";
+
+	}
+	
 }
 
 

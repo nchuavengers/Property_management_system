@@ -9,7 +9,7 @@
  -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -278,6 +278,7 @@
 											   	<input type="hidden" name="ownerId" th:value="${a.getOwnerId()}" />
 											    <input type="hidden" name="expenseMoney" th:value="${a.getExpenseMoney()}" />
 											    <input type="hidden" name="paymentStatus" th:value="${a.getPaymentStatus()}" />
+												<input type="hidden" name="expenseContent" th:value="${a.getExpenseContent()}" />
 												<th th:text="${a.getExpenseId()}"></th>
 										    	<th th:text="${a.getOwnerId()}"></th>
 										        <th th:text="${a.getOwnerName()}"></th>   
