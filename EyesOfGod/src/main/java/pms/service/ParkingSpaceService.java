@@ -61,7 +61,7 @@ public interface ParkingSpaceService {
 	 * @param ParkingSpaceDto
 	 * @return
 	 */
-	public boolean setShareTime(ParkingSpace parkingSpaceDto);
+	public boolean setShareTime(MyParkingSpaceDto myParkingSpaceDto) ;
 	
 	
 	/**
@@ -70,6 +70,8 @@ public interface ParkingSpaceService {
 	 * @return
 	 */
 	public boolean resetShareTime(ParkingSpace parkingSpaceDto);
+	
+	
 }
 
 

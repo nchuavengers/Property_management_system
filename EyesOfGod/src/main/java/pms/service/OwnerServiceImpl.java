@@ -12,15 +12,14 @@ import pms.repository.OwnerRepository;
 
 @Service
 public class OwnerServiceImpl implements OwnerService{
-
+    
     @Autowired
     private OwnerRepository ownerRepository;	
 	
 	@Override
 	public List<OwnerManagerDto> findAllOwnerManagerDto() {
-
-		List<OwnerManagerDto> list  = ownerRepository.findAllOwnerManagerDto();
 		
+		List<OwnerManagerDto> list  = ownerRepository.findAllOwnerManagerDto();
 		return list;
 	}
 
