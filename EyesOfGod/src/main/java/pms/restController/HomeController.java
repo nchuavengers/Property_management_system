@@ -159,7 +159,7 @@ public class HomeController {
 	@GetMapping("/aliIndex")
 	public String aliIndex(Model model) {
 		System.out.print(" here is aliIndex.html\n");
-		return "aliIndex";
+		return "ali2";
 
 	}
 	
