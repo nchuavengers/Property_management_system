@@ -25,10 +25,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxKOPD191jtk1OLTO2cEoAN+DODIku2BzGk3Z80OYNdB5iQYd9If6VA+6GfweMwVrhUmKT4gJU2ZSKtYYzD8PWMmhMwvrnUcBMdpLJayQNZlDBo2uAB6Jf8j2fccB9tFED3wXF2846J4UasyWQUUu5DEEZEhA/0EAmD+mQnf+HEsK9HZ7yy/wQvFVDRUjurVpkdVBQck6UxSLaQlb/H2PSUTX4G0RXvXCHLw1QU46cejTi0Hi62Bju/32r/hXAkNqovdzdnV9qQ6kVczSZs0VFMLWjApKRgGWMQ5uxJDEyO+FdmRgfqyj4kEiJCYoHDRsAofAAPJIx+kgksRilPS4WQIDAQAB";
     
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，！！！！必须外网可以正常访问！！！！
-	//public static String notify_url = "http://127.0.0.1/alipay.trade.page.pay-JAVA-UTF-8/notify_url.jsp";
-    public static String notify_url = "https://www.baidu.com/";
+	//public static String notify_url = "http://59.52.52.57/index";
+    public static String notify_url = "http://59.52.52.57/index";
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "https://www.baidu.com/";
+	public static String return_url = "http://59.52.52.57/index";
 
 	// 签名方式
 	public static String sign_type = "RSA2";
