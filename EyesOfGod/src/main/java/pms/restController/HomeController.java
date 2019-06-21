@@ -1,4 +1,6 @@
 package pms.restController;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,11 +9,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import pms.dto.AllDayShareDto;
+import pms.dto.TemporayShareDto;
 import pms.dto.UserDto;
+import pms.dto.VisitorCarDto;
 import pms.entity.Manager;
 import pms.entity.Owner;
 import pms.entity.Security;
+import pms.repository.SecurityRepository;
 import pms.service.HomeServiceImpl;
+import pms.service.SecurityService;
 
 @Controller
 public class HomeController {
@@ -26,7 +34,9 @@ public class HomeController {
     @Autowired
     private HttpSession session ;
     @Autowired
-    private HomeServiceImpl homeServiceImpl;    
+    private HomeServiceImpl homeServiceImpl;   
+	@Autowired
+	private SecurityService securityServiceImpl;
     
     /**
      * 跳至登录界面，传入userDTO实例,待用户输入账号密码类型
@@ -82,8 +92,29 @@ public class HomeController {
 			     }
     			manager=null;
     			owner=null;
+    			
+    			//当前访客车辆
+    			List<VisitorCarDto> visitorList =securityServiceImpl.findNowVisitor();
+//    			if(visitorList==null) {
+//    				System.out.print("空的");
+//    			}
+    			//全天共享车辆
+    			List<AllDayShareDto> allDayList=securityServiceImpl.fingAllDayShareParkingSpace();
+    			//临时今天共享车辆
+    			List<TemporayShareDto> tempShareList= securityServiceImpl.FingTemporayShareParkingSpace();
+    			
+    			
+    			
+    			model.addAttribute("visitorList",visitorList);
+    			model.addAttribute("allDayList",allDayList);
+    			model.addAttribute("tempShareList",tempShareList);
+    			
 			    model.addAttribute("security",security);
 			    session.setAttribute("security", security);
+			    
+			    
+			   
+			    
 			    return "security";  	
             }else {//验证管理员
             	manager = homeServiceImpl.validManager(userDto);
@@ -133,16 +164,17 @@ public class HomeController {
 	}
 	
 	/**
-	 * -保安登录主页(展示当前访客车辆全天共享车辆临时共享车辆)
+	 * -保安登录主页(展示当前访客车辆   全天共享车辆    临时共享车辆)
 	 * @param model
 	 * @return
 	 */
 	@GetMapping("/security")
-	public String tables_dynamic(Model model) {
-		model.addAttribute("security",security);
+	public String security(Model model) {
 		System.out.print(" here is security.html\n");
-		return "security";
+		
+		
 
+		return "security";
 	}
 	@GetMapping("/logOut")
 	public String LogOut(Model model) {

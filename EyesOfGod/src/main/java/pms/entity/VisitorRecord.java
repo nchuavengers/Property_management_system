@@ -3,6 +3,8 @@ package pms.entity;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
+
+
 @Component
 public class VisitorRecord {
     private int visitorId;//访客记录id
@@ -11,7 +13,9 @@ public class VisitorRecord {
     private String licensePlate;//车牌
     private Date entryTime;//入区时间
     private Date departureTime;//离开时间
-    private String paymentMoney;//缴费金额
+
+    private int  paymentMoney;//缴费金额
+
 	public int getVisitorId() {
 		return visitorId;
 	}
@@ -48,11 +52,12 @@ public class VisitorRecord {
 	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
-	public String getPaymentMoney() {
+
+	public int getPaymentMoney() {
 		return paymentMoney;
 	}
-	public void setPaymentMoney(String paymentMoney) {
+	public void setPaymentMoney(int paymentMoney) {
 		this.paymentMoney = paymentMoney;
 	}
-    
+
 }

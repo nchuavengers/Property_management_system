@@ -1,4 +1,102 @@
 
+$(document).ready(function(){
+
+
+/**
+ * 离开小区
+ * 把缴费栏变输入框
+ * 访客编号  缴费金额传递到control
+ * 业主取消今日共享
+ */
+	$(".departure").click(function(){
+		
+		if($(this).val()=="departure"){//当前按钮值value
+			
+			$(this).parent().siblings("th").each(function(j){//找同类元素th
+				switch (j) {
+					case 5:{//显示修改文本框
+						    var is_text = $(this).find("input");//有文本框就获取文本框的值(情况可能格式错误)
+						    if(!is_text.length){
+						    	$(this).html("<input type='number' value='"+$(this).text()+"' placeholder='输入金额不要手抖' />");
+						    }
+							break;
+					}				
+				};
+			});
+			$(this).val("ensureModify");
+			$(this).text("确定 ");
+		}//ifmodify	
+		else{
+			alert("点击确定");
+			var orderItem={};//保存表格里的值
+			//alert("准备获取数据");
+			normStatus=1;//格式没错
+		    $(this).parent().siblings("th").each(function(j){
+			      switch (j) {
+					case 5:{
+						var is_text = $(this).find("input");
+						orderItem.paymentMoney=parseInt(is_text.val());
+						break;
+					}
+					case 0:{
+						orderItem.visitorId=$(this).text();//第0个th   id
+						break;
+					}
+				};
+		    });
+		    if(normStatus==0){
+		    	alert("请重新输入！");
+		    	return;
+		    }
+		    else{
+			    //检查格式没问题后-发送到后台验证
+				    
+			    alert("发送到后台ing");
+			    //ajax
+				$.ajax({
+			        url: "/visitorDepature",     
+			        type : "get",
+			        dataType : "json",
+			        contentType : "application/json; charset=utf-8",  
+			        data : {
+			        	  'visitorId':orderItem.visitorId,
+			    		  'paymentMoney':orderItem.paymentMoney	
+			        	  },
+			        async : true,  
+			        success : function(data){    //修改成功  已离开小区 提示 成功 删除div
+			        	//提示结果-修改成功-不可修改等
+			        	alert(data.msg);
+				        //重新找到该节点-有文本框的就保存-前面要有个标记-是否在修改
+			        	var isModify=0;//标记是否是该行;
+				        $("#tb").find("tr").each(function(){  
+				        	
+		                      $(this).children('th').each(function(j){ 
+		                    	  switch (j) {						
+										case 5:{
+											var is_text = $(this).find("input");//密码单元格下肯定含有文本框
+											if(is_text.length){
+											$(this).html(is_text.val());
+											$(this).parent().parent().remove();//局部删除
+											}
+											break;
+										}
+		                    	  }			                      
+		                      });
+ 
+		             	 });
+			        },  
+			        error:function(jqXHR, textStatus, errorThrown) {//controller返回的data空或其他提示不存在
+			        	alert("错了？");
+			        }
+				});
+		    }
+		}
+	});
+
+
+
+
+
 
 /**
  * 业主设置今日车位共享时间
@@ -198,3 +296,5 @@
 
 		}
 	});
+	
+});
