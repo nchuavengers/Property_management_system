@@ -40,7 +40,12 @@ public class FinanceController {
 		System.out.print(" here is financeManage.html\n");
 		return "financeManage";
 	}
-	
+	@GetMapping("/financeView")
+	public String financeView(Model model) {
+		
+		System.out.print(" here is financeView.html\n");
+		return "financeView";
+	}
 	/**
 	 * -缴费(修改消费记录状态)
 	 * @param model
