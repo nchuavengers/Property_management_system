@@ -176,6 +176,25 @@ public class HomeController {
 
 		return "security";
 	}
+	@GetMapping("/logOut")
+	public String LogOut(Model model) {
+		session.setAttribute("owner", null);
+	    session.setAttribute("manager", null);
+	    session.setAttribute("security", null);
+		model.addAttribute("security",null);
+		model.addAttribute("manager",null);
+		model.addAttribute("owner",null);
+		System.out.print(" Log out !\n");
+		return "index";
+
+	}
+	@GetMapping("/aliIndex")
+	public String aliIndex(Model model) {
+		System.out.print(" here is aliIndex.html\n");
+		return "aliIndex";
+
+	}
+	
 }
 
 
