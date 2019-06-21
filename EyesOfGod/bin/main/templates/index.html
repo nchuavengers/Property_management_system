@@ -180,6 +180,15 @@
 		</div>
 	</div>
 </body>
+<script>
+$(function() { 
+		$("#loginSubmit").click(function(){
+			$(this).button('loading').delay(1000).queue(function() {
+				$(this).button('complete');
+			});        
+		});
+	}); 
+</script>
 <!-- jQuery -->
 <script src="vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -210,6 +219,7 @@
 <!-- Autosize -->
 <script src="vendors/autosize/dist/autosize.min.js"></script>
 <!-- jQuery autocomplete -->
+
 <script
 	src="vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 <!-- starrr -->
