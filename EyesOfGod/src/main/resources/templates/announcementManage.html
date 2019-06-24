@@ -320,16 +320,19 @@
 											<tr>
 												<th>公告ID</th>
 												<th>公告标题</th>
+												<th>公告内容</th>
 												<th>发布日期</th>
 												<th>&nbsp&nbsp&nbsp&nbsp</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody th:each="mes : ${announceList}">
 											<tr>
-												<th>1001</th>
-												<th>五月十五日断电提醒</th>
-												<th>2019.5.15</th>
-												<th><a href="#" style="color: blue">详情</a></th>
+												<th th:text="${mes.getAnnouncementId()}"></th>
+												<th th:text="${mes.getAnnouncementTitle()}"></th>
+												<th th:text="${mes.getAnnouncementContent()}"></th>
+												<th th:text="${mes.getAnnouncementTime()}"></th>
+												
+												<form method="post" action="findAnn"><input type="hidden" name="announceId" th:value="${mes.getAnnouncementId()}"><th><input type="submit" class="button" value="详情"></th></form>
 											</tr>
 
 										</tbody>
@@ -341,7 +344,7 @@
 						<!--添加公告 -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
-              	<form method="post" action="">
+              	<form method="post" action="addAnn">
                 <div class="x_title">
                   <h2>发布公告<small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
@@ -362,7 +365,7 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                <h2>公告标题：</h2><input type="text" name="announcementTitle">
+                <h2>公告标题：</h2><input type="text" name="title"><input type="hidden" value="2019-06-15 08:00:00" name="time">
                   <div id="alerts"></div>
                   <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
                     <div class="btn-group">
@@ -435,7 +438,7 @@
 
                   <div id="editor-one" class="editor-wrapper placeholderText" contenteditable="true"></div>
 
-                  <textarea name="descr" id="descr" style="display:none;"></textarea>
+                  <textarea name="content" id="descr" style="display:none;"></textarea>
                   
                   <br>
 

@@ -93,7 +93,7 @@
 					<!-- /menu profile quick info -->
 
 					<br />
-
+			
 				<!-- sidebar menu -->
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
@@ -151,7 +151,39 @@
 					<!-- /menu footer buttons -->
 				</div>
 			</div>
-
+			<!-- 物业费 -->
+			
+			<input type="hidden" id="money1" th:value="${money1}"  />
+			<input type="hidden" id="money2" th:value="${money2}"  />
+			<input type="hidden" id="money3" th:value="${money3}"  />
+			<input type="hidden" id="money4" th:value="${money4}"  />
+			<input type="hidden" id="money5" th:value="${money5}"  />
+			<input type="hidden" id="money6" th:value="${money6}"  />
+			<input type="hidden" id="money7" th:value="${money7}"  />
+			<input type="hidden" id="money8" th:value="${money8}"  />
+			<input type="hidden" id="money9" th:value="${money9}"  />
+			<input type="hidden" id="money10" th:value="${money10}"  />
+			<input type="hidden" id="money11" th:value="${money11}"  />
+			<input type="hidden" id="money12" th:value="${money12}"  />
+			<!--  停车费-->
+			<input type="hidden" id="m1" th:value="${m1}"  />
+			<input type="hidden" id="m2" th:value="${m2}"  />
+			<input type="hidden" id="m3" th:value="${m3}"  />
+			<input type="hidden" id="m4" th:value="${m4}"  />
+			<input type="hidden" id="m5" th:value="${m5}"  />
+			<input type="hidden" id="m6" th:value="${m6}"  />
+			<input type="hidden" id="m7" th:value="${m7}"  />
+			<input type="hidden" id="m8" th:value="${m8}"  />
+			<input type="hidden" id="m9" th:value="${m9}"  />
+			<input type="hidden" id="m10" th:value="${m10}"  />
+			<input type="hidden" id="m11" th:value="${m11}"  />
+			<input type="hidden" id="m12" th:value="${m12}"  />
+			
+			
+			
+			
+			
+			
 			<!-- top navigation -->
 
 			<!-- /top navigation -->
@@ -345,6 +377,9 @@
   
 
 	<script>
+    $(document).ready(function(){
+	//$("#data111").val()
+  	alert( $("#money1").val());
 	var chart = Highcharts.chart('container', {
 		chart: {
 			zoomType: 'xy'
@@ -404,19 +439,30 @@
 			name: '物业费',
 			type: 'column',
 			yAxis: 1,
-			data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+			data: [parseInt($("#money1").val()), parseInt($("#money2").val()),parseInt($("#money3").val()),parseInt($("#money4").val()),
+				parseInt($("#money5").val()),parseInt($("#money6").val()),parseInt($("#money7").val()),parseInt($("#money8").val()),
+				parseInt($("#money9").val()),parseInt($("#money10").val()),parseInt($("#money11").val()),parseInt($("#money12").val())
+				],
 			tooltip: {
 				valueSuffix: ' RMB'
 			}
 		}, {
 			name: '停车费',
 			type: 'spline',
-			data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+			data: [parseInt($("#m1").val()), parseInt($("#m2").val()),parseInt($("#m3").val()),parseInt($("#m4").val()),
+				parseInt($("#m5").val()),parseInt($("#m6").val()),parseInt($("#m7").val()),parseInt($("#m8").val()),
+				parseInt($("#m9").val()),parseInt($("#m10").val()),parseInt($("#m11").val()),parseInt($("#m12").val())
+				],
 			tooltip: {
 				valueSuffix: ' RMB'
 			}
 		}]
-	});</script>
+	});
+	
+	
+    });
+	
+	</script>
 
 
 	<!-- Custom Theme Scripts -->
