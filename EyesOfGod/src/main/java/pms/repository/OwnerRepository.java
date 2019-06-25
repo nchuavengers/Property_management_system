@@ -100,11 +100,18 @@ public interface OwnerRepository {
 	
 
 	/**
-	 * -查询指定业主信息
+	 * -查询指定id业主信息
 	 * @return
 	 */
 	@Select("SELECT * FROM pms.owner where ownerId=#{ownerId};")		
 	public Owner fingOwnerByOwnerId(int ownerId);	
 	
+	
+	/**
+	 * -查询指定手机号业主信息
+	 * @return
+	 */
+	@Select("SELECT * FROM pms.owner where ownerPhoneNumber=#{ownerPhoneNumber};")		
+	public Owner fingOwnerByOwnerPhoneNumber(Owner owner);	
 	
 }

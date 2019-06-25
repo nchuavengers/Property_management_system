@@ -93,7 +93,7 @@ $(document).ready(function(){
 					case 3:{//显示修改密码文本框
 						    var is_text = $(this).find("input:text");//有文本框就获取文本框的值(情况可能格式错误)
 						    if(!is_text.length){
-						    	$(this).html("<input type='text' value='"+$(this).text()+"' />");
+						    	$(this).html("<input type='text'  value='"+$(this).text()+"' required />");
 						    }
 //						    else{//存在文本框不表
 //						    	
@@ -103,7 +103,7 @@ $(document).ready(function(){
 					case 8:{//显示修改手机号/账号文本框
 						var is_text = $(this).find("input:text");//有文本框就获取文本框的值(情况可能格式错误)
 					    if(!is_text.length){
-					    	$(this).html("<input type='text' value='"+$(this).text()+"' />");
+					    	$(this).html("<input type='text'  value='"+$(this).text()+"'  />");
 					    }
 							break;	
 				    }				
@@ -123,10 +123,14 @@ $(document).ready(function(){
 			      switch (j) {
 					case 3:{
 						var is_text = $(this).find("input:text");//密码单元格下肯定含有文本框
-						//if(){//不是6位数字
-							//alert("密码为统一6位数字，请符合规范！");
-						    //return;
-						//}
+						var ret = /^[0-9|]{6}$/;
+					      if(ret.test(is_text.val())){
+					       // alert('ok');
+					      }else{
+					        alert('密码为统一6位数字，请符合规范！');
+					        normStatus=0;//格式有问题
+					        return;
+					      }
 						orderItem.ownerPassword=is_text.val();	
 						break;
 					}
@@ -134,7 +138,7 @@ $(document).ready(function(){
 						var is_text = $(this).find("input:text");//联系电话单元格下肯定含有文本框
 					      var ret = /^[0-9|]{11}$/;
 					      if(ret.test(is_text.val())){
-					        alert('ok');
+					       // alert('ok');
 					      }else{
 					        alert('手机号高级！居然不是11位？');
 					        normStatus=0;//格式有问题
@@ -164,7 +168,7 @@ $(document).ready(function(){
 		    else{
 			    //检查格式没问题后-发送到后台验证
 				    
-			    alert("发送到后台ing");
+			    //alert("发送到后台ing");
 			    //ajax
 				$.ajax({
 			        url: "/updateOwner",     //重定向？url并没有变化，只是js请求服务器获取json数据，更新
@@ -182,6 +186,9 @@ $(document).ready(function(){
 			        success : function(data){    //修改成功  输入框变确定显示--按钮值改为modifyOwner
 			        	//提示结果-修改成功-不可修改等
 			        	alert(data.msg);
+			        	if(data.status=="fail"){
+			        		return;
+			        	}
 				        //重新找到该节点-有文本框的就保存-前面要有个标记-是否在修改
 			        	var isModify=0;//标记是否是该行;
 				        $("#tb").find("tr").each(function(){  
