@@ -1,15 +1,23 @@
 <!-- 
   --162021班 第10组
-  --小区物业管理系统-公共设施管理模块
-  --@author:16202133-朱天翔
+  --小区物业管理系统-公告管理模块
+  --@author:15202137-汪浩
   --date:2019-6-5
   --主要功能说明：
-  	增加了公共设施管理页面
+  	增加了公告信息管理页面
   ----
  -->
-
+<!-- 
+  --162021班 第10组
+  --小区物业管理系统-公告管理模块
+  --@author:15202137-汪浩
+  --date:2019-6-10
+  --主要功能说明：
+  	修改了公告信息管理页面布局
+  ----
+ -->
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -95,7 +103,7 @@
 
 					<br />
 
-					<!-- sidebar menu -->
+				<!-- sidebar menu -->
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
@@ -123,8 +131,9 @@
 								<li><a><i class="fa fa-bar-chart-o"></i>数据分析 <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="financeView">费用数据分析</a></li>
+									<li><a href="financeView">费用数据分析</a></li>
 										<li><a href="peopleAnalyse">小区进出人流量数据分析</a></li>
+
 									</ul></li>
 
 								</li>
@@ -279,110 +288,26 @@
 
 					<div class="clearfix"></div>
 
-					<!-- 公共设施管理 -->
+					<div class="row">
+						<!-- 公告管理 -->
+						
+						<!--公告详情 -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>公共设施管理：</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<table id="datatable"
-										class="table table-striped table-bordered">
-										<thead>
-											<tr>
-												<th>公共设施ID</th>
-												<th>公共设施名称</th>
-												<th>设施类型</th>
-												<th>设施状态</th>
-												<th>维修人员信息</th>
-												<th>维修金额</th>
-												<th>维修时间</th>
-												<th><a href="#">操作</a></th>
-												<th><a href="#">操作</a></th>
-
-											</tr>
-										</thead>
-
-										<tbody id="facilityTb">
-										    <tr  th:each="facilityManageDto : ${facilityList}"> 
-										        <th th:text="${facilityManageDto.getPublicUtilityId()}"></th>  
-										        <th th:text="${facilityManageDto.getPublicUtilityName()}"></th>   
-										        <th th:text="${facilityManageDto.getPublicUtilityType()}"></th>  
-										        <th th:text="${facilityManageDto.getPublicUtilityStatus()}"></th>
-										        <th th:text="${facilityManageDto.getRepairerInfomation()}"></th>  
-										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
-										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
-										        <th><button value="modifyFacility" class="modifyFacility"  th:text="申请维修" > </button></th>  
-												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">维修已完成</a></th>                   
- 											</tr> 
-								         </tbody>
-										
-									</table>
-
-
-								</div>
-							</div>
-						</div>
-						<!-- 添加公共设施 -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>添加公共设施：</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-								<form method="post" action="addFacility">
-									<table name="datatable"
-										class="table table-striped table-bordered">
-										<thead>
-											<tr>
-												<th>公共设施名称</th>
-												<th>设施类型</th>
-												<th><a href="#">操作</a></th>
-
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												
-												<th><input type="text" name="ficinityName"></th>
-												<th><input type="text" name="ficinityType"></th>
-												<th><input type="submit" value="添加"></th>
-											</tr>
-										</tbody>
-									</table>
-									</form>
-
-								</div>
-							</div>
-						</div>
+            				  <div class="x_panel">
+            				  	<hr>
+              	 				<center><h1 th:text="${announceMessage.getAnnouncementTitle()}" ></h1></center>
+              	 				<h3 th:text="${announceMessage.getAnnouncementContent()}">&nbsp&nbsp&nbsp&nbsp hello</h3>
+              	 				<br>
+              	 				
+              	 				<h2>发布时间：</h2>
+              	 				<h2 th:text="${announceMessage.getAnnouncementTime()}"></h3>
+              	 				<hr>
+              	 			
+              				 </div>
+              				
+                       </div>
+                       	 <center><a href="announcementManage"><h2>返回</a><h2></h2></center>
+					</div>
 				</div>
 			</div>
 			<!-- /page content -->
@@ -466,6 +391,6 @@
 
 
 	<!-- zzj脚本 -->
-	<script src="/ztxjs/main.js"></script>
+	<script src="/zzjjs/main.js"></script>
 </body>
 </html>

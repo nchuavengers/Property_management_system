@@ -414,7 +414,7 @@ $(document).ready(function(){
     $("#tosecurityAnnouncement").click(function(){ 
 		document.getElementById("securityAnnouncement").scrollIntoView();
     });
-	
+    
 });
 
 

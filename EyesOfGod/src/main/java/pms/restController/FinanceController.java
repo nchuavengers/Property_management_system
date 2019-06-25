@@ -40,7 +40,38 @@ public class FinanceController {
 		System.out.print(" here is financeManage.html\n");
 		return "financeManage";
 	}
-	
+	@GetMapping("/financeView")
+	public String financeView(Model model) {
+		//由于数据库中物业费和停车费  缴费记录太少，此处为了显示统计报表功能完善，给该表传入24个值测试一下，模拟该24个值是由数据库的来的
+		//物业费
+		model.addAttribute("money1","100");
+		model.addAttribute("money2","152");
+		model.addAttribute("money3","546");
+		model.addAttribute("money4","478");
+		model.addAttribute("money5","245");
+		model.addAttribute("money6","348");
+		model.addAttribute("money7","782");
+		model.addAttribute("money8","557");
+		model.addAttribute("money9","752");
+		model.addAttribute("money10","726");
+		model.addAttribute("money11","522");
+		model.addAttribute("money12","351");
+		//停车费
+		model.addAttribute("m1","472");
+		model.addAttribute("m2","872");
+		model.addAttribute("m3","778");
+		model.addAttribute("m4","473");
+		model.addAttribute("m5","378");
+		model.addAttribute("m6","787");
+		model.addAttribute("m7","774");
+		model.addAttribute("m8","254");
+		model.addAttribute("m9","254");
+		model.addAttribute("m10","782");
+		model.addAttribute("m11","281");
+		model.addAttribute("m12","585");
+		System.out.print(" here is financeView.html\n");
+		return "financeView";
+	}
 	/**
 	 * -缴费(修改消费记录状态)
 	 * @param model

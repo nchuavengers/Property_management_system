@@ -51,6 +51,7 @@ public class OwnerController {
 	 */
 	@GetMapping("/ownerManage")
 	public String ownerManage(Model model) {
+		
 		System.out.print(" here is ownerManage.html\n");
 		//ownerManagerDtoList.clear();
 		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();

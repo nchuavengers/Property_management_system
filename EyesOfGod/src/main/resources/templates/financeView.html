@@ -1,10 +1,10 @@
 <!-- 
   --162021班 第10组
-  --小区物业管理系统-公共设施管理模块
-  --@author:16202133-朱天翔
+  --小区物业管理系统-缴费管理页面
+  --@author:15202137-朱天翔
   --date:2019-6-5
   --主要功能说明：
-  	增加了公共设施管理页面
+  	增加了缴费管理页面
   ----
  -->
 
@@ -62,10 +62,9 @@
 <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css"
 	rel="stylesheet">
 
-<!-- zzj样式 -->
-<link href="/zzjcss/main.css" rel="stylesheet">
-
-
+<script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+        <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
 
 </head>
 
@@ -94,8 +93,8 @@
 					<!-- /menu profile quick info -->
 
 					<br />
-
-					<!-- sidebar menu -->
+			
+				<!-- sidebar menu -->
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
@@ -125,6 +124,7 @@
 									<ul class="nav child_menu">
 										<li><a href="financeView">费用数据分析</a></li>
 										<li><a href="peopleAnalyse">小区进出人流量数据分析</a></li>
+									
 									</ul></li>
 
 								</li>
@@ -151,7 +151,39 @@
 					<!-- /menu footer buttons -->
 				</div>
 			</div>
-
+			<!-- 物业费 -->
+			
+			<input type="hidden" id="money1" th:value="${money1}"  />
+			<input type="hidden" id="money2" th:value="${money2}"  />
+			<input type="hidden" id="money3" th:value="${money3}"  />
+			<input type="hidden" id="money4" th:value="${money4}"  />
+			<input type="hidden" id="money5" th:value="${money5}"  />
+			<input type="hidden" id="money6" th:value="${money6}"  />
+			<input type="hidden" id="money7" th:value="${money7}"  />
+			<input type="hidden" id="money8" th:value="${money8}"  />
+			<input type="hidden" id="money9" th:value="${money9}"  />
+			<input type="hidden" id="money10" th:value="${money10}"  />
+			<input type="hidden" id="money11" th:value="${money11}"  />
+			<input type="hidden" id="money12" th:value="${money12}"  />
+			<!--  停车费-->
+			<input type="hidden" id="m1" th:value="${m1}"  />
+			<input type="hidden" id="m2" th:value="${m2}"  />
+			<input type="hidden" id="m3" th:value="${m3}"  />
+			<input type="hidden" id="m4" th:value="${m4}"  />
+			<input type="hidden" id="m5" th:value="${m5}"  />
+			<input type="hidden" id="m6" th:value="${m6}"  />
+			<input type="hidden" id="m7" th:value="${m7}"  />
+			<input type="hidden" id="m8" th:value="${m8}"  />
+			<input type="hidden" id="m9" th:value="${m9}"  />
+			<input type="hidden" id="m10" th:value="${m10}"  />
+			<input type="hidden" id="m11" th:value="${m11}"  />
+			<input type="hidden" id="m12" th:value="${m12}"  />
+			
+			
+			
+			
+			
+			
 			<!-- top navigation -->
 
 			<!-- /top navigation -->
@@ -278,115 +310,16 @@
 					</div>
 
 					<div class="clearfix"></div>
-
-					<!-- 公共设施管理 -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>公共设施管理：</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-									<table id="datatable"
-										class="table table-striped table-bordered">
-										<thead>
-											<tr>
-												<th>公共设施ID</th>
-												<th>公共设施名称</th>
-												<th>设施类型</th>
-												<th>设施状态</th>
-												<th>维修人员信息</th>
-												<th>维修金额</th>
-												<th>维修时间</th>
-												<th><a href="#">操作</a></th>
-												<th><a href="#">操作</a></th>
-
-											</tr>
-										</thead>
-
-										<tbody id="facilityTb">
-										    <tr  th:each="facilityManageDto : ${facilityList}"> 
-										        <th th:text="${facilityManageDto.getPublicUtilityId()}"></th>  
-										        <th th:text="${facilityManageDto.getPublicUtilityName()}"></th>   
-										        <th th:text="${facilityManageDto.getPublicUtilityType()}"></th>  
-										        <th th:text="${facilityManageDto.getPublicUtilityStatus()}"></th>
-										        <th th:text="${facilityManageDto.getRepairerInfomation()}"></th>  
-										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
-										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
-										        <th><button value="modifyFacility" class="modifyFacility"  th:text="申请维修" > </button></th>  
-												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">维修已完成</a></th>                   
- 											</tr> 
-								         </tbody>
-										
-									</table>
-
-
-								</div>
-							</div>
-						</div>
-						<!-- 添加公共设施 -->
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>添加公共设施：</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-								<form method="post" action="addFacility">
-									<table name="datatable"
-										class="table table-striped table-bordered">
-										<thead>
-											<tr>
-												<th>公共设施名称</th>
-												<th>设施类型</th>
-												<th><a href="#">操作</a></th>
-
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												
-												<th><input type="text" name="ficinityName"></th>
-												<th><input type="text" name="ficinityType"></th>
-												<th><input type="submit" value="添加"></th>
-											</tr>
-										</tbody>
-									</table>
-									</form>
-
-								</div>
-							</div>
-						</div>
+				
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              
+              
+				 <div id="container" style="min-width:400px;height:400px"></div>
+					
 				</div>
-			</div>
+			
 			<!-- /page content -->
-
+			
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -432,10 +365,111 @@
 	<script src="/vendors/jszip/dist/jszip.min.js"></script>
 	<script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
 	<script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
+	  <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <!-- ECharts 统计图 -->
+    <script src="/vendors/echarts/dist/echarts.min.js"></script>
+  
+
+	<script>
+    $(document).ready(function(){
+	//$("#data111").val()
+  	alert( $("#money1").val());
+	var chart = Highcharts.chart('container', {
+		chart: {
+			zoomType: 'xy'
+		},
+		title: {
+			text: '财务统计'
+		},
+		subtitle: {
+			text: '数据来源: 后台数据库'
+		},
+		xAxis: [{
+			categories: ['1', '2', '3', '4', '5', '6',
+						 '7', '8', '9', '10', '11', '12'],
+			crosshair: true
+		}],
+		yAxis: [{ // Primary yAxis
+			labels: {
+				format: '{value}RMB',
+				style: {
+					color: Highcharts.getOptions().colors[1]
+				}
+			},
+			title: {
+				text: '停车费',
+				style: {
+					color: Highcharts.getOptions().colors[1]
+				}
+			}
+		}, { // Secondary yAxis
+			title: {
+				text: '物业费',
+				style: {
+					color: Highcharts.getOptions().colors[0]
+				}
+			},
+			labels: {
+				format: '{value} RMB',
+				style: {
+					color: Highcharts.getOptions().colors[0]
+				}
+			},
+			opposite: true
+		}],
+		tooltip: {
+			shared: true
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'left',
+			x: 120,
+			verticalAlign: 'top',
+			y: 100,
+			floating: true,
+			backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+		},
+		series: [{
+			name: '物业费',
+			type: 'column',
+			yAxis: 1,
+			data: [parseInt($("#money1").val()), parseInt($("#money2").val()),parseInt($("#money3").val()),parseInt($("#money4").val()),
+				parseInt($("#money5").val()),parseInt($("#money6").val()),parseInt($("#money7").val()),parseInt($("#money8").val()),
+				parseInt($("#money9").val()),parseInt($("#money10").val()),parseInt($("#money11").val()),parseInt($("#money12").val())
+				],
+			tooltip: {
+				valueSuffix: ' RMB'
+			}
+		}, {
+			name: '停车费',
+			type: 'spline',
+			data: [parseInt($("#m1").val()), parseInt($("#m2").val()),parseInt($("#m3").val()),parseInt($("#m4").val()),
+				parseInt($("#m5").val()),parseInt($("#m6").val()),parseInt($("#m7").val()),parseInt($("#m8").val()),
+				parseInt($("#m9").val()),parseInt($("#m10").val()),parseInt($("#m11").val()),parseInt($("#m12").val())
+				],
+			tooltip: {
+				valueSuffix: ' RMB'
+			}
+		}]
+	});
+	
+	
+    });
+	
+	</script>
+
+
 	<!-- Custom Theme Scripts -->
 	<script src="/js/custom.min.js"></script>
 
-
+	<!-- zzj脚本 -->
+	<script src="/zzjjs/main.js"></script>
 
 	<!-- zzj from form.html button GO -->
 	<!-- bootstrap-progressbar -->
@@ -465,7 +499,8 @@
 	<script src="/vendors/starrr/dist/starrr.js"></script>
 
 
-	<!-- zzj脚本 -->
+	<!-- ztx脚本 -->
+	<script src="/zzjjs/main.js"></script>
 	<script src="/ztxjs/main.js"></script>
 </body>
 </html>
