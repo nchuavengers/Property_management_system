@@ -19,7 +19,6 @@ public class OwnerManagerDto {
     
     
     
-    
 	public int getOwnerId() {
 		return ownerId;
 	}

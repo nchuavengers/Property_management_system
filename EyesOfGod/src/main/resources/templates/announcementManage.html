@@ -131,7 +131,7 @@
 								<li><a><i class="fa fa-bar-chart-o"></i>数据分析 <span
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="carAnalyse">车辆出入流量数据分析</a></li>
+									<li><a href="financeView">费用数据分析</a></li>
 										<li><a href="peopleAnalyse">小区进出人流量数据分析</a></li>
 
 									</ul></li>
@@ -179,12 +179,8 @@
 									Doe <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
-									<li><a href="javascript:;"> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;">Help</a></li>
-									<li><a href="login.html"><i
+									
+									<li><a href="logOut"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul></li>
 
@@ -324,16 +320,19 @@
 											<tr>
 												<th>公告ID</th>
 												<th>公告标题</th>
+												<th>公告内容</th>
 												<th>发布日期</th>
 												<th>&nbsp&nbsp&nbsp&nbsp</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody th:each="mes : ${announceList}">
 											<tr>
-												<th>1001</th>
-												<th>五月十五日断电提醒</th>
-												<th>2019.5.15</th>
-												<th><a href="#" style="color: blue">详情</a></th>
+												<th th:text="${mes.getAnnouncementId()}"></th>
+												<th th:text="${mes.getAnnouncementTitle()}"></th>
+												<th th:text="${mes.getAnnouncementContent()}"></th>
+												<th th:text="${mes.getAnnouncementTime()}"></th>
+												
+												<form method="post" action="findAnn"><input type="hidden" name="announceId" th:value="${mes.getAnnouncementId()}"><th><input type="submit" class="button" value="详情"></th></form>
 											</tr>
 
 										</tbody>
@@ -345,7 +344,7 @@
 						<!--添加公告 -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
-              	<form method="post" action="">
+              	<form method="post" action="addAnn">
                 <div class="x_title">
                   <h2>发布公告<small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
@@ -366,7 +365,7 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                <h2>公告标题：</h2><input type="text" name="announcementTitle">
+                <h2>公告标题：</h2><input type="text" name="title"><input type="hidden" value="2019-06-15 08:00:00" name="time">
                   <div id="alerts"></div>
                   <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
                     <div class="btn-group">
@@ -439,7 +438,7 @@
 
                   <div id="editor-one" class="editor-wrapper placeholderText" contenteditable="true"></div>
 
-                  <textarea name="descr" id="descr" style="display:none;"></textarea>
+                  <textarea name="content" id="descr" style="display:none;"></textarea>
                   
                   <br>
 

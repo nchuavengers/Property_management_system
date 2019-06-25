@@ -2,10 +2,12 @@ package pms.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import pms.dto.announcementManageDto;
+import pms.dto.AnnouncementManageDto;
 import pms.entity.Announcement;
 /**
  *162021班 第10组
@@ -16,41 +18,38 @@ import pms.entity.Announcement;
   	初步设计持久化接口
  *
  */
+<<<<<<< HEAD
 
 /*
  * *用于增删查改公告信息数据
  * 15202137 汪浩 6.15
  * my batis
  */
+=======
+@Mapper
+>>>>>>> master
 public interface AnnouncementRepository {
 
 	/**
 	 * -查询所有公告信息announcementManageDto
 	 * @return
 	 */
-	@Select("") 
-	public List<announcementManageDto>  findAllannouncementManageDto();
-	
-	/**
-	 * -查询指定公告详情
-	 * @param announcementId
-	 * @return String详情
-	 */
-	@Select("") 
-	public String  findAnnouncementDescription(int announcementId);
+	@Select("SELECT announcementId ,announcementTitle , announcementTime,announcementContent FROM announcement; ") 
+	public List<AnnouncementManageDto>  findAllannouncementManageDto();
 	
 	/**
 	 * -发布公告添加公告信息
-	 * @param announcement
+	 * @param msg
 	 * @return 
 	 */
-	@Insert("")
-	public boolean  addAnnouncement(Announcement announcement);
+	@Insert("INSERT INTO `announcement` (`announcementTitle`, `announcementContent`, `announcementTime`) VALUES(#{announcementTitle},#{announcementContent},#{announcementTime});")
+	public boolean  addAnnouncement(AnnouncementManageDto msg);
 	
-	
+	@Delete("DELETE FROM announcement WHERE announcementId=#{id} ;")
+	public boolean deleteAnnouncement(int id );
 	
 	/**
-	 * -查询今日公告
+	 * -查询指定公告
 	 * @return
 	 */
 	@Select("")
@@ -58,6 +57,7 @@ public interface AnnouncementRepository {
 	
 	
 	
-	
+	@Select("SELECT announcementId ,announcementTitle , announcementTime,announcementContent FROM announcement WHERE announcementId=#{announcementId};")
+	public AnnouncementManageDto findAnnouncement(int announcementId);
 	
 }

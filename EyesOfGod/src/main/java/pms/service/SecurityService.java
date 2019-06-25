@@ -3,6 +3,7 @@ package pms.service;
 import java.util.List;
 
 import pms.dto.AllDayShareDto;
+import pms.dto.BlurOueryDto;
 import pms.dto.TemporayShareDto;
 import pms.dto.VisitorCarDto;
 import pms.entity.VisitorRecord;
@@ -46,13 +47,13 @@ public interface SecurityService {
 	 * @param visitorRecord
 	 * @return
 	 */
-	public boolean addVisitor(VisitorRecord visitorRecord);
+	public int addVisitor(String licensePlate ,int parkingSpaceId);
 	
 	/**
 	 * -返回业主车位编号或者0
 	 * @return
 	 */
-	public int FindOwnerParkingSpace(String a);
+	public List<BlurOueryDto> FindOwnerParkingSpace(String string);
 	
 	
 	

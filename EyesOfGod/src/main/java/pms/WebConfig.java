@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer   {
     public void addInterceptors(InterceptorRegistry registry) {
        InterceptorRegistration registration = registry.addInterceptor(new AuthInterceptor());     
        registration.addPathPatterns("/**");         //所有路径都被拦截
-       registration.excludePathPatterns("/","/login","/css/**","/js/**","/vendors/**");   //添加不拦截路径//开放css
+       registration.excludePathPatterns("/","/login","/aliIndex/**","/aliIndex","/css/**","/js/**","/vendors/**");   //添加不拦截路径//开放css
        
     }
 

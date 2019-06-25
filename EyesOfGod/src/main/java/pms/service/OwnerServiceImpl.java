@@ -12,15 +12,14 @@ import pms.repository.OwnerRepository;
 
 @Service
 public class OwnerServiceImpl implements OwnerService{
-
+    
     @Autowired
     private OwnerRepository ownerRepository;	
 	
 	@Override
 	public List<OwnerManagerDto> findAllOwnerManagerDto() {
-
-		List<OwnerManagerDto> list  = ownerRepository.findAllOwnerManagerDto();
 		
+		List<OwnerManagerDto> list  = ownerRepository.findAllOwnerManagerDto();
 		return list;
 	}
 
@@ -32,26 +31,27 @@ public class OwnerServiceImpl implements OwnerService{
 
 	@Override
 	public boolean deleteOwner(int ownerId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean b=ownerRepository.deleteOwner(ownerId);
+		return b;
 	}
 
 	@Override
 	public boolean addOwner(Owner owner) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean b=ownerRepository.addOwner(owner);
+		return b;
 	}
 
 	@Override
 	public boolean addOwnerHouse(OwnerHouseDto ownerHouseDto) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean b=ownerRepository.addOwnerHouse(ownerHouseDto);
+		return b;
 	}
 
 	@Override
 	public Owner findOwner(int ownerId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return ownerRepository.fingOwnerByOwnerId(ownerId);
 	}
 
 }

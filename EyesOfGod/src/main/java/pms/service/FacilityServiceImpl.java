@@ -20,8 +20,9 @@ public class FacilityServiceImpl implements FacilityService {
 	private FacilityRepository fr;
 	@Override
 	public List<FacilityManageDto> findAllFacilityManageDto() {
+		List<FacilityManageDto> list=fr.findAllFacilityManageDto();
 		
-		return fr.findAllFacilityManageDto();
+		return list;
 		
 	}
 
@@ -34,7 +35,7 @@ public class FacilityServiceImpl implements FacilityService {
 	@Override
 	public boolean addFacility(PublicUtility publicUtility) {
 		// TODO Auto-generated method stub
-		return false;
+		return fr.addFacility(publicUtility);
 	}
 
 	@Override
@@ -43,8 +44,10 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
-	public boolean applyRequired(int ficilityId) {
-		return fr.applyRequired(ficilityId);
+	public boolean applyRequired(FacilityManageDto facilityManageDto) {
+		boolean a=fr.applyRequired(facilityManageDto.getPublicUtilityId());
+		boolean b=fr.addRepairRecord(facilityManageDto);
+		return a&b;
 		
 	}
 

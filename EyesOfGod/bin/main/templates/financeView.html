@@ -1,0 +1,506 @@
+<!-- 
+  --162021班 第10组
+  --小区物业管理系统-缴费管理页面
+  --@author:15202137-朱天翔
+  --date:2019-6-5
+  --主要功能说明：
+  	增加了缴费管理页面
+  ----
+ -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>物业管理系统</title>
+
+<!-- Bootstrap -->
+<link href="/vendors/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Font Awesome -->
+<link href="/vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<!-- NProgress -->
+<link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- Datatables -->
+<link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="/css/custom.min.css" rel="stylesheet">
+
+<!-- zzj from from.html button Go -->
+<!-- bootstrap-wysiwyg -->
+<link href="/vendors/google-code-prettify/bin/prettify.min.css"
+	rel="stylesheet">
+<!-- Select2 -->
+<link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+<!-- starrr -->
+<link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
+<!-- bootstrap-daterangepicker -->
+<link href="/vendors/bootstrap-daterangepicker/daterangepicker.css"
+	rel="stylesheet">
+
+<script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+        <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+</head>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title" style="border: 0;">
+						<a class="site_title"><i class="fa fa-paw"></i> <span>物业管理系统</span></a>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img src="images/img.jpg" alt="..."
+								class="img-circle profile_img">
+						</div>
+						<div class="profile_info">
+							<span>欢迎您</span>
+							<h2>管理员</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
+
+					<br />
+			
+				<!-- sidebar menu -->
+					<div id="sidebar-menu"
+						class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<h3>General</h3>
+							<ul class="nav side-menu">
+								<li><a><i class="fa fa-home"></i> 主页 <span
+										class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="manager">管理主页</a></li>
+										<li><a href="/">登陆主页</a></li>
+
+									</ul></li>
+								<li><a><i class="fa fa-desktop"></i> 管理 <span
+										class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="ownerManage">业主管理</a></li>
+										<li><a href="HouseManage">房屋信息管理</a></li>
+										<li><a href="financeManage">缴费管理</a></li>
+										<li><a href="parkingSpaceManage">车位管理</a></li>
+										<li><a href="facilityManage">公共设施管理</a></li>
+										<li><a href="announcementManage">公告管理</a></li>
+
+									</ul></li>
+
+								<li><a><i class="fa fa-bar-chart-o"></i>数据分析 <span
+										class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="financeView">费用数据分析</a></li>
+										<li><a href="peopleAnalyse">小区进出人流量数据分析</a></li>
+									
+									</ul></li>
+
+								</li>
+							</ul>
+						</div>
+
+
+					</div>
+					<!-- /sidebar menu -->
+
+					<!-- /menu footer buttons -->
+					<div class="sidebar-footer hidden-small">
+						<a data-toggle="tooltip" data-placement="top" title="Settings">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+							<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+						</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
+							class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+						</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
+							href="login.html"> <span class="glyphicon glyphicon-off"
+							aria-hidden="true"></span>
+						</a>
+					</div>
+					<!-- /menu footer buttons -->
+				</div>
+			</div>
+			<!-- 物业费 -->
+			
+			<input type="hidden" id="money1" th:value="${money1}"  />
+			<input type="hidden" id="money2" th:value="${money2}"  />
+			<input type="hidden" id="money3" th:value="${money3}"  />
+			<input type="hidden" id="money4" th:value="${money4}"  />
+			<input type="hidden" id="money5" th:value="${money5}"  />
+			<input type="hidden" id="money6" th:value="${money6}"  />
+			<input type="hidden" id="money7" th:value="${money7}"  />
+			<input type="hidden" id="money8" th:value="${money8}"  />
+			<input type="hidden" id="money9" th:value="${money9}"  />
+			<input type="hidden" id="money10" th:value="${money10}"  />
+			<input type="hidden" id="money11" th:value="${money11}"  />
+			<input type="hidden" id="money12" th:value="${money12}"  />
+			<!--  停车费-->
+			<input type="hidden" id="m1" th:value="${m1}"  />
+			<input type="hidden" id="m2" th:value="${m2}"  />
+			<input type="hidden" id="m3" th:value="${m3}"  />
+			<input type="hidden" id="m4" th:value="${m4}"  />
+			<input type="hidden" id="m5" th:value="${m5}"  />
+			<input type="hidden" id="m6" th:value="${m6}"  />
+			<input type="hidden" id="m7" th:value="${m7}"  />
+			<input type="hidden" id="m8" th:value="${m8}"  />
+			<input type="hidden" id="m9" th:value="${m9}"  />
+			<input type="hidden" id="m10" th:value="${m10}"  />
+			<input type="hidden" id="m11" th:value="${m11}"  />
+			<input type="hidden" id="m12" th:value="${m12}"  />
+			
+			
+			
+			
+			
+			
+			<!-- top navigation -->
+
+			<!-- /top navigation -->
+
+			<div class="top_nav">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li class=""><a href="javascript:;"
+								class="user-profile dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"> <img src="images/img.jpg" alt="">John
+									Doe <span class=" fa fa-angle-down"></span>
+							</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									
+									<li><a href="logOut"><i
+											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+								</ul></li>
+
+							<li role="presentation" class="dropdown"><a
+								href="javascript:;" class="dropdown-toggle info-number"
+								data-toggle="dropdown" aria-expanded="false"> <i
+									class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+							</a>
+								<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+									role="menu">
+									<li><a> <span class="image"><img
+												src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+													Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+													Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+													Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+													Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li>
+										<div class="text-center">
+											<a> <strong>See All Alerts</strong> <i
+												class="fa fa-angle-right"></i>
+											</a>
+										</div>
+									</li>
+								</ul></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
+
+			<!-- page content -->
+
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+
+						<div class="row tile_count">
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-user"></i>
+									当前小区业主数量</span>
+								<div class="count">2500</div>
+								<span class="count_bottom"><i class="green">4% </i> From
+									last Week</span>
+							</div>
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-clock-o"></i>每小时人流量</span>
+								<div class="count">67 人/时</div>
+								<span class="count_bottom"><i class="green"><i
+										class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+							</div>
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-user"></i> 每小时车流量</span>
+								<div class="count green">24辆/时</div>
+								<span class="count_bottom"><i class="green"><i
+										class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+							</div>
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-user"></i> 总车位</span>
+								<div class="count">300</div>
+								<span class="count_bottom"><i class="red"><i
+										class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+							</div>
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-user"></i> 当前占用车位</span>
+								<div class="count">203</div>
+								<span class="count_bottom"><i class="green"><i
+										class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+							</div>
+							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+								<span class="count_top"><i class="fa fa-user"></i>近期公告数量</span>
+								<div class="count">5</div>
+								<span class="count_bottom"><i class="green"><i
+										class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+							</div>
+						</div>
+						<!-- ————————————————————————————————具体功能模块↓———————————————————————————————— -->
+						<div class="title_right">
+							<div
+								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<div class="input-group">
+
+									<span class="input-group-btn"> </span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+				
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              
+              
+				 <div id="container" style="min-width:400px;height:400px"></div>
+					
+				</div>
+			
+			<!-- /page content -->
+			
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a
+						href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="/vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="/vendors/nprogress/nprogress.js"></script>
+	<!-- iCheck -->
+	<script src="/vendors/iCheck/icheck.min.js"></script>
+	<!-- Datatables -->
+	<script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script
+		src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script
+		src="/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="/vendors/jszip/dist/jszip.min.js"></script>
+	<script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
+	  <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <!-- ECharts 统计图 -->
+    <script src="/vendors/echarts/dist/echarts.min.js"></script>
+  
+
+	<script>
+    $(document).ready(function(){
+	//$("#data111").val()
+  	alert( $("#money1").val());
+	var chart = Highcharts.chart('container', {
+		chart: {
+			zoomType: 'xy'
+		},
+		title: {
+			text: '财务统计'
+		},
+		subtitle: {
+			text: '数据来源: 后台数据库'
+		},
+		xAxis: [{
+			categories: ['1', '2', '3', '4', '5', '6',
+						 '7', '8', '9', '10', '11', '12'],
+			crosshair: true
+		}],
+		yAxis: [{ // Primary yAxis
+			labels: {
+				format: '{value}RMB',
+				style: {
+					color: Highcharts.getOptions().colors[1]
+				}
+			},
+			title: {
+				text: '停车费',
+				style: {
+					color: Highcharts.getOptions().colors[1]
+				}
+			}
+		}, { // Secondary yAxis
+			title: {
+				text: '物业费',
+				style: {
+					color: Highcharts.getOptions().colors[0]
+				}
+			},
+			labels: {
+				format: '{value} RMB',
+				style: {
+					color: Highcharts.getOptions().colors[0]
+				}
+			},
+			opposite: true
+		}],
+		tooltip: {
+			shared: true
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'left',
+			x: 120,
+			verticalAlign: 'top',
+			y: 100,
+			floating: true,
+			backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+		},
+		series: [{
+			name: '物业费',
+			type: 'column',
+			yAxis: 1,
+			data: [parseInt($("#money1").val()), parseInt($("#money2").val()),parseInt($("#money3").val()),parseInt($("#money4").val()),
+				parseInt($("#money5").val()),parseInt($("#money6").val()),parseInt($("#money7").val()),parseInt($("#money8").val()),
+				parseInt($("#money9").val()),parseInt($("#money10").val()),parseInt($("#money11").val()),parseInt($("#money12").val())
+				],
+			tooltip: {
+				valueSuffix: ' RMB'
+			}
+		}, {
+			name: '停车费',
+			type: 'spline',
+			data: [parseInt($("#m1").val()), parseInt($("#m2").val()),parseInt($("#m3").val()),parseInt($("#m4").val()),
+				parseInt($("#m5").val()),parseInt($("#m6").val()),parseInt($("#m7").val()),parseInt($("#m8").val()),
+				parseInt($("#m9").val()),parseInt($("#m10").val()),parseInt($("#m11").val()),parseInt($("#m12").val())
+				],
+			tooltip: {
+				valueSuffix: ' RMB'
+			}
+		}]
+	});
+	
+	
+    });
+	
+	</script>
+
+
+	<!-- Custom Theme Scripts -->
+	<script src="/js/custom.min.js"></script>
+
+	<!-- zzj脚本 -->
+	<script src="/zzjjs/main.js"></script>
+
+	<!-- zzj from form.html button GO -->
+	<!-- bootstrap-progressbar -->
+	<script
+		src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="/vendors/moment/min/moment.min.js"></script>
+	<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="/vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="/vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="/vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script
+		src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="/vendors/starrr/dist/starrr.js"></script>
+
+
+	<!-- ztx脚本 -->
+	<script src="/zzjjs/main.js"></script>
+	<script src="/ztxjs/main.js"></script>
+</body>
+</html>

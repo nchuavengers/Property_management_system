@@ -18,7 +18,7 @@
   --修改了用户管理页面左侧的导航栏
  -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -95,6 +95,7 @@
 						<div class="profile_pic">
 							<img src="images/img.jpg" alt="..."
 								class="img-circle profile_img">
+								
 						</div>
 						<div class="profile_info">
 							<span>Welcome</span>
@@ -121,7 +122,9 @@
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="ownerHouse">我的房屋</a></li>
-										<li><a href="ownerParking">我的车位</a></li>
+										<!--  <li><a th:href="@{'ownerParking/'+${owner.getOwnerId()} }" >我的车位</a></li>
+										-->
+										<li><a href="ownerParking" >我的车位</a></li>
 										<li><a href="ownerAnnouncement">公告</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-bar-chart-o"></i> 缴费管理
@@ -168,12 +171,8 @@
 								<span th:text="${owner.getOwnerName()}"></span> <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
-									<li><a href="javascript:;"> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;">Help</a></li>
-									<li><a href="login.html"><i
+									
+									<li><a href="logOut"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul></li>
 
@@ -249,7 +248,7 @@
 					<div class="clearfix"></div>
 
 					<div class="row">
-
+						
 						<!-- 我的资料-->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
@@ -278,9 +277,24 @@
 								
 								</div>
 							</div>
+							
 						</div>
-
+						<div class="col-md-12 col-sm-12 col-xs-12">
+            				  <div class="x_panel">
+            				    <h1>最近公告</h1>
+            				  	<hr>
+              	 				<center><h1>断电提醒</h1></center>
+              	 				<h3 >由供电局通知，2019年6月12日可能断电，请各位业主有所准备。</h3>
+              	 				<br>
+              	 				
+              	 				<h2>发布时间：2019 . 6 . 10</h2>
+              	 				
+              	 				<hr>
+              	 			
+              				 </div>
+              				 </div>
 					</div>
+				
 				</div>
 			</div>
 			<!-- /page content -->

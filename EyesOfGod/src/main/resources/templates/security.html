@@ -24,7 +24,7 @@
  -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -178,12 +178,8 @@
 								<span th:text="${security.getSecurityName()}"></span> <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
-									<li><a href="javascript:;"> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;">Help</a></li>
-									<li><a href="login.html"><i
+									
+									<li><a href="logOut"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul></li>
 
@@ -291,100 +287,27 @@
 										class="table table-striped table-bordered">
 										<thead>
 											<tr>
+											    <th>访客编号</th>
 												<th>车位编号</th>
+												<th>车位类型</th>
 												<th>车牌号</th>
 												<th>入区时间</th>
+
 												<th>缴费金额</th>
 												<th>操作</th>
 											</tr>
 										</thead>
-
-
-										<tbody>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href=" " style="color: blue">离开小区</a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
-											<tr>
-												<th>C001</th>
-												<th>AAAA</th>
-												<th>2019/5/29/8:00</th>
-												<th>...</th>
-												<th><a href="" value="离开小区"></a></th>
-											</tr>
+										<tbody id="tb">
+										    <tr  th:each="visitor : ${visitorList}"> 
+										        <th th:text="${visitor.getVisitorId()}"></th>
+										        <th th:text="${visitor.getParkingSpaceId()}"></th>  
+										        <th th:text="${visitor.getParkingSpaceType()}"></th>
+										        
+										        <th th:text="${visitor.getLicensePlate()}"></th>   
+										        <th th:text="${visitor.getEntryTime()}"></th>  
+										        <th th:text="${$}"></th>     
+										        <th><button value="departure" class="departure"  th:text="离开小区" > </button></th>
+								            </tr> 
 										</tbody>
 									</table>
 								</div>
@@ -423,57 +346,12 @@
 												<th>车位位置</th>
 											</tr>
 										</thead>
-
-
 										<tbody>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
-											<tr>
-												<td>A001</td>
-												<td>停车场A区</td>
-											</tr>
+										<tr  th:each="allDayparking : ${allDayList}"> 
+										        <th th:text="${allDayparking.getParkingSpaceId()}"></th>  
+										        <th th:text="${allDayparking.getParkingSpaceLocation()}"></th>        
+								         </tr> 
+							
 										</tbody>
 									</table>
 								</div>
@@ -519,102 +397,15 @@
 											</tr>
 										</thead>
 										<tbody>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
-											</tr>
-											<th>D001</th>
-											<th>停车场D区001号</th>
-											<th>2019/5/29/8:00</th>
-											<th>2019/5/29/17:00</th>
-											<th>周张俊</th>
-											<th>13579246810</th>
-											</tr>
+										<tr  th:each="tempShare : ${tempShareList}"> 
+										        <th th:text="${tempShare.getParkingSpaceId()}"></th>  
+										        <th th:text="${tempShare.getParkingSpaceLocation()}"></th>    
+										        <th th:text="${tempShare.getShareingBeginTime()}"></th>  
+										        <th th:text="${tempShare.getShareingEndingTime()}"></th> 
+										        <th th:text="${tempShare.getOwnerName()}"></th>  
+										        <th th:text="${tempShare.getOwnerPhoneNumber()}"></th>     
+								         </tr> 
+											
 										</tbody>
 									</table>
 
@@ -646,18 +437,19 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">注意黑车：</p>
-									<form class="form-horizontal form-label-left" action="#">
+									
+									<form class="form-horizontal form-label-left" action="#" th:action="@{/addVisitor}"  method="post">
 										<div class="form-group">
 											<label class="col-sm-3 control-label">车牌：</label>
 											<div class="col-sm-9">
 												<div class="input-group">
-													<input type="text" class="form-control">
+													<input type="text" name="licensePlate"  class="form-control">
 												</div>
 											</div>
 											<label class="col-sm-3 control-label">车位：</label>
 											<div class="col-sm-9">
 												<div class="input-group">
-													<input type="text" class="form-control"> <span
+													<input type="number" name="parkingSpaceId" value="1000" class="form-control"> <span
 														class="input-group-btn">
 														<button type="submit" class="btn btn-primary">Go!</button>
 													</span>
@@ -667,6 +459,7 @@
 
 										</div>
 									</form>
+									
 								</div>
 							</div>
 						</div>
@@ -676,7 +469,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										查询业主车位 <small>输入关键信息即可</small>
+										查询业主车位 <small>输入关键信息</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
@@ -695,13 +488,15 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">注意身份核实：</p>
-									<p class="zzjnulldivheight"></p>
-									<form class="form-horizontal form-label-left" action="#">
+									<p class="zzjnulldivheight">注意判断：手机号，车位位置</p>
+									
+									
+									<form class="form-horizontal form-label-left" action="#" th:action="@{/FindOwnerParkingSpace}"  method="post">
 										<div class="form-group">
 											<label class="col-sm-3 control-label">输入：</label>
 											<div class="col-sm-9">
 												<div class="input-group">
-													<input type="text" class="form-control"> <span
+													<input  name="blueString" type="text" class="form-control"> <span
 														class="input-group-btn">
 														<button type="submit" class="btn btn-primary ">Go!</button>
 													</span>
@@ -736,7 +531,7 @@
 								</div>
 								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">公告标题：zzz</p>
-									<p style="padding: 45px;"></p>
+									<p style="padding: 43px;"></p>
 
 								</div>
 							</div>
@@ -825,5 +620,8 @@
 		src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 	<!-- starrr -->
 	<script src="/vendors/starrr/dist/starrr.js"></script>
+	
+		<!-- zzj脚本 -->
+	<script src="/zzjjs/ownerSetShareTime.js"></script>
 </body>
 </html>
