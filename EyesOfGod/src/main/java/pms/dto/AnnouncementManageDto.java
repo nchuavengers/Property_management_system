@@ -2,14 +2,14 @@ package pms.dto;
 
 import org.springframework.stereotype.Component;
 
-//15202137 汪浩
+//15202137 ����
 @Component
 public class AnnouncementManageDto {
 	
     private int announcementId;//公告id
     private String announcementTitle;//公告标题
-    private String announcementTime;//公告时间
-    private String announcementContent;//公告标题
+    private String announcementTime;//公告发布时间
+    private String announcementContent;//公告内容
 	public int getAnnouncementId() {
 		return announcementId;
 	}
