@@ -74,12 +74,12 @@ public interface HouseRepository {
 	@Select("SELECT * FROM pms.house where houseId=#{houseId};")		
 	public House fingHouseByHouseId(int houseId);
 	
-	
+	 
 	/**
-	 * -查询房屋是否有业主
+	 * -查询房屋是否有业主     没有业主  返回bool
 	 * @return
 	 */
-	@Select("SELECT ownerId FROM pms.ownerhouse where houseId=#{houseId};")
+	@Select("SELECT if(count(ownerId)!=0,1,0) FROM pms.ownerhouse where houseId=#{houseId};")
 	public int IsHouseFromOwnerHouse(int houseId);
 	
 	
