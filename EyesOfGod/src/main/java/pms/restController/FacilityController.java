@@ -56,7 +56,8 @@ public class FacilityController {
 	public Map<String, Object> doRepair(@ModelAttribute  FacilityManageDto facilityManageDto,Model model) {
 		System.out.println("维修id------->"+facilityManageDto.getPublicUtilityId());
         Map<String, Object> result = new HashMap<String, Object>();
-		
+    	navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
         Date date=new Date();
         facilityManageDto.setRepairTime(date);
         
@@ -88,7 +89,8 @@ public class FacilityController {
 	public String finishedRepair(@PathVariable (value="ficilityId")int ficilityId,Model model) {
 		System.out.println("维修完成------->"+ficilityId);
 		System.out.println(facilityServieImpl.finishedRepair(ficilityId));
-		
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		facilityList=facilityServieImpl.findAllFacilityManageDto();
 		model.addAttribute("facilityList",facilityList);
 		//return "facilityManage";
@@ -102,6 +104,8 @@ public class FacilityController {
 	 */
 	@PostMapping("/addFacility")
 	public String addFacility(String ficinityName,String ficinityType,Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		 PublicUtility a=new PublicUtility();
 		 a.setPublicUtilityName(ficinityName);
 		 a.setPublicUtilityType(ficinityType);

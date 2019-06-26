@@ -44,6 +44,8 @@ public class AnnouncementController {
 	}
 	@GetMapping("/announcementMessage")
 	public String announcementMessage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.print(" here is announcementMessage.html\n");
 		return "announcementMessage";
 	}
@@ -87,6 +89,8 @@ public class AnnouncementController {
 	
 	@PostMapping("/findAnn")
 	public String findAnn(String announceId,Model model){
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.println(announceId);
 		AnnouncementManageDto msg=ar.findAnnouncement(Integer.parseInt(announceId));
 		model.addAttribute("announceMessage",msg);
@@ -115,6 +119,8 @@ public class AnnouncementController {
 		announceList=ar.findAllannouncementManageDto();
 		model.addAttribute("announceList",announceList);
 		System.out.print(" here is announcementManage.html\n");
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		return "announcementManage";
 	}
 }

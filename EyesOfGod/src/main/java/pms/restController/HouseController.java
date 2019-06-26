@@ -62,6 +62,8 @@ public class HouseController {
 			result.put("status", "succcessful");//succcessful
 			result.put("msg", "succcessful！");
 		}
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		return result;
 	}
 	/**
@@ -81,6 +83,8 @@ public class HouseController {
 		houseList=houseServiceImpl.findAllHouse();
 		model.addAttribute("houseOwnerList",houseManagerDtoList);
 		model.addAttribute("houseList",houseList);
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		return "HouseManage";
 	}
 	

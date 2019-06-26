@@ -51,6 +51,8 @@ public class FinanceController {
 	}
 	@GetMapping("/financeView")
 	public String financeView(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		//由于数据库中物业费和停车费  缴费记录太少，此处为了显示统计报表功能完善，给该表传入24个值测试一下，模拟该24个值是由数据库的来的
 		//物业费
 		model.addAttribute("money1","100");
@@ -97,7 +99,8 @@ public class FinanceController {
 	@PostMapping("doPayment")
     public String doPayment(String expenseId,Model model,String ownerId,String expenseMoney,String payType,
     		String paymentStatus,String  expenseContent,HttpSession session) {
-		
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.println(" ----->ID"+expenseId);
 		System.out.println(" ----->ID"+ownerId);
 		System.out.println(" ----->ID"+expenseMoney);
@@ -133,6 +136,8 @@ public class FinanceController {
 			
 		}
 		else {
+			navMessage=hp.getNavagationMessage();
+			model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 			if("未缴费".equals(paymentStatus)) {
 				pay.setPaymentType("收银员:"+"ztx");
 				boolean b=expenseService.modifyExpense(Integer.parseInt(expenseId));
@@ -173,6 +178,8 @@ public class FinanceController {
 	@PostMapping("/addExpense")
 	public String addExpense(Model model,String ownerId,String date,String expenseContent,
 			String expenseMoney){
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 	    FinanceExpenseDto expense =new FinanceExpenseDto();
 	    //加入参数
 	    expense.setOwnerId(Integer.parseInt(ownerId));expense.setExpenseTime(new Date());
