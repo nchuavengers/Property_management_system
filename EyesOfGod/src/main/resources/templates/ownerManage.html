@@ -48,6 +48,10 @@
 <!-- Custom Theme Style -->
 <link href="/css/custom.min.css" rel="stylesheet">
 
+
+
+
+
 <!-- zzj from from.html button Go -->
 <!-- bootstrap-wysiwyg -->
 <link href="/vendors/google-code-prettify/bin/prettify.min.css"
@@ -318,7 +322,8 @@
 												<th>门牌号</th>
 												<th>联系方式</th>
 												<th>操作</th>	
-												<th>操作</th>					
+												<th>操作</th>		
+															
 											</tr>
 											
 										</thead>
@@ -334,9 +339,9 @@
 										        <th th:text="${ownerManagerDto.getHouseNumber()}"></th>
 										        <th th:text="${ownerManagerDto.getOwnerPhoneNumber()}"></th>  									        
 										        
-										        <th><button value="modifyOwner" class="modifyOwner"  th:text="修改" > </button></th>
-										        <th><button class="deleteOwner" style="color: blue" th:text="删除" >  </button></th>                    
- 
+										        <th><button value="modifyOwner" class=" btn btn-info btn-xs modifyOwner" th:text="修改" > </button></th>
+										         <th><button   class="btn btn-danger btn-xs deleteOwner" th:text="删除" > </button></th>                   
+
 								            </tr> 
 								            
 										</tbody>
@@ -396,7 +401,7 @@
 												<th><input name="ownerPassword" type="text"  placeholder="在此输入登录密码" required></th>
 												<th><input name="ownerPhoneNumber" type="text"  placeholder="在此输入联系方式" required></th>
 												
-												<th><button  id="loginSubmit" type="submit"  class="button1" style="vertical-align: middle">
+												<th><button  id="loginSubmit" type="submit"  class="button1 btn btn-primary btn-xs" style="vertical-align: middle">
 								                <span>添加 </span>
 							                    </button></th>
 											</tr>
@@ -443,10 +448,10 @@
 										</thead>
 										<tbody>
 											<tr>
-												<th><input id="ownerId" type="text" ></th>
-												<th><input id="houseId" type="text" ></th>
+												<th><input id="ownerId" type="text" required ></th>
+												<th><input id="houseId" type="text" required ></th>
 												<th>
-												<button class="addOwnerHouse" style="color: blue" th:text="添加" >  </button></th>
+												<button class="addOwnerHouse btn btn-primary btn-xs" th:text="添加" >  </button></th>
 											</tr>
 										</tbody>
 									</table>
@@ -506,6 +511,7 @@
 	<script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="/js/custom.min.js"></script>
+
 
 
 

@@ -326,7 +326,7 @@
 										        <th th:text="${houseManagerDto.getHouseNumber()}"></th>  
 										        <th th:text="${houseManagerDto.getOwnerName()}"></th>
 										        <th th:text="${houseManagerDto.getOwnerPhoneNumber()}"></th>  
-										        <th><button class="deleteHouse" style="color: blue" th:text="删除" >  </button></th>                    
+										        <th><button class="deleteHouse btn btn-danger btn-xs"  th:text="删除" >  </button></th>                    
  
 								            </tr> 
 								            <tr  th:each="house : ${houseList}"> 
@@ -337,7 +337,7 @@
 										        <th th:text="${house.getHouseNumber()}"></th>  
 										        <th >  </th>
 										        <th >  </th>  
-										        <th><button class="deleteHouse" style="color: blue" th:text="删除" >  </button></th>                    
+										        <th><button class="deleteHouse btn btn-danger btn-xs"  th:text="删除" >  </button></th>                    
  
 								            </tr> 
 								            
@@ -389,7 +389,7 @@
 												<th><input type="text" name="houseUnit"></th>
 												<th><input type="text" name="houseFloor"></th>
 												<th><input type="text" name="houseNumber"></th>
-												<th><input type="submit" class="addHouse" value="添加"></th>
+												<th><input type="submit" class="addHouse btn btn-info btn-xs" value="添加"></th>
 											</tr>
 										</tbody>
 									</table>

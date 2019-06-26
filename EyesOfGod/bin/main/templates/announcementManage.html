@@ -332,7 +332,7 @@
 												<th th:text="${mes.getAnnouncementContent()}"></th>
 												<th th:text="${mes.getAnnouncementTime()}"></th>
 												
-												<form method="post" action="findAnn"><input type="hidden" name="announceId" th:value="${mes.getAnnouncementId()}"><th><input type="submit" class="button" value="详情"></th></form>
+												<form method="post" action="findAnn"><input type="hidden" name="announceId" th:value="${mes.getAnnouncementId()}"><th><input type="submit" class="button btn btn-info btn-xs" value="详情"></th></form>
 											</tr>
 
 										</tbody>
@@ -445,7 +445,7 @@
                   <div class="ln_solid"></div>
 
                   <div class="form-group">
-                    <input type="submit" value="发布">
+                    <input type="submit" class="btn btn-danger btn-xs" value="发布">
                   </div>
                 </div>
                 </form>
