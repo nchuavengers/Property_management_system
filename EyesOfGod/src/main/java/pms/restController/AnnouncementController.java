@@ -69,6 +69,7 @@ public class AnnouncementController {
 	 */
 	@GetMapping("/ownerAnnouncement")
 	public String ownerAnnouncement(Model model) {
+		System.out.println(ar.numAnnouncement());
 		announceList=ar.findAllannouncementManageDto();
 		model.addAttribute("announceList",announceList);
 		System.out.print(" here is ownerFinance.html\n");

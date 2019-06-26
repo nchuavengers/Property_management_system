@@ -51,4 +51,10 @@ public interface AnnouncementRepository {
 	@Select("SELECT announcementId ,announcementTitle , announcementTime,announcementContent FROM announcement WHERE announcementId=#{announcementId};")
 	public AnnouncementManageDto findAnnouncement(int announcementId);
 	
+	/*
+	 * 查询公告数量
+	 */
+
+	@Select("SELECT COUNT(announcementId) FROM announcement;")
+	public int numAnnouncement();
 }
