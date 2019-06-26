@@ -13,8 +13,8 @@ public class VisitorRecord {
     private String licensePlate;//车牌
     private Date entryTime;//入区时间
     private Date departureTime;//离开时间
-
     private int  paymentMoney;//缴费金额
+    
 
 	public int getVisitorId() {
 		return visitorId;

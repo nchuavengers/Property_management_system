@@ -24,6 +24,7 @@ import pms.dto.OwnerManagerDto;
 import pms.dto.UserDto;
 import pms.entity.House;
 import pms.entity.Owner;
+import pms.repository.OwnerRepository;
 import pms.service.HouseServiceImpl;
 import pms.service.OwnerServiceImpl;
 
@@ -38,6 +39,9 @@ public class OwnerController {
     
     @Autowired
     private List<OwnerManagerDto> ownerManagerDtoList;  
+    
+    @Autowired
+    private OwnerRepository ownerRepository;     
     
 	/**
 	 * -管理员进入业主管理页面    小区所有业主信息
@@ -72,23 +76,33 @@ public class OwnerController {
 
 		//修改owner
 		//不需要判断直接修改
-		System.out.println("正在update...");
-		//调用service修改
+		
 		Map<String, Object> result = new HashMap<String, Object>();
+		boolean b=true;
+		//判断手机号是否已存在一个用户一个手机号
+		Owner isExistOwner = ownerRepository.fingOwnerByOwnerPhoneNumber(owner);
+		if(isExistOwner!=null) {
+			b=false;
+			System.out.println("手机号存在");
+		}
+		else {
+		//调用service修改
+
+			System.out.println("正在update...");
+		b=ownerServiceImpl.UpdateOwner(owner);
 		
-		boolean b=ownerServiceImpl.UpdateOwner(owner);
-		
+		}
 		
 		System.out.println("b="+b);
 		if(b){
 			//封装正确消息
 			result.put("status", "succcessful");//succcessful
-			result.put("msg", "succcessful！");
+			result.put("msg", "修改业主信息  succcessful！");
 		}
 		else {
 			//封装错误消息
 			result.put("status", "fail");//fail
-			result.put("msg", "修改失败！");
+			result.put("msg", "已有用户的手机号为此号码，由于手机号用于登录，不能相同！");
 		}
 		return result;
 	}
