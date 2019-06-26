@@ -241,7 +241,7 @@ public class AliController {
 	            //处理业务逻辑，更新订单状态等
 
 
-	            return "success";
+	            return "ownerFinance";
 	        } else {
 	            return ("fail");
 	        }
