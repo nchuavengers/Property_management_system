@@ -3,15 +3,18 @@ package pms.dto;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
-
+/*
+ * *用于封装公共设施管理界面用户输入的数据
+ * 15202137 汪浩 6.15
+ */
 @Component
 public class FacilityManageDto {
     private int publicUtilityId;//公共设施id
     private String publicUtilityName;//公共设施名称
     private String publicUtilityType;//公共设施类型
-    private String publicUtilityStatus;//公共设施状态
+    private String publicUtilityStatus;//公共设施状态״̬
     
-    private String repairerInfomation;//维修人员id+电话
+    private String repairerInfomation;//修复
     private String repairMoney;//
     private Date repairTime;//
 	public int getPublicUtilityId() {

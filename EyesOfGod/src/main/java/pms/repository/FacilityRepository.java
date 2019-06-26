@@ -8,6 +8,15 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import pms.dto.FacilityManageDto;
 import pms.entity.PublicUtility;
+
+import pms.entity.RepairRecord;
+
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+
 @Mapper
 public interface FacilityRepository {
    
@@ -44,3 +53,97 @@ public interface FacilityRepository {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+/*
+ * *用于增删查改公共设施数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
+

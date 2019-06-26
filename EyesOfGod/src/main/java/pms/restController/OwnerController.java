@@ -159,18 +159,52 @@ public class OwnerController {
 			String ownerPhoneNumber,
 			String ownerPassword
 			) {
-		System.out.print("添加业主\n");
+		
+		
 		Owner owner =new Owner();
 		owner.setOwnerName(ownerName);
 		owner.setOwnerPassword(ownerPassword);
 		owner.setOwnerPhoneNumber(ownerPhoneNumber);
 		owner.setOwnerSex(ownerSex);
 		
+		int result=0;
+		//判断密码6位数
+		String regexpw = "[0-9|]{6}";
+        boolean flag = ownerPassword.matches(regexpw);
+        if(!flag) {
+        //格式不对
+        	result=1;//错误1：密码不是6位数字
+        	String err="密码不是6位数字，重新输入";
+			model.addAttribute("err",err);
+			return "addVisitorError";//重复使用下
+        }
+        regexpw = "[0-9|]{11}";
+        flag = ownerPhoneNumber.matches(regexpw);
+        if(!flag) {
+        //格式不对
+        	result=2;//错误2：手机不是11位数字
+        	String err="手机号不是11位，重新输入";
+			model.addAttribute("err",err);
+			return "addVisitorError";//重复使用下
+        }   
+		//判断手机号已存在
+        Owner isExistOwner = ownerRepository.fingOwnerByOwnerPhoneNumber(owner);
+		if(isExistOwner!=null) {
+			result=3;//错误3：手机号已存在
+			String err="该手机号已被注册，重新输入";
+			model.addAttribute("err",err);
+			return "addVisitorError";//重复使用下
+		}
+		
+		
+		
+		System.out.print("添加业主\n");
+
+		
 		boolean  b=ownerServiceImpl.addOwner(owner);
 		
 		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();
 
-		
 		model.addAttribute("list",ownerManagerDtoList);
 		
 		return "ownerManage";
@@ -246,7 +280,8 @@ public class OwnerController {
 	@GetMapping("/addOwnerHouse")
 	@ResponseBody 
 	public Map<String, Object> addOwnerHouse(@ModelAttribute OwnerHouseDto ownerHouseDto) {
-      
+//	public String addOwnerHouse(@ModelAttribute OwnerHouseDto ownerHouseDto,Model model) {
+
 		System.out.println("11111...");
 		
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -259,11 +294,21 @@ public class OwnerController {
 			result.put("status", "succcessful");//succcessful
 			result.put("msg", "succcessful！");
 		}
-		else {       //错误消息房屋不存在
+		else {       //错误
 			result.put("status", "fail");//fail
 			result.put("msg", "业主不存在！");
 		}
 		return result;
+		
+		
+		
+//		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();
+//		System.out.println("chaxun...");
+//		model.addAttribute("list",ownerManagerDtoList);
+//		
+//		System.out.println("chxun...");
+//		return "ownerManage";
+		
 	}	
 	
 	
