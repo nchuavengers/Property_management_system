@@ -73,10 +73,11 @@ $(document).ready(function(){
 		                      $(this).children('th').each(function(j){ 
 		                    	  switch (j) {						
 										case 5:{
-											var is_text = $(this).find("input");//密码单元格下肯定含有文本框
+											var is_text = $(this).find("input");//密码单元格下肯定含有文本框//就隐藏
 											if(is_text.length){
+												alert("框"+j);
 											$(this).html(is_text.val());
-											$(this).parent().parent().remove();//局部删除
+											$(this).parent().remove();//局部删除
 											}
 											break;
 										}
