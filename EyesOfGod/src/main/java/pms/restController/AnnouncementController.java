@@ -12,10 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import pms.entity.Announcement;
+import pms.entity.Owner;
+/*
+ * *用于处理公告管理页面请求，调用AnnouncementManageService服务接口，返回数据到页面
+ * 15202137 汪浩 6.15
+ */
+
 import pms.dto.AnnouncementManageDto;
 import pms.dto.NavigationMessage;
 import pms.repository.AnnouncementRepository;
 import pms.service.HomeServiceImpl;
+
 
 @Controller
 public class AnnouncementController {

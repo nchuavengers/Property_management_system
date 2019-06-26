@@ -18,6 +18,12 @@ import pms.entity.Announcement;
   	初步设计持久化接口
  *
  */
+
+/*
+ * *用于增删查改公告信息数据
+ * 15202137 汪浩 6.15
+ * my batis
+ */
 @Mapper
 public interface AnnouncementRepository {
 
@@ -58,3 +64,64 @@ public interface AnnouncementRepository {
 	@Select("SELECT COUNT(announcementId) FROM announcement;")
 	public int numAnnouncement();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
+/**
+ *162021班 第10组
+ *小区物业管理系统-公告管理模块
+ *@author:15202137-汪浩
+ *date:2019-6-8
+ *主要功能说明：
+  	初步设计持久化接口
+ *
+ */
+

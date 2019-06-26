@@ -20,6 +20,10 @@ import pms.entity.PublicUtility;
 import pms.service.FacilityService;
 import pms.service.HomeServiceImpl;
 
+/*
+ * *用于处理公共设施页面请求，调用FacilityService服务接口，返回数据到页面
+ * 15202137 汪浩 6.15
+ */
 @Controller
 public class FacilityController {
 
