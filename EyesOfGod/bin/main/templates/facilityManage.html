@@ -328,8 +328,8 @@
 										        <th th:text="${facilityManageDto.getRepairerInfomation()}"></th>  
 										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
 										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
-										        <th><button value="modifyFacility" class="modifyFacility"  th:text="申请维修" > </button></th>  
-												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" style="color: blue">维修已完成</a></th>                   
+										        <th><button value="modifyFacility" class="modifyFacility btn btn-danger btn-xs"  th:text="申请维修" > </button></th>  
+												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" class="btn btn-info btn-xs">维修已完成</a></th>                   
  											</tr> 
 								         </tbody>
 										
@@ -376,7 +376,7 @@
 												
 												<th><input type="text" name="ficinityName"></th>
 												<th><input type="text" name="ficinityType"></th>
-												<th><input type="submit" value="添加"></th>
+												<th><input type="submit" class="btn btn-primary btn-xs" value="添加"></th>
 											</tr>
 										</tbody>
 									</table>

@@ -323,7 +323,7 @@
 												<th><input name="date" type="datetime-local" ></th>
 												<th><input name="expenseContent" type="text" ></th>
 												<th><input name="expenseMoney" type="text" ></th>
-												<th><input type="submit"   value="添加" ></th>
+												<th><input type="submit" class="btn btn-info btn-xs"  value="添加" ></th>
 											</tr>
 										</tbody>
 									</table>
@@ -386,7 +386,7 @@
 										        <th th:text="${a.getExpenseContent()}"></th>
 										        <th th:text="${a.getExpenseMoney()}"></th>
 										        <th th:text="${a.getPaymentStatus()}"></th>  
-										        <th><Button type="submit"  class="payBt2" style="color: blue" th:text="缴费"></Button></th>  
+										        <th><Button type="submit"  class="payBt2 btn btn-danger btn-xs"  th:text="缴费"></Button></th>  
 										    </form>
 										     </tr> 
 										 </tbody>
