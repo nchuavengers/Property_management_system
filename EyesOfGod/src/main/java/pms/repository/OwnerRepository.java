@@ -106,5 +106,10 @@ public interface OwnerRepository {
 	@Select("SELECT * FROM pms.owner where ownerId=#{ownerId};")		
 	public Owner fingOwnerByOwnerId(int ownerId);	
 	
-	
+	/**
+	 * -查询业主数量
+	 * @return
+	 */
+	@Select("SELECT COUNT(ownerId) FROM OWNER;")
+	public int numOwner();
 }

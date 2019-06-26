@@ -94,5 +94,8 @@ public interface ParkingSpaceRepository {
 	@Insert("")
 	public boolean addOwnerParkingSpace(OwnerParkingSpaceDto ownerParkingSpaceDto);
 	
-
+	
+	@Select("SELECT COUNT(parkingSpaceId) FROM parkingspace;")
+	public int numParkingSpace();
+	
 }
