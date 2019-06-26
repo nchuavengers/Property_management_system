@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pms.dto.MyParkingSpaceDto;
+import pms.dto.NavigationMessage;
 import pms.dto.OwnerParkingSpaceDto;
 import pms.dto.SetShareTimeDto;
 import pms.entity.Owner;
 import pms.entity.ParkingSpace;
+import pms.service.HomeServiceImpl;
 import pms.service.ParkingSpaceServiceImpl;
 
 @Controller  
@@ -31,7 +33,10 @@ public class ParkingSpaceController {
     
     @Autowired
     private ParkingSpaceServiceImpl parkingSpaceServiceImpl;
-    
+    @Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
     
     @Autowired
    	private Owner owner;
@@ -50,7 +55,8 @@ public class ParkingSpaceController {
 
 	public String ownerParking(Model model,HttpSession session2) {	
 		Owner owner=(Owner) session2.getAttribute("owner");
-		
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.print(" here is ownerParking.html\n");
 		int id=owner.getOwnerId();
 //		int id=Integer.parseInt(ownerId);	
@@ -169,6 +175,8 @@ public class ParkingSpaceController {
 	 */
 	@GetMapping("/parkingSpaceManage")
 	public String parkingSpaceManage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.print(" here is parkingSpaceManage.html\n");
 		return "parkingSpaceManage";
 	}

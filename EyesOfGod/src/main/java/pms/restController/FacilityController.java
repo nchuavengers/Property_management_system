@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pms.dto.FacilityManageDto;
+import pms.dto.NavigationMessage;
 import pms.entity.PublicUtility;
 import pms.service.FacilityService;
+import pms.service.HomeServiceImpl;
 
 @Controller
 public class FacilityController {
@@ -25,7 +27,10 @@ public class FacilityController {
 	private FacilityService facilityServieImpl;
 	@Autowired
 	private List<FacilityManageDto> facilityList;
-
+	@Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
 	/**
 	 * -管理员进入公共设施管理页面
 	 * -显示该页面的数据     FacilityManageDto
@@ -34,6 +39,8 @@ public class FacilityController {
 	 */
 	@GetMapping("/facilityManage")
 	public String facilityManage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		facilityList=facilityServieImpl.findAllFacilityManageDto();
 		model.addAttribute("facilityList",facilityList);
 		return "facilityManage";

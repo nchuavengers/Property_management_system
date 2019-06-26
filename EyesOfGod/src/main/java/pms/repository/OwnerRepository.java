@@ -114,5 +114,11 @@ public interface OwnerRepository {
 	 */
 	@Select("SELECT * FROM pms.owner where ownerPhoneNumber=#{ownerPhoneNumber};")		
 	public Owner fingOwnerByOwnerPhoneNumber(Owner owner);	
-
+	
+	/**
+	 * -查询业主数量
+	 * @return
+	 */
+	@Select("SELECT COUNT(ownerId) FROM OWNER;")
+	public int numOwner();
 }

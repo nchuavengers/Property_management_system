@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pms.dto.HouseManagerDto;
+import pms.dto.NavigationMessage;
 import pms.entity.House;
+import pms.service.HomeServiceImpl;
 import pms.service.HouseService;
 
 @Controller
@@ -23,8 +25,14 @@ public class HouseController {
     private List<HouseManagerDto> houseManagerDtoList;  
     @Autowired
     private List<House> houseList;  
+    @Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
 	@GetMapping("/HouseManage")
 	public String HouseManage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		houseManagerDtoList = houseServiceImpl.findAllHouseManagerDto();
 		houseList=houseServiceImpl.findAllHouse();
 		model.addAttribute("houseOwnerList",houseManagerDtoList);

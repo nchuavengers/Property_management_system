@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pms.dto.AnnouncementManageDto;
+import pms.dto.NavigationMessage;
 import pms.repository.AnnouncementRepository;
+import pms.service.HomeServiceImpl;
 
 @Controller
 public class AnnouncementController {
@@ -21,6 +23,10 @@ public class AnnouncementController {
 	private AnnouncementRepository ar;
 	@Autowired
 	private List<AnnouncementManageDto> announceList;
+	@Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
 	/**
 	 * -管理员进入公告管理页面
 	 * -显示该页面的数据     announcementManageDto
@@ -29,6 +35,8 @@ public class AnnouncementController {
 	 */
 	@GetMapping("/announcementManage")
 	public String announcementManage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		announceList=ar.findAllannouncementManageDto();
 		model.addAttribute("announceList",announceList);
 		System.out.print(" here is announcementManage.html\n");

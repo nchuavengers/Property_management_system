@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import pms.dto.NavigationMessage;
 import pms.dto.OwnerHouseDto;
 import pms.dto.OwnerManagerDto;
 import pms.dto.UserDto;
 import pms.entity.House;
 import pms.entity.Owner;
 import pms.repository.OwnerRepository;
+import pms.service.HomeServiceImpl;
 import pms.service.HouseServiceImpl;
 import pms.service.OwnerServiceImpl;
 
@@ -41,8 +43,11 @@ public class OwnerController {
     private List<OwnerManagerDto> ownerManagerDtoList;  
     
     @Autowired
-    private OwnerRepository ownerRepository;     
-    
+    private OwnerRepository ownerRepository;    
+    @Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
 	/**
 	 * -管理员进入业主管理页面    小区所有业主信息
 	 * -显示该页面的数据     OwnerManagerDto 
@@ -51,7 +56,8 @@ public class OwnerController {
 	 */
 	@GetMapping("/ownerManage")
 	public String ownerManage(Model model) {
-		
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		System.out.print(" here is ownerManage.html\n");
 		//ownerManagerDtoList.clear();
 		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();

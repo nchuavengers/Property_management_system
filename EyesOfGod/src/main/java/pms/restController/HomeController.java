@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pms.dto.AllDayShareDto;
+import pms.dto.NavigationMessage;
 import pms.dto.TemporayShareDto;
 import pms.dto.UserDto;
 import pms.dto.VisitorCarDto;
@@ -37,7 +38,9 @@ public class HomeController {
     private HomeServiceImpl homeServiceImpl;   
 	@Autowired
 	private SecurityService securityServiceImpl;
-    
+	@Autowired
+	private NavigationMessage navMessage;
+	
     /**
      * 跳至登录界面，传入userDTO实例,待用户输入账号密码类型
      * @param model
@@ -125,8 +128,11 @@ public class HomeController {
 			     }
     			owner=null;
     			security=null;
+    			navMessage= homeServiceImpl.getNavagationMessage();
+    			model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
     			model.addAttribute("manager",manager);
 			    session.setAttribute("manager", manager);
+			    session.setAttribute("navMessage", navMessage);
 			    return "manager";
             }
 			
@@ -144,6 +150,7 @@ public class HomeController {
 	 */
 	@GetMapping("/manager")
 	public String manager(Model model) {
+		model.addAttribute("navMessage",navMessage);
 		model.addAttribute("manager",manager);
 	    System.out.print(" here is manager.html\n");
 		return "manager";

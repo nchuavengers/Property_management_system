@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pms.dto.FinanceExpenseDto;
 import pms.dto.FinancePaymentDto;
+import pms.dto.NavigationMessage;
 import pms.service.ExpenseService;
+import pms.service.HomeServiceImpl;
 import pms.service.PaymentService;
 import pms.entity.Owner;
 @Controller
@@ -25,6 +27,11 @@ public class FinanceController {
 	private PaymentService paymentService;
 	@Autowired
 	private ExpenseService expenseService;
+	@Autowired
+	private HomeServiceImpl hp;
+	@Autowired
+	private NavigationMessage navMessage;
+    
 	/**
 	 * -管理员进入缴费管理页面
 	 * -显示该页面的数据     FinanceExpenseDto     FinancePaymentDto 
@@ -33,6 +40,8 @@ public class FinanceController {
 	 */
 	@GetMapping("/financeManage")
 	public String financeManage(Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		paymentList=paymentService.findAllPayment() ;
 		expenseList=expenseService.findAllExpenseDto();
 		model.addAttribute("paymentList",paymentList);
