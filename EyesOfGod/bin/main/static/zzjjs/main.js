@@ -265,55 +265,55 @@ $(document).ready(function(){
 	 * 管理员-业主信息管理页面
 	 * 添加业主信息：在所有业主表格中最后一列添加一行tr记录
 	 */	
-	$("#addOwner").click(function(){//id选择符只有一个该按钮
-	
-		//获取所有输入
-		var orderItem={};//保存表格里的值//获取ownerId
-	    $(this).parent().siblings("th").each(function(j){
-		      switch (j) {
-				case 0:{
-					var is_text = $(this).find("input:text");
-					orderItem.ownerName=is_text.val();//第0个th   姓名
-					break;
-				}
-				case 1:{//二选框
-					is_text = $(this).find("input:text");
-					orderItem.ownerSex=is_text.val();//第1个th   性别
-					break;
-				}
-				case 2:{//11位数
-					is_text = $(this).find("input:text");
-					orderItem.ownerPhoneNumber=is_text.val();//第2个th   手机号
-					break;
-				}
-				case 3:{//6位数
-					is_text = $(this).find("input:text");
-					orderItem.ownerPassword=is_text.val();//第3个th   密码
-					break;
-				}
-			};
-	    });
-       //传入id
-	    var newid;
-		$.ajax({
-			url: "/addOwner",     //重定向？url并没有变化，只是js请求服务器获取json数据，更新
-	        type : "get",
-	        dataType : "json",
-	        contentType : "application/json; charset=utf-8",  
-	        data : {
-	    		  'ownerName':orderItem.ownerName,		
-	    		  'ownerPhoneNumber':orderItem.ownerPhoneNumber,
-	    		  'ownerSex':orderItem.ownerSex,
-	    		  'ownerPassword':orderItem.ownerPassword
-	        	  },
-	        async : true,  
-	    }).then(function(data) {
-	    	if($.trim("succcessful") == $.trim(data.status)){
-	    		alert(data.msg);//显示结果
-                //获取自增长的id
-	    		newid=data.ownerId;
-
-	    		
+//	$("#addOwner").click(function(){//id选择符只有一个该按钮
+//	
+//		//获取所有输入
+//		var orderItem={};//保存表格里的值//获取ownerId
+//	    $(this).parent().siblings("th").each(function(j){
+//		      switch (j) {
+//				case 0:{
+//					var is_text = $(this).find("input:text");
+//					orderItem.ownerName=is_text.val();//第0个th   姓名
+//					break;
+//				}
+//				case 1:{//二选框
+//					is_text = $(this).find("input:text");
+//					orderItem.ownerSex=is_text.val();//第1个th   性别
+//					break;
+//				}
+//				case 2:{//11位数
+//					is_text = $(this).find("input:text");
+//					orderItem.ownerPhoneNumber=is_text.val();//第2个th   手机号
+//					break;
+//				}
+//				case 3:{//6位数
+//					is_text = $(this).find("input:text");
+//					orderItem.ownerPassword=is_text.val();//第3个th   密码
+//					break;
+//				}
+//			};
+//	    });
+//       //传入id
+//	    var newid;
+//		$.ajax({
+//			url: "/addOwner",     //重定向？url并没有变化，只是js请求服务器获取json数据，更新
+//	        type : "get",
+//	        dataType : "json",
+//	        contentType : "application/json; charset=utf-8",  
+//	        data : {
+//	    		  'ownerName':orderItem.ownerName,		
+//	    		  'ownerPhoneNumber':orderItem.ownerPhoneNumber,
+//	    		  'ownerSex':orderItem.ownerSex,
+//	    		  'ownerPassword':orderItem.ownerPassword
+//	        	  },
+//	        async : true,  
+//	    }).then(function(data) {
+//	    	if($.trim("succcessful") == $.trim(data.status)){
+//	    		alert(data.msg);//显示结果
+//                //获取自增长的id
+//	    		newid=data.ownerId;
+//
+//	    		
 	    		
 //	    		   var targetTbody= $("#tb");
 //	    		    //获取#tbl表格的最后一行
@@ -380,13 +380,13 @@ $(document).ready(function(){
 // 						
 //				$("#tb").append(trHtml);
 
-	    	}
-	    });
-		
-		
-        //$(this).parent().parent().remove();//局部删除
-		
-	});
+//	    	}
+//	    });
+//		
+//		
+//        //$(this).parent().parent().remove();//局部删除
+//		
+//	});
 	
 	
 	
