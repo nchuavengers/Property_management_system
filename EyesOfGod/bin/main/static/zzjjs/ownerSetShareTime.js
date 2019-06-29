@@ -27,7 +27,7 @@ $(document).ready(function(){
 			$(this).text("确定 ");
 		}//ifmodify	
 		else{
-			alert("点击确定");
+			//alert("点击确定");
 			var orderItem={};//保存表格里的值
 			//alert("准备获取数据");
 			normStatus=1;//格式没错
@@ -130,14 +130,14 @@ $(document).ready(function(){
 			$(this).text("确定 ");
 		}//ifmodify	
 		else{
-			alert("点击确定");
+			//alert("点击确定");
 			var orderItem={};//保存表格里的值//获取owner对象
 			//alert("准备获取数据");
 			normStatus=1;//格式没错
 		    $(this).parent().siblings("th").each(function(j){
 			      switch (j) {
 					case 3:{
-						alert("框3");
+						//alert("框3");
 //						var is_text = $(this).find("input:datetime-local");
 //						if(is_text.length){
 //							alert("找到");
@@ -145,9 +145,9 @@ $(document).ready(function(){
 						
 //						orderItem.shareingBeginTime=is_text.val();	
 						var is_text = $(this).find("input");
-						alert("找到");
+						//alert("找到");
 						orderItem.shareingBeginTime=is_text.val();
-						alert("获取选择的日期"+orderItem.shareingBeginTime);
+						//alert("获取选择的日期"+orderItem.shareingBeginTime);
 						break;
 					}
 					case 4:{
@@ -169,7 +169,7 @@ $(document).ready(function(){
 		    else{
 			    //检查格式没问题后-发送到后台验证
 				    
-			    alert("发送到后台ing");
+			    //alert("发送到后台ing");
 			    //ajax
 				$.ajax({
 			        url: "/setShareTime",     
@@ -259,7 +259,7 @@ $(document).ready(function(){
 			        	var id=data.parkingSpaceId;
 				        //重新找到该节点-有文本框的就保存-前面要有个标记-是否在修改
 				        $("#tb").find("tr").each(function(){  
-				        	alert($(this).find("th").first().text());
+				        	//alert($(this).find("th").first().text());
 				        	 if($(this).find("th").first().text()==id){//   if第一个框框的值不是id  return;
 
 		                      $(this).children('th').each(function(j){ 

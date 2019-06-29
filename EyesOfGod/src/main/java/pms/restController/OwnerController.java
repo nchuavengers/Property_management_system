@@ -204,7 +204,9 @@ public class OwnerController {
 		boolean  b=ownerServiceImpl.addOwner(owner);
 		
 		ownerManagerDtoList = ownerServiceImpl.findAllOwnerManagerDto();
-
+		navMessage=hp.getNavagationMessage();
+		
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		model.addAttribute("list",ownerManagerDtoList);
 		
 		return "ownerManage";
@@ -260,7 +262,7 @@ public class OwnerController {
 			}
 			else {       //错误消息房屋存在业主
 				result.put("status", "fail");//fail
-				result.put("msg", "该房屋当前属于业主:"+id+"!!!");
+				result.put("msg", "该房屋属于其他业主，一个房屋只能被一个业主拥有!!!");
 			}
 		}
 		else {       //错误消息房屋不存在
