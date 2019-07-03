@@ -118,7 +118,20 @@ public class FacilityController {
 		model.addAttribute("facilityList",facilityList);
 		return "redirect:/facilityManage"; 
 	}
-	
+	/**
+	 * -删除公共设施
+	 * @param 待添加 PublicUtility 对象
+	 * @return
+	 */
+	@GetMapping("/delFacility/{ficilityId}")
+	public String delFacility(@PathVariable (value="ficilityId")int ficilityId,String ficinityType,Model model) {
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
+		facilityServieImpl.deleteFacility(ficilityId);
+		facilityList=facilityServieImpl.findAllFacilityManageDto();
+		model.addAttribute("facilityList",facilityList);
+		return "redirect:/facilityManage"; 
+	}
 	
 	
 	

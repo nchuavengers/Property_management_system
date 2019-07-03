@@ -57,4 +57,10 @@ public class FacilityServiceImpl implements FacilityService {
 		return false;
 	}
 
+	@Override
+	public boolean deleteFacility(int id) {
+		// TODO Auto-generated method stub
+		return  fr.deleteFacility(id);
+	}
+
 }

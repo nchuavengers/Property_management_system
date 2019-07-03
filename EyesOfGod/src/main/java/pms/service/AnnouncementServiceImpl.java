@@ -6,8 +6,7 @@ import pms.dto.AnnouncementManageDto;
 import pms.entity.Announcement;
 /*
  * *用于实现公告信息服务接口
- * 15202137 汪浩 6.15
- * my batis
+ * 懒得写了service了，心累。
  */
 public class AnnouncementServiceImpl implements AnnouncementService{
 
@@ -35,6 +34,12 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	public List<AnnouncementManageDto> findAllannouncementManageDto() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean deleteAnnouncement(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

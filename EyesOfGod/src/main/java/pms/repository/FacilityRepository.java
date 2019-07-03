@@ -2,6 +2,7 @@ package pms.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -11,11 +12,6 @@ import pms.entity.PublicUtility;
 
 import pms.entity.RepairRecord;
 
-/*
- * *用于增删查改公共设施数据
- * 15202137 汪浩 6.15
- * my batis
- */
 
 @Mapper
 public interface FacilityRepository {
@@ -49,7 +45,8 @@ public interface FacilityRepository {
 	@Insert("INSERT INTO publicutility (publicUtilityName,publicUtilityType,publicUtilityStatus) VALUE(#{publicUtilityName},publicUtilityType,'Well');")
 	public boolean addFacility(PublicUtility publicUtility);
 	
-	
+	@Delete("DELETE FROM publicutility WHERE publicUtilityId=#{publicUtilityId} ;")
+	public boolean deleteFacility(int publicUtilityId );
 	
 	
 }

@@ -43,7 +43,7 @@ public interface FacilityService {
     public boolean finishedRepair(int ficilityId);
 
 	boolean applyRequired(FacilityManageDto facilityManageDto);
-	
+	boolean deleteFacility(int id);
 	
 	
 	

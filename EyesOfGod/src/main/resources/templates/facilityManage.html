@@ -329,7 +329,8 @@
 										        <th th:text="${facilityManageDto.getRepairMoney()}"></th>
 										        <th th:text="${facilityManageDto.getRepairTime()}"></th>  
 										        <th><button value="modifyFacility" class="modifyFacility btn btn-danger btn-xs"  th:text="申请维修" > </button></th>  
-												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" class="btn btn-info btn-xs">维修已完成</a></th>                   
+												<th><a th:href="@{'facilityRepaired/'+${facilityManageDto.getPublicUtilityId()} }" class="btn btn-info btn-xs">维修已完成</a></th>    
+												<th><a th:href="@{'delFacility/'+${facilityManageDto.getPublicUtilityId()} }" class="btn btn-info btn-xs">删除</a></th>               
  											</tr> 
 								         </tbody>
 										

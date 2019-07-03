@@ -63,6 +63,8 @@ public interface AnnouncementRepository {
 
 	@Select("SELECT COUNT(announcementId) FROM announcement;")
 	public int numAnnouncement();
+	
+	
 }
 
 

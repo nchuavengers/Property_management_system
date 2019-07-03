@@ -40,7 +40,7 @@ public interface AnnouncementService {
 
 	List<AnnouncementManageDto> findAllannouncementManageDto();
 	
-	
+	public boolean deleteAnnouncement(int id);
 	
 	
 	

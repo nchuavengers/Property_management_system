@@ -132,4 +132,21 @@ public class AnnouncementController {
 		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
 		return "announcementManage";
 	}
+	@PostMapping("/deleteAnn")
+	public String deleteAnn(String announceId,Model model) {
+		boolean a =false;
+		try {
+			a =ar.deleteAnnouncement(Integer.parseInt(announceId));
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			System.out.println("删除结果： "+a);
+		}
+		announceList=ar.findAllannouncementManageDto();
+		model.addAttribute("announceList",announceList);
+		System.out.print(" here is announcementManage.html\n");
+		navMessage=hp.getNavagationMessage();
+		model.addAttribute("navMessage",navMessage);//将导航栏信息(人流量，车流量)放入Model
+		return "announcementManage";
+	}
 }
